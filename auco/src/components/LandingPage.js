@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Button } from 'reactstrap';
 import '../App.css';
-import axios from 'axios';
 import NavBar from './NavBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
+import childrenIllustration from '../assets/illustrations/round.png'; 
 
+const LandingPage = (props) => {
 
-class LandingPage extends Component {
-    constructor() {
-        super();
-        this.state = {
-            app_name: 'AUCO',
-            language: 'Español'
-        };
-    }
-
-    onChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
-
-    render() {
-        return (
+    return (
+        <div class="landing">
             <NavBar></NavBar>
-        );
-    }
+            <div class="content">
+                <img src={childrenIllustration} alt="happy children in a field"></img>
+                <Button color="primary" size="lg">EMPEZAR</Button>
+                <Button color="primary" size="lg">Ya tengo una cuenta</Button>
+                <span>SABER MÁS <FontAwesomeIcon icon={faLongArrowAltDown} /></span>
+            </div>
+        </div>
+    );
 }
 
 export default LandingPage;

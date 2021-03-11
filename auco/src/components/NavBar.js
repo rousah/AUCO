@@ -31,6 +31,7 @@ const NavBar = (props) => {
                         <DropdownToggle nav caret>
                             Español
                         </DropdownToggle>
+                        <img src=""></img>
                         <DropdownMenu right>
                             <DropdownItem>
                                 Español
