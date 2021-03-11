@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
-import ShowBookList from './components/ShowBookList';
-import CreateBook from './components/CreateBook';
+import LandingPage from './components/LandingPage';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <Route exact path='/' component={ShowBookList} />
-          <Route path='/create-book' component={CreateBook} />
+          <Route exact path='/' component={LandingPage} />
+          <Route path='/register' component={LandingPage} />
         </div>
       </Router>
     );
