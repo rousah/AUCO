@@ -22,11 +22,11 @@ const NavBar = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">AUCO</NavbarBrand>
+        <Navbar color="light" light expand="md" className="sticky-top">
+            <NavbarBrand href="/" className="logo">AUCO</NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
-                <Nav className="me-auto" navbar>
+                <Nav className="ms-auto" navbar>
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret>
                             Español

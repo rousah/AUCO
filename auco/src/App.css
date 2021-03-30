@@ -1,3 +1,10 @@
+body {
+  font-family: "Baloo 2", cursive;
+}
+
+.logo {
+  font-weight: 800;
+}
 .App {
   text-align: center;
 }
@@ -5,6 +12,23 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.landing {
+  max-width: 62%;
+  margin: 0 auto;
+}
+
+.entry {
+  height: 100vh;
+  position: relative;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 100px;
+  text-align: center;
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
