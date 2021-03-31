@@ -1,0 +1,17 @@
+.landing {
+}
+
+.entry {
+  height: 100vh;
+  position: relative;
+  color: white;
+  max-width: 62%;
+  margin: 0 auto;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 100px;
+  text-align: center;
+  width: 100%;
+}

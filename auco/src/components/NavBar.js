@@ -7,13 +7,10 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavItem,
-    NavLink,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem,
-    NavbarText
+    DropdownItem
 } from 'reactstrap';
 
 const NavBar = (props) => {
@@ -21,13 +18,17 @@ const NavBar = (props) => {
 
     const toggle = () => setIsOpen(!isOpen);
 
+    const style = {
+        backgroundColor: 'white'
+    };
+
     return (
-        <Navbar color="light" light expand="md" className="sticky-top">
-            <NavbarBrand href="/" className="logo">AUCO</NavbarBrand>
+        <Navbar style={style} color="light" dark expand="md" className="sticky-top">
+            <NavbarBrand href="/" className="logo"><h1 style={{fontWeight:"800"}}>AUCO</h1></NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="ms-auto" navbar>
-                    <UncontrolledDropdown nav inNavbar>
+                    <UncontrolledDropdown nav inNavbar style={{fontSize: "20px", fontWeight: "600"}}>
                         <DropdownToggle nav caret>
                             Español
                         </DropdownToggle>

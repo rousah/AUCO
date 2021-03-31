@@ -1,11 +1,12 @@
 import React from 'react';
-import { Button } from 'reactstrap';
-import '../App.css';
-import NavBar from './NavBar';
+import '../../App.css';
+import './LandingPage.css';
+import NavBar from './../NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
-import childrenIllustration from '../assets/illustrations/round.png';
+import childrenIllustration from '../../assets/illustrations/round.png';
 import { Container, Row, Col } from 'reactstrap';
+import ButtonMain from './../ButtonMain';
 
 const LandingPage = (props) => {
 
@@ -18,17 +19,22 @@ const LandingPage = (props) => {
                         <Col>
                             <img src={childrenIllustration} alt="happy children in a field" style={{ width: "100%" }}></img>
                         </Col>
-                        <Col className="text-center">
-                            <Row><h2>Empezar aquí lorem ipsum</h2></Row>
-                            <Row><Button color="primary" size="lg">EMPEZAR</Button>
+                        <Col className="text-center d-flex flex-column h-50 py-3 justify-content-between align-items-center flex-nowrap">
+                            <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
+                                <h2 style={{fontWeight:"600", fontSize:"40px"}}>Empezar aquí lorem ipsum</h2>
                             </Row>
-                            <Row><Button color="primary" size="lg">Ya tengo una cuenta</Button></Row>
+                            <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
+                                <ButtonMain className="h-50 w-75" buttonText={"EMPEZAR"} href="/register" fontWeight="bold" fontSize="38px"></ButtonMain>
+                            </Row>
+                            <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
+                                <ButtonMain className="h-50 w-75" buttonText={"Ya tengo una cuenta"} href="/login" fontWeight="600" fontSize="30px"></ButtonMain>
+                            </Row>
                         </Col>
                     </Row>
                 </Container>
                 <div className="d-flex justify-content-center arrow">
-                    <a href="#stopbullying">
-                        <span>SABER MÁS <FontAwesomeIcon icon={faLongArrowAltDown} /></span>
+                    <a href="#stopbullying" className="text-decoration-none">
+                        <h4>SABER MÁS <FontAwesomeIcon icon={faLongArrowAltDown} /></h4>
                     </a>
                 </div>
             </section>
