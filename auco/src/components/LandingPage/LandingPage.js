@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import './LandingPage.css';
-import NavBar from './../NavBar';
+import NavBar from '../NavBar/NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
 import childrenIllustration from '../../assets/illustrations/round.png';
@@ -13,7 +13,7 @@ const LandingPage = (props) => {
     return (
         <div className="landing">
             <NavBar></NavBar>
-            <section className="entry">
+            <section className="entry" id="home">
                 <Container style={{ height: "80vh" }} className="d-flex justify-content-center">
                     <Row className="align-items-center">
                         <Col>

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useState } from 'react';
-import '../App.css';
+import './NavBar.css';
 import {
     Collapse,
     Navbar,
@@ -15,15 +15,21 @@ import {
 
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [navbar, setNavbar] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
-    const style = {
-        backgroundColor: 'white'
-    };
+    const changeBackground = () => {
+        console.log(window.scrollY);
+        if(window.scrollY >= 10) {
+            setNavbar(true);
+        } else setNavbar(false); 
+    }
+
+    window.addEventListener('scroll', changeBackground);
 
     return (
-        <Navbar style={style} color="light" dark expand="md" className="sticky-top">
+        <Navbar color="light" dark expand="md" className={navbar ? 'sticky-top navigation active mb-4' : 'sticky-top navigation'}>
             <NavbarBrand href="/" className="logo"><h1 style={{fontWeight:"800"}}>AUCO</h1></NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
