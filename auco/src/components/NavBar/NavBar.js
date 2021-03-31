@@ -29,7 +29,7 @@ const NavBar = (props) => {
     window.addEventListener('scroll', changeBackground);
 
     return (
-        <Navbar color="light" dark expand="md" className={navbar ? 'sticky-top navigation active mb-4' : 'sticky-top navigation'}>
+        <Navbar color="light" dark expand="md" className={navbar ? 'sticky-top navigation active' : 'sticky-top navigation'}>
             <NavbarBrand href="/" className="logo"><h1 style={{fontWeight:"800"}}>AUCO</h1></NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>

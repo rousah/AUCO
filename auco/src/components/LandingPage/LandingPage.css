@@ -1,5 +1,15 @@
-.landing {
+body {
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+      180deg,
+      rgba(57, 86, 247, 1) 0%,
+      rgba(241, 244, 255, 1) 35%
+    ),
+    url("data:image/svg+xml;base64,PHN2ZwogIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZycKICB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycKICB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCc+CgoJPGZpbHRlciBpZD0nbicgeD0nMCcgeT0nMCc+CgkJPGZlVHVyYnVsZW5jZQoJCSAgdHlwZT0nZnJhY3RhbE5vaXNlJwoJCSAgYmFzZUZyZXF1ZW5jeT0nMC44NScKCQkgIHN0aXRjaFRpbGVzPSdzdGl0Y2gnLz4KCTwvZmlsdGVyPgoKCTxyZWN0IHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJyBmaWxsPScjMDAwJy8+Cgk8cmVjdCB3aWR0aD0nMzAwJyBoZWlnaHQ9JzMwMCcgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PScwLjcnLz4KPC9zdmc+Cg==");
 }
+.landing {
+  background-image: url(../../assets/backgrounds/cloudy.png);
+  }
 
 .entry {
   height: 100vh;
