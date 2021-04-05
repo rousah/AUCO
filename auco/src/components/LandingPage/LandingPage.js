@@ -7,6 +7,7 @@ import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
 import childrenIllustration from '../../assets/illustrations/round.png';
 import girlBullied from '../../assets/illustrations/girl-bullied.png';
 import boyWinner from '../../assets/illustrations/winner.png';
+import kidsTeacher from '../../assets/illustrations/kids-teacher.png';
 import { Container, Row, Col } from 'reactstrap';
 import ButtonMain from './../ButtonMain';
 
@@ -41,7 +42,7 @@ const LandingPage = (props) => {
                 </div>
             </section>
             <section id="stopbullying">
-                <Container>
+                <Container className="section">
                     <Row className="">
                         <Col className="col-4 justify-content-center d-flex flex-column">
                             <img src={girlBullied} alt="girl being bullied" style={{ width: "100%" }}></img>
@@ -56,7 +57,7 @@ const LandingPage = (props) => {
                 </Container>
             </section>
             <section id="howitworks">
-                <Container>
+                <Container className="section">
                     <Row>
                         <Col className="justify-content-center d-flex flex-column px-5 text-end">
                             <h4 style={{ fontWeight: "800", color: "#0d4c8b" }}>¿Cómo funciona?</h4>
@@ -65,7 +66,7 @@ const LandingPage = (props) => {
                             </p>
                         </Col>
                         <Col className="col-4 justify-content-center d-flex flex-column px-4">
-                            <img src={boyWinner} alt="boy winning" style={{ width: "100%" }}></img>
+                            <img src={boyWinner} alt="boy winning" style={{ width: "90%" }}></img>
                         </Col>
                     </Row>
                 </Container>
@@ -77,9 +78,10 @@ const LandingPage = (props) => {
                     <br />
                     Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. esse cillum dolore eu fugiat.
                 </p>
-                <ButtonMain className="h-50 w-50" buttonText={"EMPEZAR"} href="/register" fontWeight="600" fontSize="30px"></ButtonMain>
+                <ButtonMain className="h-50 w-25" buttonText={"EMPEZAR"} href="/register" fontWeight="600" fontSize="30px"></ButtonMain>
             </section>
-            <section id="footer">
+            <section id="footer" className="d-flex justify-content-center align-items-center text-center">
+                <img src={kidsTeacher} alt="children with teacher" style={{ width: "30%" }}></img>
             </section>
         </div>
     );
