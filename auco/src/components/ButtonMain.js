@@ -15,7 +15,8 @@ const ButtonMain = (props) => {
         textDecoration: 'none',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: '4px'
     };
 
     const styleSecondary = {
@@ -30,7 +31,8 @@ const ButtonMain = (props) => {
         textDecoration: 'none',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: '4px'
     };
 
     return (

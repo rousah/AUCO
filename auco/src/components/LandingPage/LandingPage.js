@@ -5,6 +5,8 @@ import NavBar from '../NavBar/NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
 import childrenIllustration from '../../assets/illustrations/round.png';
+import girlBullied from '../../assets/illustrations/girl-bullied.png';
+import boyWinner from '../../assets/illustrations/winner.png';
 import { Container, Row, Col } from 'reactstrap';
 import ButtonMain from './../ButtonMain';
 
@@ -21,7 +23,7 @@ const LandingPage = (props) => {
                         </Col>
                         <Col className="text-center d-flex flex-column h-50 py-3 justify-content-between align-items-center flex-nowrap">
                             <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
-                                <h2 style={{fontWeight:"600", fontSize:"40px"}}>Empezar aquí lorem ipsum</h2>
+                                <h2 style={{ fontWeight: "600", fontSize: "40px" }}>Empezar aquí lorem ipsum</h2>
                             </Row>
                             <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
                                 <ButtonMain className="h-50 w-75" buttonText={"EMPEZAR"} href="/register" fontWeight="bold" fontSize="38px"></ButtonMain>
@@ -39,41 +41,45 @@ const LandingPage = (props) => {
                 </div>
             </section>
             <section id="stopbullying">
-
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in tortor quam. Duis imperdiet non ligula ut volutpat. Fusce imperdiet quam ipsum, at faucibus lectus hendrerit a. Suspendisse vitae dui a ante commodo suscipit et sed nibh. Nulla auctor leo in urna egestas porttitor volutpat et ante. Quisque mollis nibh ut dui commodo consectetur. Nunc euismod egestas nibh, at rhoncus turpis porta eget. Phasellus tristique molestie imperdiet. Praesent laoreet eget ligula ut pellentesque. Fusce varius odio sit amet elit efficitur, non congue orci tempor. Suspendisse eget tellus rhoncus, sagittis nunc rhoncus, ornare erat. Nulla pretium convallis erat feugiat finibus. Phasellus posuere tempor volutpat.
-
-                Nulla imperdiet massa tincidunt libero ornare auctor. Duis lacinia vehicula quam, eget accumsan urna faucibus nec. Donec et massa mi. Sed iaculis libero ac dolor blandit fringilla. Praesent nec dignissim velit, a feugiat sapien. Quisque sagittis ex eu arcu vestibulum dictum. Aenean vehicula, turpis id euismod vulputate, orci elit tristique ligula, non molestie libero lectus eu arcu. Donec facilisis velit a justo interdum tristique. In rutrum faucibus massa ac scelerisque. Donec dictum posuere arcu a suscipit. Sed purus orci, mollis finibus euismod quis, luctus ut ligula. Nulla tincidunt sagittis purus. In pretium mi nunc. Cras non nunc arcu.
-
-                Integer interdum nulla nec gravida lobortis. Curabitur est diam, mattis ut bibendum vitae, feugiat a sem. Aliquam sed purus ut lorem mollis commodo. Cras tincidunt pretium suscipit. Vestibulum non sapien porttitor, rutrum erat sit amet, tempor lacus. Sed fringilla sodales nunc sit amet convallis. Etiam consequat lacus eu nibh accumsan, ut ullamcorper erat varius.
-
-                Etiam efficitur, sapien non lacinia sagittis, dolor ligula placerat mauris, auctor facilisis est nunc ut est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam metus quam, mollis auctor consectetur non, gravida eget lectus. Etiam placerat augue leo, a dictum purus luctus sit amet. Cras tristique ante quis eros scelerisque congue. Aliquam ullamcorper imperdiet eleifend. Donec nec porttitor leo. Nam iaculis ligula libero, eu laoreet sem posuere sit amet. Morbi convallis tincidunt viverra.
-
-                Phasellus euismod enim mi, at condimentum justo viverra eget. Etiam vestibulum tortor metus, et hendrerit nunc imperdiet varius. Aenean ac nisl velit. Mauris mattis at massa ut porta. Vestibulum eu lorem eget lectus malesuada posuere. Sed odio mi, efficitur ac tincidunt et, elementum eget elit. Suspendisse et quam in ipsum fringilla finibus.
-
+                <Container>
+                    <Row className="">
+                        <Col className="col-4 justify-content-center d-flex flex-column">
+                            <img src={girlBullied} alt="girl being bullied" style={{ width: "100%" }}></img>
+                        </Col>
+                        <Col className="justify-content-center d-flex flex-column px-5">
+                            <h4 style={{ fontWeight: "800", color: "#0d4c8b" }}>STOP bullying!</h4>
+                            <p>
+                                AUCO pretende enseñar a los niños la importancia de tratarse bien y así intentar combatir el bullying. También ofrece ciertas herramientas al profesorado que pueden utilizar para identificar posibles problemas que puede haber en su clase.
+                            </p>
+                        </Col>
+                    </Row>
+                </Container>
             </section>
             <section id="howitworks">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in tortor quam. Duis imperdiet non ligula ut volutpat. Fusce imperdiet quam ipsum, at faucibus lectus hendrerit a. Suspendisse vitae dui a ante commodo suscipit et sed nibh. Nulla auctor leo in urna egestas porttitor volutpat et ante. Quisque mollis nibh ut dui commodo consectetur. Nunc euismod egestas nibh, at rhoncus turpis porta eget. Phasellus tristique molestie imperdiet. Praesent laoreet eget ligula ut pellentesque. Fusce varius odio sit amet elit efficitur, non congue orci tempor. Suspendisse eget tellus rhoncus, sagittis nunc rhoncus, ornare erat. Nulla pretium convallis erat feugiat finibus. Phasellus posuere tempor volutpat.
-
-                Nulla imperdiet massa tincidunt libero ornare auctor. Duis lacinia vehicula quam, eget accumsan urna faucibus nec. Donec et massa mi. Sed iaculis libero ac dolor blandit fringilla. Praesent nec dignissim velit, a feugiat sapien. Quisque sagittis ex eu arcu vestibulum dictum. Aenean vehicula, turpis id euismod vulputate, orci elit tristique ligula, non molestie libero lectus eu arcu. Donec facilisis velit a justo interdum tristique. In rutrum faucibus massa ac scelerisque. Donec dictum posuere arcu a suscipit. Sed purus orci, mollis finibus euismod quis, luctus ut ligula. Nulla tincidunt sagittis purus. In pretium mi nunc. Cras non nunc arcu.
-
-                Integer interdum nulla nec gravida lobortis. Curabitur est diam, mattis ut bibendum vitae, feugiat a sem. Aliquam sed purus ut lorem mollis commodo. Cras tincidunt pretium suscipit. Vestibulum non sapien porttitor, rutrum erat sit amet, tempor lacus. Sed fringilla sodales nunc sit amet convallis. Etiam consequat lacus eu nibh accumsan, ut ullamcorper erat varius.
-
-                Etiam efficitur, sapien non lacinia sagittis, dolor ligula placerat mauris, auctor facilisis est nunc ut est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam metus quam, mollis auctor consectetur non, gravida eget lectus. Etiam placerat augue leo, a dictum purus luctus sit amet. Cras tristique ante quis eros scelerisque congue. Aliquam ullamcorper imperdiet eleifend. Donec nec porttitor leo. Nam iaculis ligula libero, eu laoreet sem posuere sit amet. Morbi convallis tincidunt viverra.
-
-                Phasellus euismod enim mi, at condimentum justo viverra eget. Etiam vestibulum tortor metus, et hendrerit nunc imperdiet varius. Aenean ac nisl velit. Mauris mattis at massa ut porta. Vestibulum eu lorem eget lectus malesuada posuere. Sed odio mi, efficitur ac tincidunt et, elementum eget elit. Suspendisse et quam in ipsum fringilla finibus.
-
+                <Container>
+                    <Row>
+                        <Col className="justify-content-center d-flex flex-column px-5 text-end">
+                            <h4 style={{ fontWeight: "800", color: "#0d4c8b" }}>¿Cómo funciona?</h4>
+                            <p>
+                                Lo que hace AUCO es pedir la completación de ciertos formularios a los alumnos. Mediante los resultados de los formularios el profesorado puede tomar decisiones y ayudar a los niños que lo necesiten. A cambio, los alumnos recibirán recompensas: insignias, puntos... para crear una experiencia divertida
+                            </p>
+                        </Col>
+                        <Col className="col-4 justify-content-center d-flex flex-column px-4">
+                            <img src={boyWinner} alt="boy winning" style={{ width: "100%" }}></img>
+                        </Col>
+                    </Row>
+                </Container>
             </section>
-            <section id="start"></section>
+            <section id="start" className="d-flex flex-column justify-content-center align-items-center text-center">
+                <p style={{ width: '50%' }}>
+                    AUCO es una plataforma diseñada por y para el bienestar de los niños en un ambiente escolar y fomentar su aprendizaje sobre temas como el bullying.
+                    <br />
+                    <br />
+                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. esse cillum dolore eu fugiat.
+                </p>
+                <ButtonMain className="h-50 w-50" buttonText={"EMPEZAR"} href="/register" fontWeight="600" fontSize="30px"></ButtonMain>
+            </section>
             <section id="footer">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in tortor quam. Duis imperdiet non ligula ut volutpat. Fusce imperdiet quam ipsum, at faucibus lectus hendrerit a. Suspendisse vitae dui a ante commodo suscipit et sed nibh. Nulla auctor leo in urna egestas porttitor volutpat et ante. Quisque mollis nibh ut dui commodo consectetur. Nunc euismod egestas nibh, at rhoncus turpis porta eget. Phasellus tristique molestie imperdiet. Praesent laoreet eget ligula ut pellentesque. Fusce varius odio sit amet elit efficitur, non congue orci tempor. Suspendisse eget tellus rhoncus, sagittis nunc rhoncus, ornare erat. Nulla pretium convallis erat feugiat finibus. Phasellus posuere tempor volutpat.
-
-                Nulla imperdiet massa tincidunt libero ornare auctor. Duis lacinia vehicula quam, eget accumsan urna faucibus nec. Donec et massa mi. Sed iaculis libero ac dolor blandit fringilla. Praesent nec dignissim velit, a feugiat sapien. Quisque sagittis ex eu arcu vestibulum dictum. Aenean vehicula, turpis id euismod vulputate, orci elit tristique ligula, non molestie libero lectus eu arcu. Donec facilisis velit a justo interdum tristique. In rutrum faucibus massa ac scelerisque. Donec dictum posuere arcu a suscipit. Sed purus orci, mollis finibus euismod quis, luctus ut ligula. Nulla tincidunt sagittis purus. In pretium mi nunc. Cras non nunc arcu.
-
-                Integer interdum nulla nec gravida lobortis. Curabitur est diam, mattis ut bibendum vitae, feugiat a sem. Aliquam sed purus ut lorem mollis commodo. Cras tincidunt pretium suscipit. Vestibulum non sapien porttitor, rutrum erat sit amet, tempor lacus. Sed fringilla sodales nunc sit amet convallis. Etiam consequat lacus eu nibh accumsan, ut ullamcorper erat varius.
-
-                Etiam efficitur, sapien non lacinia sagittis, dolor ligula placerat mauris, auctor facilisis est nunc ut est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam metus quam, mollis auctor consectetur non, gravida eget lectus. Etiam placerat augue leo, a dictum purus luctus sit amet. Cras tristique ante quis eros scelerisque congue. Aliquam ullamcorper imperdiet eleifend. Donec nec porttitor leo. Nam iaculis ligula libero, eu laoreet sem posuere sit amet. Morbi convallis tincidunt viverra.
-
-                Phasellus euismod enim mi, at condimentum justo viverra eget. Etiam vestibulum tortor metus, et hendrerit nunc imperdiet varius. Aenean ac nisl velit. Mauris mattis at massa ut porta. Vestibulum eu lorem eget lectus malesuada posuere. Sed odio mi, efficitur ac tincidunt et, elementum eget elit. Suspendisse et quam in ipsum fringilla finibus.
             </section>
         </div>
     );

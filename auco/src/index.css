@@ -2,7 +2,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Baloo 2', cursive;
+  font-family: "Baloo 2", Helvetica, sans-serif;
 }
 
 code {
