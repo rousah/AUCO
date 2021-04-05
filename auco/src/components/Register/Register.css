@@ -1,0 +1,11 @@
+.fullscreen {
+  height: 100vh;
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.register {
+    background-image: url(../../assets/backgrounds/cloudy-blue.png);
+}
