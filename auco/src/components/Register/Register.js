@@ -20,10 +20,10 @@ const Register = (props) => {
                         </Col>
                     </Row>
                     <Row className="mb-5">
-                        <Col className="align-items-center justify-content-center d-flex">
+                        <Col className="align-items-center justify-content-center d-flex ps-5">
                             <SquareButton href="/create-account" buttonText="Profesor/a" secondary illustration={teacher} alt="teacher" width="30%"></SquareButton>
                         </Col>
-                        <Col className="align-items-center justify-content-center d-flex">
+                        <Col className="align-items-center justify-content-center d-flex pe-5">
                             <SquareButton buttonText="Alumno/a" secondary illustration={student} alt="student" width="30%"></SquareButton>
                         </Col>
                     </Row>
