@@ -4,6 +4,7 @@ import './App.css';
 
 import LandingPage from './components/LandingPage/LandingPage';
 import Register from './components/Register/Register';
+import CreateUser from './components/Register/CreateUser';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <Route exact path='/' component={LandingPage} />
           <Route path='/register' component={Register} />
           <Route path='/login' component={LandingPage} />
+          <Route path='/create-account' component={CreateUser} />
         </div>
       </Router>
     );
