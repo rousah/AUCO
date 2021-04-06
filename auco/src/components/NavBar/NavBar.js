@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import './NavBar.css';
-import ButtonMain from '../ButtonMain';
+import ButtonMain from '../Buttons/ButtonMain';
 import {
     Collapse,
     Navbar,
@@ -18,7 +18,7 @@ import {
 
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [navbar, setNavbar] = useState(false);
+    const [navbar, setNavbar] = useState(true);
 
     const toggle = () => setIsOpen(!isOpen);
 
@@ -29,7 +29,9 @@ const NavBar = (props) => {
         } else setNavbar(false);
     }
 
-    window.addEventListener('scroll', changeBackground);
+    if (props.landing) {
+        window.addEventListener('scroll', changeBackground);
+    }
 
     return (
         <Navbar color="light" dark expand="md" className={navbar ? 'sticky-top navigation active py-0' : 'sticky-top navigation py-0'}>
@@ -51,10 +53,10 @@ const NavBar = (props) => {
                             </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
-                        <NavItem className={navbar ? "" : "hidden"}>
+                        <NavItem className={props.showregister ? "" : "hidden"}>
                             <ButtonMain className="px-3 mx-1" buttonText={"REGISTRAR"} href="/register" fontWeight="500" fontSize="20px"></ButtonMain>
                         </NavItem>
-                        <NavItem className={navbar ? "" : "hidden"}>
+                        <NavItem className={props.showlogin ? "" : "hidden"}>
                             <ButtonMain secondary className="px-3 mx-1" buttonText={"INICIAR SESIÓN"} href="/login" fontWeight="500" fontSize="20px"></ButtonMain>
                         </NavItem>
                     </Nav>

@@ -9,13 +9,13 @@ import girlBullied from '../../assets/illustrations/girl-bullied.png';
 import boyWinner from '../../assets/illustrations/winner.png';
 import kidsTeacher from '../../assets/illustrations/kids-teacher.png';
 import { Container, Row, Col } from 'reactstrap';
-import ButtonMain from './../ButtonMain';
+import ButtonMain from '../Buttons/ButtonMain';
 
 const LandingPage = (props) => {
 
     return (
         <div className="landing">
-            <NavBar></NavBar>
+            <NavBar landing showregister showlogin></NavBar>
             <section className="entry" id="home">
                 <Container style={{ height: "80vh" }} className="d-flex justify-content-center">
                     <Row className="align-items-center">
