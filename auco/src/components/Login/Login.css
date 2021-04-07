@@ -1,0 +1,24 @@
+.login-container {
+    background-color: #edf1ff;
+    border-radius: 14px;
+}
+
+.login {
+  background-image: url(../../assets/backgrounds/cloudy-blue.png);
+  color: #1d2128;
+}
+
+.login a {
+    text-decoration: none;
+    color: #0d4c8b;
+    font-weight: 700;
+    font-size: smaller;
+}
+
+.login a:hover {
+    color: #f89f1e;
+}
+
+.login h6 {
+    font-weight: 600;
+}
