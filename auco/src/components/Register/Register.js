@@ -31,7 +31,6 @@ const Register = (props) => {
                                     <Label for="name">
                                         <h6>Nombre:</h6>
                                     </Label>
-                                    <FormFeedback valid>Sweet! that name is available</FormFeedback>
                                     <Input type="text" name="name" className="mb-3" />
                                 </FormGroup>
                                 <FormGroup>
