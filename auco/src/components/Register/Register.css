@@ -7,5 +7,20 @@
 }
 
 .register {
-    background-image: url(../../assets/backgrounds/cloudy-blue.png);
+  background-image: url(../../assets/backgrounds/cloudy-blue.png);
+}
+
+.create-user {
+  width: 60% !important;
+}
+
+.explanation {
+  border-radius: 14px 0px 0px 14px;
+  background-color: #3956f7;
+}
+
+.registration-form {
+  border-radius: 0px 14px 14px 0px;
+  background-color: #edf1ff;
+  color: #1d2128;
 }

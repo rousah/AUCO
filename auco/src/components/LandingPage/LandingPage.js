@@ -27,7 +27,7 @@ const LandingPage = (props) => {
                                 <h2 style={{ fontWeight: "600", fontSize: "40px" }}>Empezar aquí lorem ipsum</h2>
                             </Row>
                             <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
-                                <ButtonMain className="h-50 w-75" buttonText={"EMPEZAR"} href="/register" fontWeight="bold" fontSize="38px"></ButtonMain>
+                                <ButtonMain className="h-50 w-75" buttonText={"EMPEZAR"} href="/choose-user" fontWeight="bold" fontSize="38px"></ButtonMain>
                             </Row>
                             <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
                                 <ButtonMain className="h-50 w-75" buttonText={"Ya tengo una cuenta"} href="/login" fontWeight="600" fontSize="30px"></ButtonMain>
@@ -71,14 +71,16 @@ const LandingPage = (props) => {
                     </Row>
                 </Container>
             </section>
-            <section id="start" className="d-flex flex-column justify-content-center align-items-center text-center">
-                <p style={{ width: '50%' }}>
+            <br></br>
+            <section id="start" className="d-flex flex-column justify-content-center align-items-center text-center mt-5">
+                <p style={{ width: '50%', fontWeight: 500 }}>
                     AUCO es una plataforma diseñada por y para el bienestar de los niños en un ambiente escolar y fomentar su aprendizaje sobre temas como el bullying.
                     <br />
                     <br />
-                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. esse cillum dolore eu fugiat.
+                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua esse cillum dolore eu fugiat.
                 </p>
-                <ButtonMain className="h-50 w-25" buttonText={"EMPEZAR"} href="/register" fontWeight="600" fontSize="30px"></ButtonMain>
+                <br></br>
+                <ButtonMain className="h-50 w-25" buttonText={"EMPEZAR"} href="/choose-user" fontWeight="600" fontSize="30px"></ButtonMain>
             </section>
             <section id="footer" className="d-flex justify-content-center align-items-center text-center">
                 <img src={kidsTeacher} alt="children with teacher" style={{ width: "30%" }}></img>

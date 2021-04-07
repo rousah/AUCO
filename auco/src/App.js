@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import LandingPage from './components/LandingPage/LandingPage';
+import ChooseUser from './components/Register/ChooseUser';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 class App extends Component {
   render() {
@@ -11,8 +13,9 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path='/' component={LandingPage} />
-          <Route path='/register' component={Register} />
-          <Route path='/login' component={LandingPage} />
+          <Route path='/choose-user' component={ChooseUser} />
+          <Route path='/login' component={Login} />
+          <Route path='/create-account' component={Register} />
         </div>
       </Router>
     );
