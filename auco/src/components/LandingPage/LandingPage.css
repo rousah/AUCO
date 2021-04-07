@@ -11,6 +11,10 @@
   padding: 2rem;
 }
 
+p { 
+  font-size: 20px;
+}
+
 #howitworks {
   background-image: url(../../assets/backgrounds/bg-winner.png);
   background-repeat: no-repeat;
