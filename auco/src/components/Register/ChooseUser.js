@@ -6,12 +6,20 @@ import teacher from '../../assets/illustrations/teacher.png';
 import student from '../../assets/illustrations/student.png';
 import { Container, Row, Col } from 'reactstrap';
 import SquareButton from '../Buttons/SquareButton';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import ButtonMain from '../Buttons/ButtonMain';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+import oopsIllustration from '../../assets/illustrations/error.png';
 
 const ChooseUser = (props) => {
+    const {
+        className
+    } = props;
 
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
+    const closeBtn = <ButtonMain buttonText="x" className="px-3" fontWeight="700" fontSize="23px" onClick={toggle}></ButtonMain>
 
     return (
         <div className="register fullscreen">
@@ -33,14 +41,14 @@ const ChooseUser = (props) => {
                     </Row>
                 </Container>
             </div>
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-                <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <Modal isOpen={modal} toggle={toggle} className={className}>
+                <ModalHeader toggle={toggle} close={closeBtn}>¡Ups!</ModalHeader>
+                <ModalBody style={{ paddingBottom: '9rem' }} className="text-center">
+                    Para obtener una cuenta de estudiante, tu profesor tendrá que inscribirte. ¡Infórmale a tu profesor de la plataforma y obtendrás acceso a todo el contenido de AUCO muy pronto!
+                    <img src={oopsIllustration} alt="error" style={{ width: "40%", position: 'absolute', bottom: '0', left: '2rem' }}></img>
                 </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-                    <Button color="secondary" onClick={toggle}>Cancel</Button>
+                <ModalFooter className="justify-content-center">
+                    <ButtonMain buttonText="VOLVER" className="px-2" fontWeight="500" fontSize="18px" onClick={toggle}></ButtonMain>
                 </ModalFooter>
             </Modal>
         </div>

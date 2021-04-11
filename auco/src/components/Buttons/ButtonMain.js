@@ -36,7 +36,7 @@ const ButtonMain = (props) => {
     };
 
     return (
-        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className}>{props.buttonText}</a>
+        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className} onClick={props.onClick}>{props.buttonText}</a>
     );
 }
 
