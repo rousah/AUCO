@@ -23,7 +23,6 @@ const NavBar = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const changeBackground = () => {
-        console.log(window.scrollY);
         if (window.scrollY >= 10) {
             setNavbar(true);
         } else setNavbar(false);
@@ -53,10 +52,10 @@ const NavBar = (props) => {
                             </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
-                        <NavItem className={props.showregister ? "" : "hidden"}>
+                        <NavItem className={props.showregister ? "p-2" : "hidden"}>
                             <ButtonMain className="px-3 mx-1" buttonText={"REGISTRAR"} href="/choose-user" fontWeight="500" fontSize="20px"></ButtonMain>
                         </NavItem>
-                        <NavItem className={props.showlogin ? "" : "hidden"}>
+                        <NavItem className={props.showlogin ? "p-2" : "hidden"}>
                             <ButtonMain secondary className="px-3 mx-1" buttonText={"INICIAR SESIÓN"} href="/login" fontWeight="500" fontSize="20px"></ButtonMain>
                         </NavItem>
                     </Nav>
