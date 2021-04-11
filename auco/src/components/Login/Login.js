@@ -2,11 +2,44 @@ import React from 'react';
 import '../../App.css';
 import './Login.css';
 import NavBar from '../NavBar/NavBar';
-import { Container, Row, Col } from 'reactstrap';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
+import { Container } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import ButtonMain from '../Buttons/ButtonMain';
+import { postLogin } from '../../services/loggingIn';
+import { withRouter } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
+
+const initialFormData = Object.freeze({
+    email: "",
+    password: ""
+});
 
 const Login = (props) => {
+    const [formData, updateFormData] = React.useState(initialFormData);
+
+    let history = useHistory();
+
+    const handleChange = (e) => {
+        updateFormData({
+            ...formData,
+
+            // Trimming any whitespace
+            [e.target.name]: e.target.value.trim()
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        postLogin(formData).then(response => {
+            console.log("then");
+            console.log(response);
+            history.push({
+                pathname: '/dashboard',
+                state: { token: response}
+            });  // redirect
+        });
+    };
 
     return (
         <div className="fullscreen login">
@@ -18,19 +51,19 @@ const Login = (props) => {
                     </div>
                     <Form>
                         <FormGroup>
-                            <Label for="user">
+                            <Label for="email">
                                 <h6>Correo electrónico o usuario:</h6>
                             </Label>
-                            <Input type="text" name="user" className="mb-3" />
+                            <Input type="text" name="email" className="mb-3" onChange={handleChange} />
                         </FormGroup>
                         <FormGroup>
                             <Label for="password">
                                 <h6>Contraseña:</h6>
                             </Label>
-                            <Input type="password" name="password" />
+                            <Input type="password" name="password" onChange={handleChange} />
                             <a href="" className="mb-3">¿Has olvidado tu contraseña?</a>
                         </FormGroup>
-                        <Button style={{ background: "none", border: "none" }} className="w-100 mt-4 d-flex justify-content-center">
+                        <Button onClick={handleSubmit} style={{ background: "none", border: "none", cursor: 'default' }} className="w-100 mt-4 d-flex justify-content-center">
                             <ButtonMain buttonText="ENTRAR" className="px-3" fontWeight="500" fontSize="20px"></ButtonMain>
                         </Button>
                         <div className="d-flex justify-content-center">
@@ -43,4 +76,4 @@ const Login = (props) => {
     );
 }
 
-export default Login;
+export default withRouter(Login);

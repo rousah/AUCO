@@ -3,7 +3,7 @@ import '../../App.css';
 import './Register.css';
 import NavBar from '../NavBar/NavBar';
 import { Container, Row, Col } from 'reactstrap';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import ButtonMain from '../Buttons/ButtonMain';
 
 const Register = (props) => {
