@@ -42,7 +42,7 @@ const LandingPage = (props) => {
                 </div>
             </section>
             <section id="stopbullying">
-                <Container className="section">
+                <Container className="section my-5">
                     <Row className="">
                         <Col className="col-4 justify-content-center d-flex flex-column">
                             <img src={girlBullied} alt="girl being bullied" style={{ width: "100%" }}></img>
@@ -57,7 +57,7 @@ const LandingPage = (props) => {
                 </Container>
             </section>
             <section id="howitworks">
-                <Container className="section">
+                <Container className="section my-5">
                     <Row>
                         <Col className="justify-content-center d-flex flex-column px-5 text-end">
                             <h4 style={{ fontWeight: "800", color: "#0d4c8b" }}>¿Cómo funciona?</h4>
@@ -72,7 +72,7 @@ const LandingPage = (props) => {
                 </Container>
             </section>
             <br></br>
-            <section id="start" className="d-flex flex-column justify-content-center align-items-center text-center mt-5">
+            <section id="start" className="d-flex flex-column justify-content-center align-items-center text-center my-5">
                 <p style={{ width: '50%', fontWeight: 500 }}>
                     AUCO es una plataforma diseñada por y para el bienestar de los niños en un ambiente escolar y fomentar su aprendizaje sobre temas como el bullying.
                     <br />
@@ -82,7 +82,7 @@ const LandingPage = (props) => {
                 <br></br>
                 <ButtonMain className="h-50 w-25" buttonText={"EMPEZAR"} href="/choose-user" fontWeight="600" fontSize="30px"></ButtonMain>
             </section>
-            <section id="footer" className="d-flex justify-content-center align-items-center text-center">
+            <section id="footer" className="d-flex justify-content-center align-items-center text-center my-5">
                 <img src={kidsTeacher} alt="children with teacher" style={{ width: "30%" }}></img>
             </section>
         </div>

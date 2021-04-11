@@ -63,7 +63,7 @@ const Login = (props) => {
                             <Input type="password" name="password" onChange={handleChange} />
                             <a href="" className="mb-3">¿Has olvidado tu contraseña?</a>
                         </FormGroup>
-                        <Button onClick={handleSubmit} style={{ background: "none", border: "none" }} className="w-100 mt-4 d-flex justify-content-center">
+                        <Button onClick={handleSubmit} style={{ background: "none", border: "none", cursor: 'default' }} className="w-100 mt-4 d-flex justify-content-center">
                             <ButtonMain buttonText="ENTRAR" className="px-3" fontWeight="500" fontSize="20px"></ButtonMain>
                         </Button>
                         <div className="d-flex justify-content-center">
