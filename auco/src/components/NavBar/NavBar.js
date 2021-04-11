@@ -23,7 +23,6 @@ const NavBar = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const changeBackground = () => {
-        console.log(window.scrollY);
         if (window.scrollY >= 10) {
             setNavbar(true);
         } else setNavbar(false);
