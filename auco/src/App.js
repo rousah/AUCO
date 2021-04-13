@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path='/' component={DashBoard} />
+          <Route exact path='/' component={LandingPage} />
           <Route path='/choose-user' component={ChooseUser} />
           <Route path='/login' component={Login} />
           <Route path='/create-account' component={Register} />
