@@ -2,6 +2,23 @@
   background-color: #3956f7;
 }
 
+.navbar-teacher {
+  background-color: #3956f7;
+}
+
+.navbar-teacher a {
+    color: white;
+}
+
+.nav-link {
+    border-top: 5px solid #3956f7;
+    border-bottom: 5px solid #3956f7;
+}
+
+.nav-link.active {
+    border-bottom: 5px solid #f89f1e;
+}
+
 .hidden {
   display: none;
 }
