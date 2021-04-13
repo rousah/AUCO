@@ -1,7 +1,13 @@
 .navigation.active {
-    background-color: #3956f7;
+  background-color: #3956f7;
 }
 
 .hidden {
-    display: none;
+  display: none;
+}
+
+#vertical-separation {
+  border: none;
+  border-left: 1px solid hsla(200, 10%, 50%, 100);
+  width: 1px;
 }
