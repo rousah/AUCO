@@ -8,6 +8,7 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import DashBoard from './components/DashBoard';
 import Home from './components/Teacher/Home/Home';
+import Clases from './components/Teacher/Clases/Clases';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path='/create-account' component={Register} />
           <Route path='/dashboard' component={DashBoard} />
           <Route path='/home' component={Home} />
+          <Route path='/clases' component={Clases} />
         </div>
       </Router>
     );
