@@ -1,42 +1,51 @@
 import React from 'react';
 import '../../App.css';
+import { Container, Row, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUsers, faExclamationCircle, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 
 const ClassButton = (props) => {
 
-    const styleMain = {
-        boxShadow: '0px 4px 0px 0px #f89f1e',
-        backgroundColor: "#fdbf4d",
+    const style = {
+        boxShadow: '0px 4px 5px 0px rgba(163, 178, 255, 0.59)',
+        backgroundColor: "#ffffff",
         borderRadius: '16px',
         cursor: 'pointer',
-        color: 'white',
-        fontSize: props.fontSize,
-        fontWeight: props.fontWeight,
-        padding: '0px 5px',
+        color: '#1d2128',
         textDecoration: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '4px'
-    };
-
-    const styleSecondary = {
-        boxShadow: '0px 4px 0px 0px #a3b2ff',
-        backgroundColor: "#c3cdff",
-        borderRadius: '16px',
-        cursor: 'pointer',
-        color: 'white',
-        fontSize: props.fontSize,
-        fontWeight: props.fontWeight,
-        padding: '0px 5px',
-        textDecoration: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '4px'
+        width: '100%',
+        padding: '1rem 2rem',
+        position: 'relative'
     };
 
     return (
-        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className} onClick={props.onClick}>{props.buttonText}</a>
+        <div style={style}>
+            <FontAwesomeIcon icon={faEllipsisV} className="position-absolute top-0 end-0 mt-3 me-3"></FontAwesomeIcon>
+            <a href="/clases" className="text-decoration-none text-body">
+                <Row>
+                    <h3 className="p-0">Ética 2º ESO</h3>
+                </Row>
+                <Row className="d-flex align-items-center direction-row">
+                    <Col xs="1" className="d-flex justify-content-center">
+                        <FontAwesomeIcon icon={faUsers}></FontAwesomeIcon>
+                    </Col>
+                    <Col>
+                        24 alumnos
+                    </Col>
+                </Row>
+                <Row className="d-flex align-items-center direction-row">
+                    <Col xs="1" className="d-flex justify-content-center text-primary">
+                        <FontAwesomeIcon icon={faExclamationCircle}></FontAwesomeIcon>
+                    </Col>
+                    <Col>
+                        2 notificaciones
+                    </Col>
+                </Row>
+                <Row className="d-flex align-items-center direction-row pt-5">
+                    Alejandro Mira Abad, Joan Calabuig, Elena Torres Moreno...
+                </Row>
+            </a>
+        </div>
     );
 }
 
