@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import './Register.css';
-import NavBar from '../NavBar/NavBar';
+import NavBarLanding from '../NavBar/NavBarLanding';
 import { Container, Row, Col } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import ButtonMain from '../Buttons/ButtonMain';
@@ -10,7 +10,7 @@ const Register = (props) => {
 
     return (
         <div className="register fullscreen">
-            <NavBar showlogin></NavBar>
+            <NavBarLanding showlogin></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
                 <Container className="align-content-center h-75 create-user">
                     <Row>

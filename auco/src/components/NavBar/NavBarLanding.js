@@ -16,7 +16,7 @@ import {
     Container
 } from 'reactstrap';
 
-const NavBar = (props) => {
+const NavBarLanding = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [navbar, setNavbar] = useState(true);
 
@@ -65,4 +65,4 @@ const NavBar = (props) => {
     );
 }
 
-export default NavBar;
+export default NavBarLanding;
