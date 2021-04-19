@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers, faExclamationCircle, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+import { faUsers, faExclamationCircle, faEllipsisV, faExternalLinkAlt, faUserPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const ClassButton = (props) => {
+
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggle = () => setDropdownOpen(prevState => !prevState);
 
     const style = {
         boxShadow: '0px 4px 5px 0px rgba(163, 178, 255, 0.59)',
@@ -20,7 +25,20 @@ const ClassButton = (props) => {
 
     return (
         <div style={style}>
-            <FontAwesomeIcon icon={faEllipsisV} className="position-absolute top-0 end-0 mt-3 me-3"></FontAwesomeIcon>
+            <Dropdown isOpen={dropdownOpen} toggle={toggle} className="position-absolute top-0 end-0 mt-3 me-3" direction="left">
+                <DropdownToggle tag="span"
+                    data-toggle="dropdown"
+                    className="p-2"
+                    aria-expanded={dropdownOpen}>
+                    <FontAwesomeIcon icon={faEllipsisV}></FontAwesomeIcon>
+                </DropdownToggle>
+                <DropdownMenu>
+                    <DropdownItem><FontAwesomeIcon icon={faExternalLinkAlt}/> Abrir</DropdownItem>
+                    <DropdownItem><FontAwesomeIcon icon={faUserPlus}/> Invitar</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem><FontAwesomeIcon icon={faTrash}/> Eliminar</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
             <a href="/clases" className="text-decoration-none text-body">
                 <Row>
                     <h3 className="p-0">Ética 2º ESO</h3>
