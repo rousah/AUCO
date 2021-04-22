@@ -20,13 +20,13 @@ const NavBarLanding = (props) => {
                     <NavbarBrand href="/" className="logo me-lg-auto"><h1 style={{ fontWeight: "800" }} className="m-0">AUCO</h1></NavbarBrand>
                     <Nav className="col-12 col-lg-auto my-2 justify-content-center my-md-0">
                         <NavItem>
-                            <NavLink href="" className={props.home ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink href="/home" className={props.home ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faHome} className="bi d-block mx-auto mb-1" size="lg" />
                                 Home
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="" className={props.clases ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink href="/clases" className={props.clases ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faUsers} className="bi d-block mx-auto mb-1" size="lg" />
                                 Clases
                             </NavLink>

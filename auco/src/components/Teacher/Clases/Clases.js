@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBarTeacher from '../../NavBar/NavBarTeacher'
 import ClassButton from '../../Buttons/ClassButton'
+import CreateClassButton from '../../Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
 
 const Clases = (props) => {
@@ -9,6 +10,11 @@ const Clases = (props) => {
         <div>
             <NavBarTeacher clases></NavBarTeacher>
             <Container>
+                <Row className="p-3">
+                    <h2>
+                        Mis clases
+                    </h2>
+                </Row>
                 <Row>
                     <Col>
                         <ClassButton></ClassButton>
@@ -20,7 +26,7 @@ const Clases = (props) => {
                         <ClassButton></ClassButton>
                     </Col>
                     <Col>
-                        <ClassButton></ClassButton>
+                        <CreateClassButton></CreateClassButton>
                     </Col>
                 </Row>
             </Container>
