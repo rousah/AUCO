@@ -7,6 +7,8 @@ import ChooseUser from './components/Register/ChooseUser';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import DashBoard from './components/DashBoard';
+import Home from './components/Teacher/Home/Home';
+import Clases from './components/Teacher/Clases/Clases';
 
 import useToken from './services/useToken';
 
@@ -24,9 +26,12 @@ function App() {
         <Route path='/dashboard'>
           <DashBoard token={token} logout={deleteToken}></DashBoard>
         </Route>
+        <Route path='/home' component={Home} />
+        <Route path='/clases' component={Clases} />
       </div>
     </Router>
   );
 }
+
 
 export default App;

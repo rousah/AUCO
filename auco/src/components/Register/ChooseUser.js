@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../App.css';
 import './Register.css';
-import NavBar from '../NavBar/NavBar';
+import NavBarLanding from '../NavBar/NavBarLanding';
 import teacher from '../../assets/illustrations/teacher.png';
 import student from '../../assets/illustrations/student.png';
 import { Container, Row, Col } from 'reactstrap';
@@ -23,7 +23,7 @@ const ChooseUser = (props) => {
 
     return (
         <div className="register fullscreen">
-            <NavBar showlogin></NavBar>
+            <NavBarLanding showlogin></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
                 <Container className="align-content-center">
                     <Row className="align-content-center text-center mb-5">

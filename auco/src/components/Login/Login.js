@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import './Login.css';
-import NavBar from '../NavBar/NavBar';
+import NavBarLanding from '../NavBar/NavBarLanding';
 import { Container } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import ButtonMain from '../Buttons/ButtonMain';
@@ -46,7 +46,7 @@ const Login = (props) => {
 
     return (
         <div className="fullscreen login">
-            <NavBar showregister></NavBar>
+            <NavBarLanding showregister></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
                 <Container className="align-content-center login-container w-25 p-5">
                     <div className="d-flex justify-content-center mb-4">
