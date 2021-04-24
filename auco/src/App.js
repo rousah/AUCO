@@ -1,19 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import PrivateRoute from './PrivateRoute';
 
 import LandingPage from './components/LandingPage/LandingPage';
 import ChooseUser from './components/Register/ChooseUser';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
-import DashBoard from './components/DashBoard';
 import Home from './components/Teacher/Home/Home';
 import Clases from './components/Teacher/Clases/Clases';
 
 import useToken from './services/useToken';
 
 function App() {
-  const { token, setToken, deleteToken } = useToken();
+  const { token, setToken, isAuthenticated, deleteToken } = useToken();
+
   return (
     <Router>
       <div>
@@ -25,13 +26,10 @@ function App() {
         <Route path='/create-account'>
           <Register setToken={setToken} token={token}></Register>
         </Route>
-        <Route path='/dashboard'>
-          <DashBoard token={token} logout={deleteToken}></DashBoard>
-        </Route>
         <Route path='/home' component={Home} />
-        <Route path='/clases' component={Clases} />
+        <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} component={Clases}/>
       </div>
-    </Router>
+    </Router >
   );
 }
 
