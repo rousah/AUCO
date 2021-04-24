@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Row } from 'reactstrap';
 import CreateClassModal from '../CreateClassModal';
+import ButtonMain from '../../components/Buttons/ButtonMain';
 
 const CreateClassButton = (props) => {
     const {
@@ -28,17 +29,20 @@ const CreateClassButton = (props) => {
     };
 
     return (
-        <div style={style} onClick={toggle}>
-            <div>
-                <Row>
-                    <h3 className="p-0 fw-light">+ Crear otra clase</h3>
-                </Row>
+        props.square
+            ? <div style={style} onClick={toggle}>
+                <div>
+                    <Row>
+                        <h3 className="p-0 fw-light">+ Crear otra clase</h3>
+                    </Row>
+                </div>
+                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} />
             </div>
-            <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal}/>
-        </div>
-
+            : <div>
+                <ButtonMain className="fs-5 px-3 py-1" buttonText={"Crear clase"} onClick={toggle}></ButtonMain>
+                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} />
+            </div>
     );
 }
-
 
 export default CreateClassButton;
