@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBarTeacher from '../../NavBar/NavBarTeacher'
+import NavBarTeacher from '../../../components/NavBar/NavBarTeacher'
 
 const Home = (props) => {
 

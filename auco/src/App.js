@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './PrivateRoute';
 
-import LandingPage from './components/LandingPage/LandingPage';
-import ChooseUser from './components/Register/ChooseUser';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import Home from './components/Teacher/Home/Home';
-import Clases from './components/Teacher/Clases/Clases';
+import LandingPage from './pages/LandingPage/LandingPage';
+import ChooseUser from './pages/Register/ChooseUser';
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
+import Home from './pages/Teacher/Home/Home';
+import Clases from './pages/Teacher/Clases/Clases';
 
 import useToken from './services/useToken';
 

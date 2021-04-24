@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import '../../App.css';
 import './Register.css';
-import NavBarLanding from '../NavBar/NavBarLanding';
+import NavBarLanding from '../../components/NavBar/NavBarLanding';
 import teacher from '../../assets/illustrations/teacher.png';
 import student from '../../assets/illustrations/student.png';
 import { Container, Row, Col } from 'reactstrap';
-import SquareButton from '../Buttons/SquareButton';
-import ButtonMain from '../Buttons/ButtonMain';
+import SquareButton from '../../components/Buttons/SquareButton';
+import ButtonMain from '../../components/Buttons/ButtonMain';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import oopsIllustration from '../../assets/illustrations/error.png';

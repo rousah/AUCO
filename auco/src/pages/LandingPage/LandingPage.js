@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import './LandingPage.css';
-import NavBarLanding from '../NavBar/NavBarLanding';
+import NavBarLanding from '../../components/NavBar/NavBarLanding';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
 import childrenIllustration from '../../assets/illustrations/round.png';
@@ -9,7 +9,7 @@ import girlBullied from '../../assets/illustrations/girl-bullied.png';
 import boyWinner from '../../assets/illustrations/winner.png';
 import kidsTeacher from '../../assets/illustrations/kids-teacher.png';
 import { Container, Row, Col } from 'reactstrap';
-import ButtonMain from '../Buttons/ButtonMain';
+import ButtonMain from '../../components/Buttons/ButtonMain';
 
 const LandingPage = (props) => {
 

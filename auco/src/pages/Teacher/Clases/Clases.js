@@ -1,7 +1,7 @@
 import React from 'react';
-import NavBarTeacher from '../../NavBar/NavBarTeacher'
-import ClassButton from '../../Buttons/ClassButton'
-import CreateClassButton from '../../Buttons/CreateClassButton'
+import NavBarTeacher from '../../../components/NavBar/NavBarTeacher'
+import ClassButton from '../../../components/Buttons/ClassButton'
+import CreateClassButton from '../../../components/Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
 
 const Clases = (props) => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import '../../App.css';
 import './Login.css';
-import NavBarLanding from '../NavBar/NavBarLanding';
+import NavBarLanding from '../../components/NavBar/NavBarLanding';
 import { Container } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import ButtonMain from '../Buttons/ButtonMain';
+import ButtonMain from '../../components/Buttons/ButtonMain';
 import { postLogin } from '../../services/loggingIn';
 import { withRouter } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
