@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row } from 'reactstrap';
+import CreateClassModal from '../CreateClassModal';
 
 const CreateClassButton = (props) => {
+    const {
+        className
+    } = props;
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
 
     const style = {
         border: '1px dashed #A3B2FF',
@@ -20,13 +28,15 @@ const CreateClassButton = (props) => {
     };
 
     return (
-        <div style={style}>
-            <a href="/clases/create" className="text-decoration-none text-body">
+        <div style={style} onClick={toggle}>
+            <div>
                 <Row>
                     <h3 className="p-0 fw-light">+ Crear otra clase</h3>
                 </Row>
-            </a>
+            </div>
+            <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal}/>
         </div>
+
     );
 }
 
