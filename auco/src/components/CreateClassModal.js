@@ -7,8 +7,8 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 
 const initialFormData = Object.freeze({
-    email: "",
-    password: "",
+    classname: "",
+    year: "",
     students: [{ name: "", surname: "" }, { name: "", surname: "" }, { name: "", surname: "" }],
 });
 
@@ -26,13 +26,22 @@ const CreateClassModal = (props) => {
     }
 
     const handleChange = (e) => {
-        updateFormData({
-            ...formData,
-
-            // Trimming any whitespace
-            [e.target.name]: e.target.value.trim()
-        });
-    };
+        if (["name", "surname"].includes(e.target.name)) {
+            let students = [...formData.students];
+            students[e.target.dataset.id][e.target.name] = e.target.value;
+            let data = {
+                classname: formData.classname,
+                year: formData.year,
+                students: students
+            }
+            updateFormData(
+                data
+            )
+        }
+        else {
+            updateFormData({ ...formData, [e.target.name]: e.target.value.trim() })
+        }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -63,16 +72,16 @@ const CreateClassModal = (props) => {
             <ModalBody style={{ minHeight: '50vh' }}>
                 <Form>
                     <FormGroup>
-                        <Label for="nombre-clase">
+                        <Label for="classname">
                             <h6>Nombre de la clase:</h6>
                         </Label>
-                        <Input type="text" name="nombre-clase" className="mb-3" onChange={handleChange} placeholder="Ética" />
+                        <Input type="text" name="classname" className="mb-3" onChange={handleChange} placeholder="Ética" />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="curso">
+                        <Label for="year">
                             <h6>Curso:</h6>
                         </Label>
-                        <Input type="text" name="curso" className="mb-3" onChange={handleChange} placeholder="2º ESO" />
+                        <Input type="text" name="year" className="mb-3" onChange={handleChange} placeholder="2º ESO" />
                     </FormGroup>
                     <h6 className="mt-5">Alumnos:</h6>
                     <p className="fs-6 rounded p-2" style={styleBorder}>
@@ -80,17 +89,16 @@ const CreateClassModal = (props) => {
                     </p>
                     {
                         students.map((val, i) => {
-                            console.log(students.length > i)
                             return (
                                 <Row key={i.toString()}>
                                     <Col className="align-items-center">
                                         <FormGroup>
-                                            <Input type="text" name={'nombre' + i} className="mb-3" onChange={handleChange} placeholder={'Nombre alumno #' + i} />
+                                            <Input type="text" name="name" className="mb-3" onChange={handleChange} placeholder={'Nombre alumno #' + i} data-id={i} />
                                         </FormGroup>
                                     </Col>
                                     <Col className="">
                                         <FormGroup>
-                                            <Input type="text" name={'apellidos' + i} className="mb-3" onChange={handleChange} placeholder={'Apellidos alumno #' + i} />
+                                            <Input type="text" name="surname" className="mb-3" onChange={handleChange} placeholder={'Apellidos alumno #' + i} data-id={i} />
                                         </FormGroup>
                                     </Col>
                                     <Col sm="auto" className="mb-3 align-self-center ps-0">
