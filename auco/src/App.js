@@ -22,7 +22,9 @@ function App() {
         <Route path='/login'>
           <Login setToken={setToken} token={token}></Login>
         </Route>
-        <Route path='/create-account' component={Register} />
+        <Route path='/create-account'>
+          <Register setToken={setToken} token={token}></Register>
+        </Route>
         <Route path='/dashboard'>
           <DashBoard token={token} logout={deleteToken}></DashBoard>
         </Route>
