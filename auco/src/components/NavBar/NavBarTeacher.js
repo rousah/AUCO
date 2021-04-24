@@ -11,7 +11,16 @@ import {
     Container,
 } from 'reactstrap';
 
+import useToken from '../../services/useToken';
+
 const NavBarLanding = (props) => {
+    const { deleteToken } = useToken();
+
+    const logout = (e) => {
+        deleteToken();
+        window.location.href = '/';
+        // return false;
+    }
 
     return (
         <header class="px-3 pt-1 navbar-teacher text-white">
@@ -57,7 +66,7 @@ const NavBarLanding = (props) => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="" className={props.logout ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink onClick={logout} className={props.logout ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faSignOutAlt} className="bi d-block mx-auto mb-1" size="lg" />
                                 Salir
                             </NavLink>

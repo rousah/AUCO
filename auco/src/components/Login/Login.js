@@ -37,7 +37,7 @@ const Login = (props) => {
             if (response) {
                 props.setToken(response.token);
                 history.push({
-                    pathname: '/dashboard',
+                    pathname: '/home',
                     state: { response }
                 });  // redirect
             }
