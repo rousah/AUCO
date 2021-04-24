@@ -13,7 +13,7 @@ import Clases from './components/Teacher/Clases/Clases';
 import useToken from './services/useToken';
 
 function App() {
-  const { token, setToken, isAuthenticated, deleteToken } = useToken();
+  const { token, setToken, isAuthenticated } = useToken();
 
   return (
     <Router>
@@ -26,7 +26,7 @@ function App() {
         <Route path='/create-account'>
           <Register setToken={setToken} token={token}></Register>
         </Route>
-        <Route path='/home' component={Home} />
+        <PrivateRoute path='/home' isAuthenticated={isAuthenticated()} token={token} component={Home}/>
         <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} component={Clases}/>
       </div>
     </Router >
