@@ -3,18 +3,27 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col } from 'reactstrap
 import ButtonMain from '../components/Buttons/ButtonMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 
 const initialFormData = Object.freeze({
     email: "",
-    password: ""
+    password: "",
+    students: [{ name: "", surname: "" }, { name: "", surname: "" }, { name: "", surname: "" }],
 });
 
 const CreateClassModal = (props) => {
-    const [formData, updateFormData] = React.useState(initialFormData);
+    const [formData, updateFormData] = useState(initialFormData);
 
     let history = useHistory();
+
+    let students = formData.students;
+
+    const addStudent = (e) => {
+        updateFormData((prevState) => ({
+            students: [...prevState.students, { name: "", surname: "" }],
+        }));
+    }
 
     const handleChange = (e) => {
         updateFormData({
@@ -49,9 +58,9 @@ const CreateClassModal = (props) => {
     const closeBtn = <ButtonMain buttonText={<FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>} className="px-2 py-1 rounded-3" fontWeight="500" fontSize="18px" onClick={props.toggle}></ButtonMain>
 
     return (
-        <Modal isOpen={props.modal} toggle={props.toggle} className={props.className} style={{ maxWidth: '75%'}}>
+        <Modal isOpen={props.modal} toggle={props.toggle} className={props.className} style={{ maxWidth: '75%' }}>
             <ModalHeader toggle={props.toggle} close={closeBtn}>Creando una clase</ModalHeader>
-            <ModalBody style={{ minHeight: '50vh'}}>
+            <ModalBody style={{ minHeight: '50vh' }}>
                 <Form>
                     <FormGroup>
                         <Label for="nombre-clase">
@@ -69,25 +78,36 @@ const CreateClassModal = (props) => {
                     <p className="fs-6 rounded p-2" style={styleBorder}>
                         Para cada alumno añadido a la clase se creará una cuenta con un usuario y contraseña para el alumno, que podrá cambiar una vez activada la cuenta iniciando sesión. De esta forma se le da acceso al contenido a los alumnos.
                     </p>
-                    <Row>
-                        <Col className="align-items-center">
-                            <FormGroup>
-                                <Input type="text" name="nombre-alumno" className="mb-3" onChange={handleChange} placeholder="Nombre" />
-                            </FormGroup>
-                        </Col>
-                        <Col className="">
-                            <FormGroup>
-                                <Input type="text" name="apellido-alumno" className="mb-3" onChange={handleChange} placeholder="Apellidos" />
-                            </FormGroup>
-                        </Col>
-                        <Col sm="auto" className="mb-3 align-self-center ps-0">
-                            <FontAwesomeIcon icon={faPlusCircle} className="fs-5" style={{color: '#3956f7'}}></FontAwesomeIcon>
-                        </Col>
-                    </Row>
+                    {
+                        students.map((val, i) => {
+                            console.log(students.length > i)
+                            return (
+                                <Row key={i.toString()}>
+                                    <Col className="align-items-center">
+                                        <FormGroup>
+                                            <Input type="text" name={'nombre' + i} className="mb-3" onChange={handleChange} placeholder={'Nombre alumno #' + i} />
+                                        </FormGroup>
+                                    </Col>
+                                    <Col className="">
+                                        <FormGroup>
+                                            <Input type="text" name={'apellidos' + i} className="mb-3" onChange={handleChange} placeholder={'Apellidos alumno #' + i} />
+                                        </FormGroup>
+                                    </Col>
+                                    <Col sm="auto" className="mb-3 align-self-center ps-0">
+                                        {i < students.length - 1 ?
+                                            <FontAwesomeIcon icon={faPlusCircle} className="fs-5" style={{ color: '#ffffff' }}></FontAwesomeIcon>
+                                            :
+                                            <FontAwesomeIcon icon={faPlusCircle} className="fs-5" style={{ color: '#3956f7', cursor: 'pointer' }} onClick={addStudent}></FontAwesomeIcon>
+                                        }
+                                    </Col>
+                                </Row>
+                            )
+                        })
+                    }
                 </Form>
             </ModalBody>
             <ModalFooter>
-                <ButtonMain buttonText="Crear clase" className="px-2 rounded-4 me-3 py-1" fontWeight="500" fontSize="18px" onClick={props.toggle}></ButtonMain>
+                <ButtonMain buttonText="Crear clase" className="px-2 rounded-4 me-3 py-1" fontWeight="500" fontSize="18px" onClick={handleSubmit}></ButtonMain>
                 <ButtonMain secondary buttonText="Cancelar" className="px-2 rounded-4 py-1" fontWeight="500" fontSize="18px" onClick={props.toggle}></ButtonMain>
             </ModalFooter>
         </Modal >
