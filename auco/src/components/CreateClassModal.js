@@ -26,18 +26,18 @@ const CreateClassModal = (props) => {
     }
 
     const handleChange = (e) => {
+        // For student names
         if (["name", "surname"].includes(e.target.name)) {
             let students = [...formData.students];
-            students[e.target.dataset.id][e.target.name] = e.target.value;
+            students[e.target.dataset.id][e.target.name] = e.target.value.trim();
             let data = {
                 classname: formData.classname,
                 year: formData.year,
                 students: students
             }
-            updateFormData(
-                data
-            )
+            updateFormData(data);
         }
+        // For rest
         else {
             updateFormData({ ...formData, [e.target.name]: e.target.value.trim() })
         }
