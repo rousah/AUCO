@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Row } from 'reactstrap';
-import CreateClassModal from '../CreateClassModal';
+import CreateClassModal from '../CreateClassModal/CreateClassModal';
 import ButtonMain from '../../components/Buttons/ButtonMain';
 
 const CreateClassButton = (props) => {
