@@ -13,13 +13,30 @@ const initialFormData = Object.freeze({
     classname: "",
     year: "",
     students: [{ name: "", surname: "" }, { name: "", surname: "" }, { name: "", surname: "" }],
+    // Initially, no file is selected 
+    selectedFile: null,
+    withFile: false
 });
 
 const CreateClassModal = (props) => {
     const [activeTab, setActiveTab] = useState('1');
 
     const toggleTab = tab => {
-        if (activeTab !== tab) setActiveTab(tab);
+        if (activeTab !== tab) {
+            setActiveTab(tab);
+        }
+        var withFile = null;
+        if (tab === '1') withFile = false;
+        else withFile = true;
+        let data = {
+            classname: formData.classname,
+            year: formData.year,
+            students: formData.students,
+            selectedFile: formData.selectedFile,
+            withFile: withFile
+        }
+        updateFormData(data);
+
     }
 
     const [formData, updateFormData] = useState(initialFormData);
@@ -34,6 +51,19 @@ const CreateClassModal = (props) => {
         }));
     }
 
+    // On file select
+    const onFileChange = event => {
+        // Update the state 
+        let data = {
+            classname: formData.classname,
+            year: formData.year,
+            students: formData.students,
+            selectedFile: event.target.files[0],
+            withFile: formData.withFile
+        }
+        updateFormData(data);
+    };
+
     const handleChange = (e) => {
         // For student names
         if (["name", "surname"].includes(e.target.name)) {
@@ -42,7 +72,9 @@ const CreateClassModal = (props) => {
             let data = {
                 classname: formData.classname,
                 year: formData.year,
-                students: students
+                students: students,
+                selectedFile: formData.selectedFile,
+                withFile: formData.withFile
             }
             updateFormData(data);
         }
@@ -55,6 +87,9 @@ const CreateClassModal = (props) => {
     const handleSubmit = (e) => {
         if (activeTab !== 1) {
             e.preventDefault();
+            console.log(formData);
+        }
+        else {
             console.log(formData);
         }
         /*postLogin(formData).then(response => {
@@ -144,16 +179,16 @@ const CreateClassModal = (props) => {
                                 Sube un archivo .xls con los datos de los alumnos de la clase formateados de la siguiente forma:
                             </p>
                             <p className="fs-6">
-                                Columna 1: Nombre <br></br>
-                                Columna 2: Apellido
+                                Columna A: Nombre <br></br>
+                                Columna B: Apellido
                             </p>
                             <p className="fs-6">
-                                O bien, descarga la plantilla, rellénala y súbela:
-                                <ButtonMain buttonText="Descargar plantilla" className="px-2 rounded-3 me-3 py-1 fs-6" fontWeight="300" download href={file}></ButtonMain>
+                                O bien, <a download href={file}>descarga la plantilla</a>, rellénala y súbela.
+                                {/*<ButtonMain buttonText="Descargar plantilla" className="px-2 rounded-3 me-3 py-1 fs-6" fontWeight="300" download href={file}></ButtonMain>*/}
                             </p>
                             <FormGroup>
                                 <Label for="exampleCustomFileBrowser">Seleccionar hoja de cálculo:</Label>
-                                <CustomInput type="file" id="exampleCustomFileBrowser" name="customFile" label="Selecciona un archivo" />
+                                <CustomInput type="file" id="exampleCustomFileBrowser" name="customFile" label="Selecciona un archivo" onChange={onFileChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                             </FormGroup>
                         </TabPane>
                     </TabContent>
