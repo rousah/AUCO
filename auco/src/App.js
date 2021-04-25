@@ -13,7 +13,7 @@ import Clases from './pages/Teacher/Clases/Clases';
 import useToken from './services/useToken';
 
 function App() {
-  const { token, setToken, isAuthenticated } = useToken();
+  const { token, setToken, isAuthenticated, setId, userId } = useToken();
 
   return (
     <Router>
@@ -21,13 +21,13 @@ function App() {
         <Route exact path='/' component={LandingPage} />
         <Route path='/choose-user' component={ChooseUser} />
         <Route path='/login'>
-          <Login setToken={setToken} token={token}></Login>
+          <Login setToken={setToken} setId={setId} token={token}></Login>
         </Route>
         <Route path='/create-account'>
-          <Register setToken={setToken} token={token}></Register>
+          <Register setToken={setToken} setId={setId} token={token}></Register>
         </Route>
-        <PrivateRoute path='/home' isAuthenticated={isAuthenticated()} token={token} component={Home}/>
-        <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} component={Clases}/>
+        <PrivateRoute path='/home' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Home} />
+        <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Clases} />
       </div>
     </Router >
   );

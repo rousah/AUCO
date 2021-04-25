@@ -36,11 +36,11 @@ const CreateClassButton = (props) => {
                         <h3 className="p-0 fw-light">+ Crear otra clase</h3>
                     </Row>
                 </div>
-                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} />
+                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} id={props.id}/>
             </div>
             : <div>
                 <ButtonMain className="fs-5 px-2 py-1 rounded-4" buttonText={"Crear clase"} onClick={toggle} fontWeight="500"></ButtonMain>
-                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} />
+                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} id={props.id}/>
             </div>
     );
 }

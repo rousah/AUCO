@@ -8,8 +8,10 @@ import { useHistory } from "react-router-dom";
 import classnames from 'classnames';
 import './CreateClassModal.css'
 import file from '../../assets/files/plantilla_alumnos.xlsx'
+import { postClass } from '../../services/createClass';
 
 const initialFormData = Object.freeze({
+    userId: "",
     classname: "",
     year: "",
     students: [{ name: "", surname: "" }, { name: "", surname: "" }, { name: "", surname: "" }],
@@ -19,7 +21,10 @@ const initialFormData = Object.freeze({
 });
 
 const CreateClassModal = (props) => {
+    let history = useHistory();
+
     const [activeTab, setActiveTab] = useState('1');
+    const userId = props.id;
 
     const toggleTab = tab => {
         if (activeTab !== tab) {
@@ -40,8 +45,6 @@ const CreateClassModal = (props) => {
     }
 
     const [formData, updateFormData] = useState(initialFormData);
-
-    let history = useHistory();
 
     let students = formData.students;
 
@@ -85,23 +88,27 @@ const CreateClassModal = (props) => {
     }
 
     const handleSubmit = (e) => {
-        if (activeTab !== 1) {
-            e.preventDefault();
-            console.log(formData);
+        e.preventDefault();
+        let data = {
+            userId: userId,
+            classname: formData.classname,
+            year: formData.year,
+            students: formData.students,
+            selectedFile: formData.selectedFile,
+            withFile: formData.withFile
         }
-        else {
-            console.log(formData);
-        }
-        /*postLogin(formData).then(response => {
+        console.log(data);
+        postClass(data).then(response => {
             // if login success
             if (response) {
-                props.setToken(response.token);
+                console.log(response);
+                /*props.setToken(response.token);
                 history.push({
                     pathname: '/home',
                     state: { response }
-                });  // redirect
+                });  // redirect*/
             }
-        });*/
+        });
     };
 
     const styleBorder = {

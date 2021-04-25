@@ -6,8 +6,6 @@ export default function useToken() {
         return tokenString;
     };
 
-    const [token, setToken] = useState(getToken());
-
     const saveToken = userToken => {
         localStorage.setItem('token', userToken);
         setToken(userToken);
@@ -16,6 +14,7 @@ export default function useToken() {
     const deleteToken = () => {
         console.log("deleteToken")
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
     }
 
     const isAuthenticated = () => {
@@ -23,8 +22,24 @@ export default function useToken() {
         return false;
     };
 
+    const [token, setToken] = useState(getToken());
+
+    const getId = () => {
+        const id = localStorage.getItem('user');
+        return id;
+    };
+
+    const saveId = userId => {
+        localStorage.setItem('user', userId);
+        setId(userId);
+    };
+
+    const [userId, setId] = useState(getId());
+
     return {
         setToken: saveToken,
+        setId: saveId,
+        userId,
         isAuthenticated: isAuthenticated,
         deleteToken: deleteToken,
         token

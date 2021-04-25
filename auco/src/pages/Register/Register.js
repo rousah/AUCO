@@ -36,6 +36,7 @@ const Register = (props) => {
         postRegister(formData).then(response => {
             // if register success
             if (response) {
+                props.setId(response.user);
                 props.setToken(response.token);
                 history.push({
                     pathname: '/home',
@@ -129,7 +130,8 @@ const Register = (props) => {
 }
 
 Register.propTypes = {
-    setToken: PropTypes.func.isRequired
+    setToken: PropTypes.func.isRequired,
+    setId: PropTypes.func.isRequired
 }
 
 export default Register;

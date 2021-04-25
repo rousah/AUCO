@@ -35,6 +35,7 @@ const Login = (props) => {
         postLogin(formData).then(response => {
             // if login success
             if (response) {
+                props.setId(response.user);
                 props.setToken(response.token);
                 history.push({
                     pathname: '/home',
@@ -80,7 +81,8 @@ const Login = (props) => {
 }
 
 Login.propTypes = {
-    setToken: PropTypes.func.isRequired
+    setToken: PropTypes.func.isRequired,
+    setId: PropTypes.func.isRequired
 }
 
 export default withRouter(Login);
