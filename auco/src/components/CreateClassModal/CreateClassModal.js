@@ -7,6 +7,7 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import classnames from 'classnames';
 import './CreateClassModal.css'
+import file from '../../assets/files/plantilla_alumnos.xlsx'
 
 const initialFormData = Object.freeze({
     classname: "",
@@ -52,8 +53,10 @@ const CreateClassModal = (props) => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
+        if (activeTab !== 1) {
+            e.preventDefault();
+            console.log(formData);
+        }
         /*postLogin(formData).then(response => {
             // if login success
             if (response) {
@@ -93,7 +96,7 @@ const CreateClassModal = (props) => {
                     </FormGroup>
                     <h6 className="mt-5">Alumnos:</h6>
                     <p className="fs-6 rounded p-2" style={styleBorder}>
-                        Para cada alumno añadido a la clase se creará una cuenta con un usuario y contraseña para el alumno, que podrá cambiar una vez activada la cuenta iniciando sesión. De esta forma se le da acceso al contenido a los alumnos. Se pueden añadir de forma manual, escribiendo el nombre y apellido de cada uno de ellos, o subiendo un archivo .excel con un formato específico.
+                        Para cada alumno añadido a la clase se creará una cuenta con un usuario y contraseña para el alumno, que podrá cambiar una vez activada la cuenta iniciando sesión. De esta forma se le da acceso al contenido a los alumnos. Se pueden añadir de forma manual, escribiendo el nombre y apellido de cada uno de ellos, o subiendo un archivo .xls con un formato específico.
                     </p>
                     <Nav tabs>
                         <NavItem>
@@ -138,7 +141,15 @@ const CreateClassModal = (props) => {
                         </TabPane>
                         <TabPane tabId="2" className="p-2">
                             <p className="fs-6">
-                                Sube un archivo .excel con los datos de los alumnos de la clase formateados de la siguiente forma:
+                                Sube un archivo .xls con los datos de los alumnos de la clase formateados de la siguiente forma:
+                            </p>
+                            <p className="fs-6">
+                                Columna 1: Nombre <br></br>
+                                Columna 2: Apellido
+                            </p>
+                            <p className="fs-6">
+                                O bien, descarga la plantilla, rellénala y súbela:
+                                <ButtonMain buttonText="Descargar plantilla" className="px-2 rounded-3 me-3 py-1 fs-6" fontWeight="300" download href={file}></ButtonMain>
                             </p>
                             <FormGroup>
                                 <Label for="exampleCustomFileBrowser">Seleccionar hoja de cálculo:</Label>

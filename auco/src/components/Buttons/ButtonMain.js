@@ -16,7 +16,8 @@ const ButtonMain = (props) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '4px'
+        marginBottom: '4px',
+        width: 'fit-content'
     };
 
     const styleSecondary = {
@@ -32,7 +33,8 @@ const ButtonMain = (props) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '4px'
+        marginBottom: '4px',
+        width: 'fit-content'
     };
 
     return (
