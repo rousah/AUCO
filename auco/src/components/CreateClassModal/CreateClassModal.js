@@ -17,22 +17,24 @@ const initialFormData = Object.freeze({
     students: [{ name: "", surname: "" }, { name: "", surname: "" }, { name: "", surname: "" }],
     // Initially, no file is selected 
     selectedFile: null,
-    withFile: false
+    withFile: 'false'
 });
 
 const CreateClassModal = (props) => {
-    let history = useHistory();
+    //let history = useHistory();
 
     const [activeTab, setActiveTab] = useState('1');
     const userId = props.id;
+
+    const [formData, updateFormData] = useState(initialFormData);
 
     const toggleTab = tab => {
         if (activeTab !== tab) {
             setActiveTab(tab);
         }
         var withFile = null;
-        if (tab === '1') withFile = false;
-        else withFile = true;
+        if (tab === '1') withFile = 'false';
+        else withFile = 'true';
         let data = {
             classname: formData.classname,
             year: formData.year,
@@ -41,10 +43,7 @@ const CreateClassModal = (props) => {
             withFile: withFile
         }
         updateFormData(data);
-
     }
-
-    const [formData, updateFormData] = useState(initialFormData);
 
     let students = formData.students;
 
@@ -89,15 +88,23 @@ const CreateClassModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let data = {
+        /*let data = {
             userId: userId,
             classname: formData.classname,
             year: formData.year,
             students: formData.students,
             selectedFile: formData.selectedFile,
             withFile: formData.withFile
-        }
-        console.log(data);
+        }*/
+        console.log(formData)
+        const data = new FormData();
+        data.append('userId', userId);
+        data.append('classname', formData.classname);
+        data.append('year', formData.year);
+        data.append('students', JSON.stringify(formData.students));
+        data.append('withFile', formData.withFile);
+        data.append('selectedFile', formData.selectedFile);
+        //console.log(data);
         postClass(data).then(response => {
             // if login success
             if (response) {
