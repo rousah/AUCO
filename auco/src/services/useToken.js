@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
 export default function useToken() {
+
+    // Token
+
     const getToken = () => {
         const tokenString = localStorage.getItem('token');
         return tokenString;
@@ -24,6 +27,7 @@ export default function useToken() {
 
     const [token, setToken] = useState(getToken());
 
+    // Id
     const getId = () => {
         const id = localStorage.getItem('user');
         return id;
@@ -36,12 +40,27 @@ export default function useToken() {
 
     const [userId, setId] = useState(getId());
 
+    // Role
+    const getRole = () => {
+        const role = localStorage.getItem('role');
+        return role;
+    };
+
+    const saveRole = userRole => {
+        localStorage.setItem('role', userRole);
+        setRole(userRole);
+    };
+
+    const [role, setRole] = useState(getRole());
+
     return {
         setToken: saveToken,
         setId: saveId,
         userId,
         isAuthenticated: isAuthenticated,
         deleteToken: deleteToken,
-        token
+        token,
+        setRole: saveRole,
+        role
     }
 }

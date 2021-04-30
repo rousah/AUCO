@@ -37,10 +37,17 @@ const Login = (props) => {
             if (response) {
                 props.setId(response.user);
                 props.setToken(response.token);
-                history.push({
-                    pathname: '/home',
-                    state: { response }
-                });  // redirect
+                if (response.role === 'student') {
+                    console.log("Student logged in");
+                    props.setRole(response.role);
+                }
+                else {
+                    props.setRole('teacher');
+                    history.push({
+                        pathname: '/home',
+                        state: { response }
+                    });  // redirect
+                }
             }
         });
     };
@@ -82,7 +89,8 @@ const Login = (props) => {
 
 Login.propTypes = {
     setToken: PropTypes.func.isRequired,
-    setId: PropTypes.func.isRequired
+    setId: PropTypes.func.isRequired,
+    setRole: PropTypes.func.isRequired
 }
 
 export default withRouter(Login);
