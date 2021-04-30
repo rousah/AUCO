@@ -43,11 +43,11 @@ const Login = (props) => {
                 }
                 else {
                     props.setRole('teacher');
-                    history.push({
-                        pathname: '/home',
-                        state: { response }
-                    });  // redirect
                 }
+                history.push({
+                    pathname: '/home',
+                    state: { response }
+                });  // redirect
             }
         });
     };
