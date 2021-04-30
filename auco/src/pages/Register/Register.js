@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../App.css';
 import './Register.css';
-import NavBarLanding from '../NavBar/NavBarLanding';
+import NavBarLanding from '../../components/NavBar/NavBarLanding';
 import { Container, Row, Col } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import ButtonMain from '../Buttons/ButtonMain';
+import ButtonMain from '../../components/Buttons/ButtonMain';
 import { postRegister } from '../../services/registrateUser';
 import PropTypes from 'prop-types';
 
@@ -36,6 +36,7 @@ const Register = (props) => {
         postRegister(formData).then(response => {
             // if register success
             if (response) {
+                props.setId(response.user);
                 props.setToken(response.token);
                 history.push({
                     pathname: '/home',
@@ -129,7 +130,8 @@ const Register = (props) => {
 }
 
 Register.propTypes = {
-    setToken: PropTypes.func.isRequired
+    setToken: PropTypes.func.isRequired,
+    setId: PropTypes.func.isRequired
 }
 
 export default Register;

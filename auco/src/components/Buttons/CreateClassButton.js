@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row } from 'reactstrap';
+import CreateClassModal from '../CreateClassModal/CreateClassModal';
+import ButtonMain from '../../components/Buttons/ButtonMain';
 
 const CreateClassButton = (props) => {
+    const {
+        className
+    } = props;
+
+    const [modal, setModal] = useState(false);
+
+    const toggle = () => setModal(!modal);
 
     const style = {
         border: '1px dashed #A3B2FF',
@@ -20,15 +29,20 @@ const CreateClassButton = (props) => {
     };
 
     return (
-        <div style={style}>
-            <a href="/clases/create" className="text-decoration-none text-body">
-                <Row>
-                    <h3 className="p-0 fw-light">+ Crear otra clase</h3>
-                </Row>
-            </a>
-        </div>
+        props.square
+            ? <div style={style} onClick={toggle}>
+                <div>
+                    <Row>
+                        <h3 className="p-0 fw-light">+ Crear otra clase</h3>
+                    </Row>
+                </div>
+                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} id={props.id}/>
+            </div>
+            : <div>
+                <ButtonMain className="fs-5 px-2 py-1 rounded-4" buttonText={"Crear clase"} onClick={toggle} fontWeight="500"></ButtonMain>
+                <CreateClassModal isOpen={modal} toggle={toggle} className={className} modal={modal} id={props.id}/>
+            </div>
     );
 }
-
 
 export default CreateClassButton;
