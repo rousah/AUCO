@@ -24,7 +24,8 @@ const CreateClassModal = (props) => {
     //let history = useHistory();
 
     const [activeTab, setActiveTab] = useState('1');
-    const userId = props.id;
+    const userId = props.id['userId'];
+    console.log(userId)
 
     const [formData, updateFormData] = useState(initialFormData);
 
@@ -88,15 +89,6 @@ const CreateClassModal = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        /*let data = {
-            userId: userId,
-            classname: formData.classname,
-            year: formData.year,
-            students: formData.students,
-            selectedFile: formData.selectedFile,
-            withFile: formData.withFile
-        }*/
-        console.log(formData)
         const data = new FormData();
         data.append('userId', userId);
         data.append('classname', formData.classname);
@@ -104,16 +96,11 @@ const CreateClassModal = (props) => {
         data.append('students', JSON.stringify(formData.students));
         data.append('withFile', formData.withFile);
         data.append('selectedFile', formData.selectedFile);
-        //console.log(data);
+        console.log(data);
         postClass(data).then(response => {
             // if login success
             if (response) {
                 console.log(response);
-                /*props.setToken(response.token);
-                history.push({
-                    pathname: '/home',
-                    state: { response }
-                });  // redirect*/
             }
         });
     };
