@@ -1,16 +1,55 @@
 import React from 'react';
 import '../../App.css';
 import './Register.css';
-import NavBar from '../NavBar/NavBar';
+import NavBarLanding from '../../components/NavBar/NavBarLanding';
 import { Container, Row, Col } from 'reactstrap';
+import { useHistory } from "react-router-dom";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import ButtonMain from '../Buttons/ButtonMain';
+import ButtonMain from '../../components/Buttons/ButtonMain';
+import { postRegister } from '../../services/registrateUser';
+import PropTypes from 'prop-types';
+
+const initialFormData = Object.freeze({
+    name: "",
+    surname: "",
+    institution: "",
+    email: "",
+    password: ""
+});
 
 const Register = (props) => {
+    const [formData, updateFormData] = React.useState(initialFormData);
+    let history = useHistory();
+
+    const handleChange = (e) => {
+        updateFormData({
+            ...formData,
+
+            // Trimming any whitespace
+            [e.target.name]: e.target.value.trim()
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        postRegister(formData).then(response => {
+            // if register success
+            if (response) {
+                props.setId(response.user);
+                props.setToken(response.token);
+                history.push({
+                    pathname: '/home',
+                    state: { response }
+                });  // redirect
+            }
+        });
+
+    };
 
     return (
         <div className="register fullscreen">
-            <NavBar showlogin></NavBar>
+            <NavBarLanding showlogin></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
                 <Container className="align-content-center h-75 create-user">
                     <Row>
@@ -31,19 +70,19 @@ const Register = (props) => {
                                     <Label for="name">
                                         <h6>Nombre:</h6>
                                     </Label>
-                                    <Input type="text" name="name" className="mb-3" />
+                                    <Input type="text" name="name" className="mb-3" onChange={handleChange} />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="surname">
                                         <h6>Apellidos:</h6>
                                     </Label>
-                                    <Input type="text" name="surname" className="mb-3" />
+                                    <Input type="text" name="surname" className="mb-3" onChange={handleChange} />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="email">
                                         <h6>Correo electrónico:</h6>
                                     </Label>
-                                    <Input type="email" name="email" className="mb-3" />
+                                    <Input type="email" name="email" className="mb-3" onChange={handleChange} />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="institution">
@@ -51,12 +90,13 @@ const Register = (props) => {
                                     </Label>
                                     <Input
                                         type="search"
-                                        name="intitution"
+                                        name="institution"
                                         placeholder="Escribe para buscar..."
-                                        list="intitutions"
+                                        list="institutions"
                                         className="mb-2"
+                                        onChange={handleChange}
                                     />
-                                    <datalist id="intitutions">
+                                    <datalist id="institutions">
                                         <option value="Universidad Politécnica de Valencia" />
                                         <option value="IES Sierra Almijara" />
                                         <option value="IES José Cuervo" />
@@ -68,16 +108,16 @@ const Register = (props) => {
                                     <Label for="password">
                                         <h6>Contraseña:</h6>
                                     </Label>
-                                    <Input type="password" name="password" />
+                                    <Input type="password" name="password" onChange={handleChange} />
                                     <FormText className="mb-3">Mínimo 8 caracteres.</FormText>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="passwordCheck">
                                         <h6>Repetir contraseña:</h6>
                                     </Label>
-                                    <Input type="password" name="passwordCheck" className="mb-3" />
+                                    <Input type="password" name="passwordCheck" className="mb-3"/>
                                 </FormGroup>
-                                <Button style={{ background: "none", border: "none" }} className="w-100 mt-4 d-flex justify-content-center">
+                                <Button onClick={handleSubmit} style={{ background: "none", border: "none" }} className="w-100 mt-4 d-flex justify-content-center">
                                     <ButtonMain buttonText="CREAR CUENTA" className="w-50" fontWeight="500" fontSize="20px"></ButtonMain>
                                 </Button>
                             </Form>
@@ -87,6 +127,11 @@ const Register = (props) => {
             </div>
         </div>
     );
+}
+
+Register.propTypes = {
+    setToken: PropTypes.func.isRequired,
+    setId: PropTypes.func.isRequired
 }
 
 export default Register;

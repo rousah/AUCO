@@ -1,13 +1,14 @@
 import React from 'react';
 import '../../App.css';
 import './Login.css';
-import NavBar from '../NavBar/NavBar';
+import NavBarLanding from '../../components/NavBar/NavBarLanding';
 import { Container } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import ButtonMain from '../Buttons/ButtonMain';
+import ButtonMain from '../../components/Buttons/ButtonMain';
 import { postLogin } from '../../services/loggingIn';
 import { withRouter } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const initialFormData = Object.freeze({
     email: "",
@@ -32,18 +33,28 @@ const Login = (props) => {
         e.preventDefault();
         console.log(formData);
         postLogin(formData).then(response => {
-            console.log("then");
-            console.log(response);
-            history.push({
-                pathname: '/dashboard',
-                state: { token: response}
-            });  // redirect
+            // if login success
+            if (response) {
+                props.setId(response.user);
+                props.setToken(response.token);
+                if (response.role === 'student') {
+                    console.log("Student logged in");
+                    props.setRole(response.role);
+                }
+                else {
+                    props.setRole('teacher');
+                }
+                history.push({
+                    pathname: '/home',
+                    state: { response }
+                });  // redirect
+            }
         });
     };
 
     return (
         <div className="fullscreen login">
-            <NavBar showregister></NavBar>
+            <NavBarLanding showregister></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
                 <Container className="align-content-center login-container w-25 p-5">
                     <div className="d-flex justify-content-center mb-4">
@@ -61,7 +72,7 @@ const Login = (props) => {
                                 <h6>Contraseña:</h6>
                             </Label>
                             <Input type="password" name="password" onChange={handleChange} />
-                            <a href="" className="mb-3">¿Has olvidado tu contraseña?</a>
+                            <a href="/" className="mb-3">¿Has olvidado tu contraseña?</a>
                         </FormGroup>
                         <Button onClick={handleSubmit} style={{ background: "none", border: "none", cursor: 'default' }} className="w-100 mt-4 d-flex justify-content-center">
                             <ButtonMain buttonText="ENTRAR" className="px-3" fontWeight="500" fontSize="20px"></ButtonMain>
@@ -74,6 +85,12 @@ const Login = (props) => {
             </div>
         </div>
     );
+}
+
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired,
+    setId: PropTypes.func.isRequired,
+    setRole: PropTypes.func.isRequired
 }
 
 export default withRouter(Login);

@@ -27,7 +27,7 @@ const SquareButton = (props) => {
     };
 
     return (
-        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className + " p-0"} id="box">
+        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className + " p-0"} id="box" onClick={props.onClick}>
             <div id="square"></div>
             <div id="content" className="p-3 d-flex flex-column justify-content-center align-items-center">
                 <img src={props.illustration} alt={props.alt} className="w-100"></img>

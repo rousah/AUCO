@@ -16,7 +16,8 @@ const ButtonMain = (props) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '4px'
+        marginBottom: '4px',
+        width: 'fit-content'
     };
 
     const styleSecondary = {
@@ -32,11 +33,12 @@ const ButtonMain = (props) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '4px'
+        marginBottom: '4px',
+        width: 'fit-content'
     };
 
     return (
-        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className}>{props.buttonText}</a>
+        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className} onClick={props.onClick}>{props.buttonText}</a>
     );
 }
 

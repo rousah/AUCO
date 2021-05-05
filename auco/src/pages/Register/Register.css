@@ -24,3 +24,12 @@
   background-color: #edf1ff;
   color: #1d2128;
 }
+
+.modal-header h5 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.modal-body {
+  padding-bottom: 9rem;
+}
