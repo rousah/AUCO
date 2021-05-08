@@ -3,7 +3,7 @@ import NavBarTeacher from '../../../components/NavBar/NavBarTeacher'
 import ClassButton from '../../../components/Buttons/ClassButton'
 import CreateClassButton from '../../../components/Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
-import { getClasses } from '../../../services/getClass';
+import { getClasses } from '../../../services/getClasses';
 import { useState, useEffect } from 'react';
 
 const Clases = (props) => {
