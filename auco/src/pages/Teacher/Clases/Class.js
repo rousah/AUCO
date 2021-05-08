@@ -1,11 +1,10 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 import NavBarTeacher from '../../../components/NavBar/NavBarTeacher'
-import ClassButton from '../../../components/Buttons/ClassButton'
-import CreateClassButton from '../../../components/Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
 import { getClass } from '../../../services/getClass';
 import { useState, useEffect } from 'react';
+import Loading from '../../../components/Loading'
 
 const Class = (props) => {
     let { id } = useParams();
@@ -28,7 +27,20 @@ const Class = (props) => {
     return (
         <div>
             <NavBarTeacher clases></NavBarTeacher>
-            Class: {id}
+            {
+                myClass ?
+                    <Container>
+                        <Row className="p-3 justify-content-between mt-3 mb-4">
+                            <Col xs="4" className="p-0 d-flex align-items-center">
+                                <h2>
+                                    {myClass.name + " " + myClass.year}
+                                </h2>
+                            </Col>
+                        </Row>
+                    </Container>
+                    :
+                    <Loading></Loading>
+            }
         </div>
     );
 }

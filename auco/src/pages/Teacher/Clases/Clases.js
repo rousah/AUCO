@@ -5,6 +5,7 @@ import CreateClassButton from '../../../components/Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
 import { getClasses } from '../../../services/getClasses';
 import { useState, useEffect } from 'react';
+import Loading from '../../../components/Loading'
 
 const Clases = (props) => {
     const [classes, setClasses] = useState(null);
@@ -38,23 +39,25 @@ const Clases = (props) => {
                 </Row>
                 <Row>
                     {classes ?
-                        classes.map((val, i) => {
-                            console.log(val)
-                            return (
-                                <Col key={i} xs="3" className="mb-4">
-                                    <ClassButton id={val._id} name={val.name} year={val.year} numberStudents={val.students.length} notifications={Math.floor(Math.random()*4)} students={val.students}></ClassButton>
-                                </Col>
-                            )
-                        })
+                        <Row>
+                            {classes.map((val, i) => {
+                                return (
+                                    <Col key={i} xs="3" className="mb-4">
+                                        <ClassButton id={val._id} name={val.name} year={val.year} numberStudents={val.students.length} notifications={Math.floor(Math.random() * 4)} students={val.students}></ClassButton>
+                                    </Col>
+                                )
+                            })}
+                            <Col xs="3" className="mb-4">
+                                <CreateClassButton square id={props.history.location.state}></CreateClassButton>
+                            </Col>
+                        </Row>
+
                         :
-                        false
+                        <Loading></Loading>
                     }
-                    <Col xs="3" className="mb-4">
-                        <CreateClassButton square id={props.history.location.state}></CreateClassButton>
-                    </Col>
                 </Row>
             </Container>
-        </div>
+        </div >
     );
 }
 
