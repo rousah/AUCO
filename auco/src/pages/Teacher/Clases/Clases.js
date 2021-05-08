@@ -42,7 +42,7 @@ const Clases = (props) => {
                             console.log(val)
                             return (
                                 <Col key={i} xs="3" className="mb-4">
-                                    <ClassButton name={val.name} year={val.year} numberStudents={val.students.length} notifications={Math.floor(Math.random()*4)} students={val.students}></ClassButton>
+                                    <ClassButton id={val._id} name={val.name} year={val.year} numberStudents={val.students.length} notifications={Math.floor(Math.random()*4)} students={val.students}></ClassButton>
                                 </Col>
                             )
                         })

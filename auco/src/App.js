@@ -10,6 +10,7 @@ import Login from './pages/Login/Login';
 import Home from './pages/Teacher/Home/Home';
 import StudentHome from './pages/Student/Home/StudentHome';
 import Clases from './pages/Teacher/Clases/Clases';
+import Class from './pages/Teacher/Clases/Class';
 
 import useToken from './services/useToken';
 
@@ -29,6 +30,7 @@ function App() {
         </Route>
         <PrivateRoute path='/home' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={role === 'teacher' ? Home : StudentHome} />
         <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Clases} />
+        <PrivateRoute path='/class/:id' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Class} />
       </div>
     </Router >
   );
