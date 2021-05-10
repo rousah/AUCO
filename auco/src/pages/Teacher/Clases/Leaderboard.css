@@ -1,0 +1,82 @@
+/* Header */
+#lBoard h1 {
+  width: 100%;
+  height: 70px;
+  background: #3dd0ae;
+  font-weight: 300;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+  color: white;
+  padding: 1rem;
+}
+
+/* Searchbar */
+.ranking tr:nth-child(2) {
+  display: none;
+}
+
+/* 'rank' */
+tr .rank-header:first-child {
+  width: auto;
+  text-align: center;
+}
+
+/* '#' */
+tr .rank-header:first-child:after {
+  content: "#";
+  text-indent: 0;
+  display: block;
+  line-height: initial; /* New content takes up original line height */
+}
+
+/* All headers */
+.rank-header {
+  text-indent: -9999px;
+  line-height: 0; /* Collapse the original line */
+  background: #ffffff;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-left: 2rem;
+}
+
+/* 'Nombre' */
+tr .rank-header:nth-child(2)::after {
+  content: "Nombre";
+  text-indent: 0;
+  display: block;
+  line-height: initial;
+}
+
+/* 'score' */
+tr .rank-header:nth-child(3) {
+  padding-right: 2rem;
+}
+
+/* 'puntos' */
+tr .rank-header:nth-child(3)::after {
+  content: "Puntos";
+  text-indent: 0;
+  display: block;
+  line-height: initial;
+}
+
+/* 'rank' numbers */
+.ranking td:first-child {
+  text-align: center;
+}
+
+.data {
+  padding-left: 2rem;
+}
+
+/* ranking */
+.ranking {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+}
+
+.row div p {
+  display: none;
+}

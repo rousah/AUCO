@@ -4,12 +4,16 @@ import NavBarTeacher from '../../../components/NavBar/NavBarTeacher'
 import { Container, Row, Col } from 'reactstrap';
 import { getClass } from '../../../services/getClass';
 import { useState, useEffect } from 'react';
-import Loading from '../../../components/Loading'
+import Loading from '../../../components/Loading';
+import Leaderboard from 'react-leaderboard';
+import './Leaderboard.css';
 
 const Class = (props) => {
     let { id } = useParams();
 
     const [myClass, setClass] = useState(null);
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
         async function getMyClasses() {
             const myClass = await getClass(id).then(response => {
@@ -18,6 +22,11 @@ const Class = (props) => {
                     console.log(response);
                     return response;
                 }
+            });
+            myClass.students.forEach(student => {
+                setUsers((prevState) => (
+                    [...prevState, { name: student.name + " " + student.surname, score: student.score }]
+                ))
             });
             setClass(myClass);
         }
@@ -36,6 +45,9 @@ const Class = (props) => {
                                     {myClass.name + " " + myClass.year}
                                 </h2>
                             </Col>
+                        </Row>
+                        <Row>
+                            <Leaderboard users={users} paginate={30} />
                         </Row>
                     </Container>
                     :
