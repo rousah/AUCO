@@ -1,3 +1,21 @@
+/* Reset css values from library */
+.rank-header {
+  color: #1d2128;
+  font-size: medium;
+  font-weight: normal;
+}
+
+table td {
+  border: none;
+}
+table {
+  border: none;
+}
+
+h1 {
+  color: white;
+}
+
 /* Header */
 #lBoard h1 {
   width: 100%;
