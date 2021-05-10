@@ -8,6 +8,7 @@ import Loading from '../../../components/Loading';
 import DashboardCard from '../../../components/Dashboard/DashboardCard';
 import Form from '../../../components/Dashboard/Form';
 import Leaderboard from 'react-leaderboard';
+import ButtonMain from '../../../components/Buttons/ButtonMain';
 import './Leaderboard.css';
 
 const Class = (props) => {
@@ -55,6 +56,9 @@ const Class = (props) => {
                                 <h2>
                                     {myClass.name + " " + myClass.year}
                                 </h2>
+                            </Col>
+                            <Col xs="4" className="p-0 d-flex align-items-center justify-content-end">
+                                <ButtonMain buttonText="Volver a clases" className="px-2 rounded-4 me-3 py-1" fontWeight="500" fontSize="18px" href="javascript:history.back()"></ButtonMain>
                             </Col>
                         </Row>
                         <Row>

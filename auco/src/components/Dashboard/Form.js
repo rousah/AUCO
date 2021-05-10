@@ -22,11 +22,9 @@ const Form = (props) => {
             <div>
                 {props.formName}
             </div>
-            <div className="d-flex justify-content-around">
-                <Switch className="me-2" onChange={setSwitchState} checked={switchState} onColor="#0d4c8b" uncheckedIcon={false} checkedIcon={false} height={14} width={35} handleDiameter={20}/>
-                <div>
-                    <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
-                </div>
+            <div className="d-flex justify-content-around align-items-center">
+                <Switch className="me-2" onChange={setSwitchState} checked={switchState} onColor="#0d4c8b" uncheckedIcon={false} checkedIcon={false} height={12} width={30} handleDiameter={18} />
+                <FontAwesomeIcon icon={faCog}></FontAwesomeIcon>
             </div>
         </div>
     );
