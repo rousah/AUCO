@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { getClass } from '../../../services/getClass';
 import { useState, useEffect } from 'react';
 import Loading from '../../../components/Loading';
+import DashboardCard from '../../../components/Dashboard/DashboardCard';
 import Leaderboard from 'react-leaderboard';
 import './Leaderboard.css';
 
@@ -33,6 +34,15 @@ const Class = (props) => {
         getMyClasses();
     }, [])
 
+    const leaderboardHeaderStyle = {
+        backgroundColor: "#3dd0ae",
+        margin: "-1rem -1rem 0 -1rem",
+        borderRadius: "7px 7px 0px 0px",
+        padding: "1rem",
+        color: "#ffffff"
+    }
+
+
     return (
         <div>
             <NavBarTeacher clases></NavBarTeacher>
@@ -47,13 +57,26 @@ const Class = (props) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Leaderboard users={users} paginate={30} />
+                            <Col>
+                                <DashboardCard customHeader={
+                                    <h4 className="text-center" style={leaderboardHeaderStyle}> Leaderboard</h4>
+                                }
+                                    content={
+                                        <Leaderboard users={users} paginate={30} />
+                                    }>
+                                </DashboardCard>
+                            </Col>
+                            <Col>
+                                <DashboardCard title="Formularios" content={
+                                    <div>Formulario1</div>
+                                }></DashboardCard>
+                            </Col>
                         </Row>
                     </Container>
                     :
                     <Loading></Loading>
             }
-        </div>
+        </div >
     );
 }
 
