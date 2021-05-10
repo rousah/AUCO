@@ -6,6 +6,7 @@ import { getClass } from '../../../services/getClass';
 import { useState, useEffect } from 'react';
 import Loading from '../../../components/Loading';
 import DashboardCard from '../../../components/Dashboard/DashboardCard';
+import Form from '../../../components/Dashboard/Form';
 import Leaderboard from 'react-leaderboard';
 import './Leaderboard.css';
 
@@ -68,7 +69,11 @@ const Class = (props) => {
                             </Col>
                             <Col>
                                 <DashboardCard title="Formularios" content={
-                                    <div>Formulario1</div>
+                                    <div>
+                                        <Form formName="Bullying" active></Form>
+                                        <Form formName="Cyberbullying"></Form>
+                                        <Form formName="Sexismo"></Form>
+                                    </div>
                                 }></DashboardCard>
                             </Col>
                         </Row>

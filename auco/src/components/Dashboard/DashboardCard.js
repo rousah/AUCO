@@ -11,10 +11,6 @@ const DashboardCard = (props) => {
         padding: "1rem"
     };
 
-    const styleHeader = {
-
-    }
-
     return (
         <div style={styleMain} className="dashboardcard">
             {
@@ -23,7 +19,7 @@ const DashboardCard = (props) => {
                     :
                     props.title ?
 
-                        <h4 style={styleHeader}>{props.title}</h4>
+                        <h4>{props.title}</h4>
                         :
                         null
             }
