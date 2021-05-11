@@ -7,7 +7,7 @@
 
 table td {
   border: none;
-  padding: none;
+  padding: 0;
 }
 table {
   border: none;
@@ -101,7 +101,7 @@ tr .rank-header:nth-child(3)::after {
   width: 100%;
   height: 100%;
 }
-
-.row div p {
+/* delete prev & next buttons */
+.leaderboardCol div p {
   display: none;
 }
