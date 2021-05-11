@@ -10,6 +10,9 @@ import Form from '../../../components/Dashboard/Form';
 import Leaderboard from 'react-leaderboard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { ResponsivePie } from '@nivo/pie';
+import { Alert } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import './Leaderboard.css';
 
 const Class = (props) => {
@@ -158,6 +161,18 @@ const Class = (props) => {
                             <Col>
                             </Col>
                             <Col>
+                                <DashboardCard title="Notificaciones" content={
+                                    <div>
+                                        <Alert color="auco" className="d-flex align-items-center">
+                                        <FontAwesomeIcon icon={faInfoCircle} className="me-2"/>
+                                            Pepito ha reportado una incidencia.
+                                        </Alert>
+                                        <Alert color="auco" className="d-flex align-items-center">
+                                        <FontAwesomeIcon icon={faInfoCircle} className="me-2"/>
+                                            Lola no ha respondido al cuestionario 'Bullying'.
+                                        </Alert>
+                                    </div>
+                                }></DashboardCard>
                             </Col>
                         </Row>
                         <Row className="mb-3">
@@ -166,9 +181,9 @@ const Class = (props) => {
                                     <h4 className="text-center" style={leaderboardHeaderStyle}> Leaderboard</h4>
                                 }
                                     content={
-                                        <Leaderboard users={users} paginate={30}/>
+                                        <Leaderboard users={users} paginate={30} />
                                     }
-                                    >
+                                >
                                 </DashboardCard>
                             </Col>
                             <Col>
