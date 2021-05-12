@@ -12,7 +12,6 @@ function LeaderBoard(props) {
         padding: "1rem",
         color: "#ffffff"
     }
-    console.log(props.users)
 
     return (
             <DashboardCard className="leaderboardCol" customHeader={

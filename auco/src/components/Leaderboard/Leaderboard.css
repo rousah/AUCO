@@ -90,9 +90,16 @@ tr .rank-header:nth-child(3)::after {
   text-align: center;
 }
 
+/* Text names etc */
 .data {
   padding-left: 1rem;
   padding-right: 1rem;
+  font-size: 0.8rem;
+}
+
+/* Text # */
+.data:first-child {
+  font-size: 0.8rem;
 }
 
 /* ranking */

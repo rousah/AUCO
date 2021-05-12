@@ -62,6 +62,7 @@ const Class = (props) => {
             {
                 myClass ?
                     <Container>
+                        {/* Title and back button */}
                         <Row className="p-3 justify-content-between mt-3 mb-4">
                             <Col xs="4" className="p-0 d-flex align-items-center">
                                 <h2>
@@ -72,46 +73,54 @@ const Class = (props) => {
                                 <ButtonMain buttonText="Volver a clases" className="px-2 rounded-4 py-1" fontWeight="500" fontSize="18px" href="javascript:history.back()"></ButtonMain>
                             </Col>
                         </Row>
+
+                        {/* Dashboard content */}
                         <Row className="mb-3">
+                            {/* Content column */}
                             <Col>
-                                <DashboardCard title="Respuestas" content={
-                                    <div style={{ height: "300px" }}>
-                                        <PieGraph data={answered} />
-                                    </div>
-                                }></DashboardCard>
-                            </Col>
-                            <Col>
-                                <Button>bootstrap</Button>
-                            </Col>
-                            <Col>
-                                <DashboardCard title="Notificaciones" className="h-100" content={
-                                    <div id="scroll-notifs" style={{ maxHeight: '300px' }}>
-                                        <Notification color="auco" content={
-                                            <span>
-                                                Pepito ha reportado <a href="#" className="alert-link">una incidencia</a>.
+                                <Row className="mb-3">
+                                    <Col>
+                                        <DashboardCard title="Respuestas" content={
+                                            <div style={{ height: "300px" }}>
+                                                <PieGraph data={answered} />
+                                            </div>
+                                        }></DashboardCard>
+                                    </Col>
+                                    <Col>
+                                        <Button>bootstrap</Button>
+                                    </Col>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Col>
+                                        <DashboardCard title="Notificaciones" className="h-100" content={
+                                            <div id="scroll-notifs" style={{ maxHeight: '300px' }}>
+                                                <Notification color="auco" content={
+                                                    <span>
+                                                        Pepito ha reportado <a href="#" className="alert-link">una incidencia</a>.
                                             </span>}>
-                                        </Notification>
-                                        <Notification color="auco" content={
-                                            <span>
-                                                Lola no ha respondido al cuestionario 'Bullying'.
+                                                </Notification>
+                                                <Notification color="auco" content={
+                                                    <span>
+                                                        Lola no ha respondido al cuestionario 'Bullying'.
                                             </span>}>
-                                        </Notification>
-                                    </div>
-                                }></DashboardCard>
+                                                </Notification>
+                                            </div>
+                                        }></DashboardCard>
+                                    </Col>
+                                    <Col>
+                                        <DashboardCard title="Formularios" content={
+                                            <div>
+                                                <Form formName="Bullying" active></Form>
+                                                <Form formName="Cyberbullying"></Form>
+                                                <Form formName="Sexismo"></Form>
+                                            </div>
+                                        }></DashboardCard>
+                                    </Col>
+                                </Row>
                             </Col>
-                        </Row>
-                        <Row className="mb-3">
-                            <Col>
+                            {/* Leaderboard column */}
+                            <Col xs="4">
                                 <LeaderBoard users={users} />
-                            </Col>
-                            <Col>
-                                <DashboardCard title="Formularios" content={
-                                    <div>
-                                        <Form formName="Bullying" active></Form>
-                                        <Form formName="Cyberbullying"></Form>
-                                        <Form formName="Sexismo"></Form>
-                                    </div>
-                                }></DashboardCard>
                             </Col>
                         </Row>
                     </Container>
