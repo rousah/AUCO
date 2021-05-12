@@ -9,6 +9,7 @@ import DashboardCard from '../../../components/Dashboard/DashboardCard';
 import Form from '../../../components/Dashboard/Form';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import PieGraph from '../../../components/Graphs/PieGraph';
+import NetworkGraph from '../../../components/Graphs/NetworkGraph';
 import { Button } from 'reactstrap';
 import Notification from '../../../components/Notification/Notification';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
@@ -56,6 +57,41 @@ const Class = (props) => {
         }
     ]
 
+    const relationships = {
+        "nodes": [
+            {
+                "id": "1",
+                "radius": 8,
+                "depth": 1,
+                "color": "rgb(97, 205, 187)"
+            },
+            {
+                "id": "2",
+                "radius": 8,
+                "depth": 1,
+                "color": "rgb(97, 205, 187)"
+            },
+            {
+                "id": "3",
+                "radius": 8,
+                "depth": 1,
+                "color": "rgb(97, 205, 187)"
+            }
+        ],
+        "links": [
+            {
+                "source": "2",
+                "target": "1",
+                "distance": 50
+            },
+            {
+                "source": "1",
+                "target": "3",
+                "distance": 30
+            }
+        ]
+    }
+
     return (
         <div>
             <NavBarTeacher clases></NavBarTeacher>
@@ -79,15 +115,19 @@ const Class = (props) => {
                             {/* Content column */}
                             <Col>
                                 <Row className="mb-3">
-                                    <Col>
+                                    <Col xs="6">
                                         <DashboardCard title="Respuestas" content={
                                             <div style={{ height: "300px" }}>
                                                 <PieGraph data={answered} />
                                             </div>
                                         }></DashboardCard>
                                     </Col>
-                                    <Col>
-                                        <Button>bootstrap</Button>
+                                    <Col xs="6">
+                                        <DashboardCard title="Relaciones" content={
+                                            <div style={{ height: "300px" }}>
+                                                <NetworkGraph data={relationships} />
+                                            </div>
+                                        }></DashboardCard>
                                     </Col>
                                 </Row>
                                 <Row className="mb-3">
