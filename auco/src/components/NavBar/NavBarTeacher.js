@@ -24,9 +24,9 @@ const NavBarLanding = (props) => {
     }
 
     return (
-        <header class="px-3 pt-1 navbar-teacher text-white">
+        <header className="px-3 pt-1 navbar-teacher text-white">
             <Container>
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <NavbarBrand href="/" className="logo me-lg-auto"><h1 style={{ fontWeight: "800" }} className="m-0">AUCO</h1></NavbarBrand>
                     <Nav className="col-12 col-lg-auto my-2 justify-content-center my-md-0">
                         <NavItem>

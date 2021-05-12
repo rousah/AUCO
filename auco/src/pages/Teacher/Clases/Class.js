@@ -7,12 +7,11 @@ import { useState, useEffect } from 'react';
 import Loading from '../../../components/Loading';
 import DashboardCard from '../../../components/Dashboard/DashboardCard';
 import Form from '../../../components/Dashboard/Form';
-import Leaderboard from 'react-leaderboard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import PieGraph from '../../../components/Graphs/PieGraph';
 import { Button } from 'reactstrap';
 import Notification from '../../../components/Notification/Notification';
-import './Leaderboard.css';
+import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import './Class.css'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -56,15 +55,6 @@ const Class = (props) => {
             "color": "#f89f1e"
         }
     ]
-
-    const leaderboardHeaderStyle = {
-        backgroundColor: "#3dd0ae",
-        margin: "-1rem -1rem 0 -1rem",
-        borderRadius: "7px 7px 0px 0px",
-        padding: "1rem",
-        color: "#ffffff"
-    }
-
 
     return (
         <div>
@@ -111,15 +101,8 @@ const Class = (props) => {
                             </Col>
                         </Row>
                         <Row className="mb-3">
-                            <Col className="leaderboardCol">
-                                <DashboardCard customHeader={
-                                    <h4 className="text-center" style={leaderboardHeaderStyle}> Leaderboard</h4>
-                                }
-                                    content={
-                                        <Leaderboard users={users} paginate={30} />
-                                    }
-                                >
-                                </DashboardCard>
+                            <Col>
+                                <LeaderBoard users={users} />
                             </Col>
                             <Col>
                                 <DashboardCard title="Formularios" content={
