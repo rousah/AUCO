@@ -12,7 +12,7 @@ const DashboardCard = (props) => {
     };
 
     return (
-        <div style={styleMain} className="dashboardcard">
+        <div {...props} style={Object.assign(styleMain, props.style)} className={props.className + " dashboardCard"} >
             {
                 props.customHeader ?
                     props.customHeader

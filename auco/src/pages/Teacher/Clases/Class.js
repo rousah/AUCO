@@ -10,10 +10,13 @@ import Form from '../../../components/Dashboard/Form';
 import Leaderboard from 'react-leaderboard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { ResponsivePie } from '@nivo/pie';
-import { Alert } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'reactstrap';
+import Notification from '../../../components/Notification/Notification';
 import './Leaderboard.css';
+import './Class.css'
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
 
 const Class = (props) => {
     let { id } = useParams();
@@ -147,7 +150,7 @@ const Class = (props) => {
                                 </h2>
                             </Col>
                             <Col xs="4" className="p-0 d-flex align-items-center justify-content-end">
-                                <ButtonMain buttonText="Volver a clases" className="px-2 rounded-4 me-3 py-1" fontWeight="500" fontSize="18px" href="javascript:history.back()"></ButtonMain>
+                                <ButtonMain buttonText="Volver a clases" className="px-2 rounded-4 py-1" fontWeight="500" fontSize="18px" href="javascript:history.back()"></ButtonMain>
                             </Col>
                         </Row>
                         <Row className="mb-3">
@@ -159,18 +162,21 @@ const Class = (props) => {
                                 }></DashboardCard>
                             </Col>
                             <Col>
+                                <Button>bootstrap</Button>
                             </Col>
                             <Col>
-                                <DashboardCard title="Notificaciones" content={
-                                    <div>
-                                        <Alert color="auco" className="d-flex align-items-center">
-                                        <FontAwesomeIcon icon={faInfoCircle} className="me-2"/>
-                                            Pepito ha reportado una incidencia.
-                                        </Alert>
-                                        <Alert color="auco" className="d-flex align-items-center">
-                                        <FontAwesomeIcon icon={faInfoCircle} className="me-2"/>
-                                            Lola no ha respondido al cuestionario 'Bullying'.
-                                        </Alert>
+                                <DashboardCard title="Notificaciones" className="h-100" content={
+                                    <div id="scroll-notifs" style={{ maxHeight: '300px' }}>
+                                        <Notification color="auco" content={
+                                            <span>
+                                                Pepito ha reportado <a href="#" className="alert-link">una incidencia</a>.
+                                            </span>}>
+                                        </Notification>
+                                        <Notification color="auco" content={
+                                            <span>
+                                                Lola no ha respondido al cuestionario 'Bullying'.
+                                            </span>}>
+                                        </Notification>
                                     </div>
                                 }></DashboardCard>
                             </Col>
