@@ -40,7 +40,7 @@ const ClassButton = (props) => {
                     <DropdownItem><FontAwesomeIcon icon={faTrash} /> Eliminar</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
-            <a href="/clases" className="text-decoration-none text-body">
+            <a href={"/class/"+props.id} className="text-decoration-none text-body">
                 <Row>
                     <h3 className="p-0">{props.name} {props.year}</h3>
                 </Row>

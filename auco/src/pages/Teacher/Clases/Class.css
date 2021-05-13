@@ -1,0 +1,13 @@
+/* Hide default alert close buttons */
+.alert-dismissible .close:first-child {
+  display: none;
+}
+
+#scroll-notifs {
+  overflow-y: hidden;
+}
+#scroll-notifs:hover,
+#scroll-notifs:active,
+#scroll-notifs:focus {
+  overflow-y: auto;
+}
