@@ -159,8 +159,8 @@ const Class = (props) => {
                                 </Row>
                             </Col>
                             {/* Leaderboard column */}
-                            <Col xs="4">
-                                <LeaderBoard users={users} />
+                            <Col xs="4" className="mb-3">
+                                <LeaderBoard users={users} className="h-100"/>
                             </Col>
                         </Row>
                     </Container>

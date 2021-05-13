@@ -14,7 +14,7 @@ function LeaderBoard(props) {
     }
 
     return (
-            <DashboardCard className="leaderboardCol" customHeader={
+            <DashboardCard className={props.className + " leaderboardCol"} customHeader={
                 <h4 className="text-center" style={leaderboardHeaderStyle}> Leaderboard</h4>
             }
                 content={
