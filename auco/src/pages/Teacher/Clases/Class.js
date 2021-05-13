@@ -10,7 +10,6 @@ import Form from '../../../components/Dashboard/Form';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import PieGraph from '../../../components/Graphs/PieGraph';
 import NetworkGraph from '../../../components/Graphs/NetworkGraph';
-import { Button } from 'reactstrap';
 import Notification from '../../../components/Notification/Notification';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import './Class.css'

@@ -1,0 +1,7 @@
+.formsettings .form-control:read-only {
+  background-color: #fff;
+}
+
+.formsettings .form-control:disabled {
+  background-color: #e9ecef;
+}
