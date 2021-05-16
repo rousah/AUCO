@@ -16,6 +16,33 @@ import {
 
 import useToken from '../../services/useToken';
 
+const notifications = [
+    {
+        nombre: "etica",
+        notificaciones: [
+            {
+                nombre: "Lola",
+                tipo: "noresp",
+                detalle: ""
+            },
+            {
+                nombre: "Pepito",
+                tipo: "incidencia",
+                detalle: "Jaime ha pegado a Lara"
+            }
+        ]
+    }, {
+        nombre: "lengua",
+        notificaciones: [
+            {
+                nombre: "Lola",
+                tipo: "noresp",
+                detalle: ""
+            }
+        ]
+    }
+]
+
 const NavBarLanding = (props) => {
     const { deleteToken, userId } = useToken();
 
@@ -59,28 +86,25 @@ const NavBarLanding = (props) => {
                                         Avisos
                                     </DropdownToggle>
                                     <DropdownMenu className="col-sm-6" style={{ minWidth: "400px" }}>
-                                        <DropdownItem header>Ética 2º ESO</DropdownItem>
-                                        <div style={{ padding: "0.5rem 1rem" }}>
-                                            <Notification color="auco" content={
-                                                <span>
-                                                    Lola no ha respondido al cuestionario 'Bullying'.
-                                                </span>}>
-                                            </Notification>
-                                            <Notification color="auco" content={
-                                                <span>
-                                                    Pepito ha reportado <a href="#" className="alert-link">una incidencia</a>.
-                                                </span>}>
-                                            </Notification>
-                                        </div>
-                                        <DropdownItem divider />
-                                        <DropdownItem header>Lengua 1º ESO</DropdownItem>
-                                        <div style={{ padding: "0.5rem 1rem" }}>
-                                            <Notification color="auco" content={
-                                                <span>
-                                                    Lola no ha respondido al cuestionario 'Bullying'.
-                                                </span>}>
-                                            </Notification>
-                                        </div>
+                                        {notifications.map((val, i) => {
+                                            console.log(val)
+                                            return (
+                                                <div>
+                                                    <DropdownItem header>{val.nombre}</DropdownItem>
+                                                    <div style={{ padding: "0.5rem 1rem" }}>
+                                                        {val.notificaciones.map((notif, i) => {
+                                                            return (
+                                                                <Notification color="auco" content={
+                                                                    <span>
+                                                                        {notif.tipo}
+                                                                    </span>}>
+                                                                </Notification>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            )
+                                        })}
                                     </DropdownMenu>
                                 </Dropdown>
                             </NavLink>

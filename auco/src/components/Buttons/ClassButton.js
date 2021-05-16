@@ -53,11 +53,11 @@ const ClassButton = (props) => {
                     </Col>
                 </Row>
                 <Row className="d-flex align-items-center direction-row">
-                    <Col xs="1" className={props.notifications > 0 ? "d-flex justify-content-center text-primary" : "d-flex justify-content-center text-dark"}>
+                    <Col xs="1" className={props.notifications.length > 0 ? "d-flex justify-content-center text-primary" : "d-flex justify-content-center text-dark"}>
                         <FontAwesomeIcon icon={faExclamationCircle}></FontAwesomeIcon>
                     </Col>
                     <Col>
-                        {props.notifications} {props.notifications !== 1 ? <span>notificaciones</span> : <span>notificación</span>}
+                        {props.notifications.length} {props.notifications.length !== 1 ? <span>notificaciones</span> : <span>notificación</span>}
                     </Col>
                 </Row>
                 <Row className="d-flex align-items-center direction-row pt-5">
