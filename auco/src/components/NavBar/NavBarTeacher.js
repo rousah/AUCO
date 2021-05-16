@@ -75,40 +75,36 @@ const NavBarLanding = (props) => {
                                 Clases
                             </NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink className="py-0 teacher">
-                                <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                                    <DropdownToggle tag="span"
-                                        data-toggle="dropdown"
-                                        aria-expanded={dropdownOpen}
-                                        role="button">
-                                        <FontAwesomeIcon icon={faBell} className="bi d-block mx-auto mb-1" size="lg" />
+                        <Dropdown isOpen={dropdownOpen} toggle={toggle} className="py-0 teacher">
+                            <DropdownToggle tag="span"
+                                data-toggle="dropdown"
+                                aria-expanded={dropdownOpen}
+                                role="button">
+                                <FontAwesomeIcon icon={faBell} className="bi d-block mx-auto mb-1" size="lg" />
                                         Avisos
                                     </DropdownToggle>
-                                    <DropdownMenu className="col-sm-6" style={{ minWidth: "400px" }}>
-                                        {notifications.map((val, i) => {
-                                            console.log(val)
-                                            return (
-                                                <div>
-                                                    <DropdownItem header>{val.nombre}</DropdownItem>
-                                                    <div style={{ padding: "0.5rem 1rem" }}>
-                                                        {val.notificaciones.map((notif, i) => {
-                                                            return (
-                                                                <Notification color="auco" content={
-                                                                    <span>
-                                                                        {notif.tipo}
-                                                                    </span>}>
-                                                                </Notification>
-                                                            )
-                                                        })}
-                                                    </div>
-                                                </div>
-                                            )
-                                        })}
-                                    </DropdownMenu>
-                                </Dropdown>
-                            </NavLink>
-                        </NavItem>
+                            <DropdownMenu className="col-sm-6" style={{ minWidth: "400px" }}>
+                                {notifications.map((val, i) => {
+                                    console.log(val)
+                                    return (
+                                        <div>
+                                            <DropdownItem header>{val.nombre}</DropdownItem>
+                                            <div style={{ padding: "0.5rem 1rem" }}>
+                                                {val.notificaciones.map((notif, i) => {
+                                                    return (
+                                                        <Notification color="auco" content={
+                                                            <span>
+                                                                {notif.tipo}
+                                                            </span>}>
+                                                        </Notification>
+                                                    )
+                                                })}
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </DropdownMenu>
+                        </Dropdown>
                         <NavItem>
                             <NavLink href="" className={props.settings ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faCog} className="bi d-block mx-auto mb-1" size="lg" />

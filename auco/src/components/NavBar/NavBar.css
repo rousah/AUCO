@@ -7,16 +7,23 @@
 }
 
 .navbar-teacher a {
-    color: white;
+  color: white;
 }
 
 .nav-link.teacher {
-    border-top: 5px solid #3956f7;
-    border-bottom: 5px solid #3956f7;
+  border-top: 5px solid #3956f7;
+  border-bottom: 5px solid #3956f7;
+}
+
+.dropdown.teacher {
+  border-top: 5px solid #3956f7;
+  border-bottom: 5px solid #3956f7;
+  color: white;
+  padding: 0rem 1rem;
 }
 
 .nav-link.teacher.active {
-    border-bottom: 5px solid #f89f1e;
+  border-bottom: 5px solid #f89f1e;
 }
 
 .nav-link.teacher:hover {
