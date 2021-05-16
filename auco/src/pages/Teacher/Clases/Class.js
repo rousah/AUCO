@@ -10,16 +10,37 @@ import Form from '../../../components/Dashboard/Form';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import PieGraph from '../../../components/Graphs/PieGraph';
 import NetworkGraph from '../../../components/Graphs/NetworkGraph';
-import { Button } from 'reactstrap';
 import Notification from '../../../components/Notification/Notification';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import './Class.css'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
+const formsInitial = [
+    {
+        name: "Bullying",
+        activationMethod: "automatic",
+        options: "Semanal",
+        active: true
+    },
+    {
+        name: "Cyberbullying",
+        activationMethod: "automatic",
+        options: "Diario",
+        active: true
+    },
+    {
+        name: "Sexismo",
+        activationMethod: "automatic",
+        options: "Semanal",
+        active: false
+    }
+]
 
 const Class = (props) => {
     let { id } = useParams();
+
+    const [forms, setForms] = useState(formsInitial);
 
     const [myClass, setClass] = useState(null);
     const [users, setUsers] = useState([]);
@@ -41,6 +62,11 @@ const Class = (props) => {
         }
         getMyClasses();
     }, [])
+
+    const changeForms = (newSettingsForms) => {
+        setForms(newSettingsForms);
+    }
+
 
     const answered = [
         {
@@ -150,9 +176,13 @@ const Class = (props) => {
                                     <Col>
                                         <DashboardCard title="Formularios" content={
                                             <div>
-                                                <Form formName="Bullying" active></Form>
-                                                <Form formName="Cyberbullying"></Form>
-                                                <Form formName="Sexismo"></Form>
+                                                {
+                                                    forms.map((val, i) => {
+                                                        return (
+                                                            <Form key={i} formInfo={val} changeForm={changeForms}></Form>
+                                                        )
+                                                    })
+                                                }
                                             </div>
                                         }></DashboardCard>
                                     </Col>
@@ -160,7 +190,7 @@ const Class = (props) => {
                             </Col>
                             {/* Leaderboard column */}
                             <Col xs="4" className="mb-3">
-                                <LeaderBoard users={users} className="h-100"/>
+                                <LeaderBoard users={users} className="h-100" />
                             </Col>
                         </Row>
                     </Container>

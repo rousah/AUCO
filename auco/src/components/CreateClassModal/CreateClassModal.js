@@ -4,7 +4,6 @@ import ButtonMain from '../../components/Buttons/ButtonMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { useHistory } from "react-router-dom";
 import classnames from 'classnames';
 import './CreateClassModal.css'
 import file from '../../assets/files/plantilla_alumnos.xlsx'

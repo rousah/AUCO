@@ -7,10 +7,12 @@ import Switch from "react-switch";
 import FormSettingsModal from './FormSettingsModal';
 
 const Form = (props) => {
+    const [form, setForm] = useState(props.formInfo);
+
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const [switchState, setSwitchState] = useState(false);
+    const [switchState, setSwitchState] = useState(form.active);
 
     const styleActive = {
         backgroundColor: "#f7f7f7",
@@ -19,20 +21,23 @@ const Form = (props) => {
         padding: "1rem"
     };
 
-    const formInfo = {
-        name: props.formName
+    const changeActive = (active) => {
+        setSwitchState(active);
+        let formSettings = form;
+        formSettings["active"] = active;
+        setForm(formSettings);
     }
 
     return (
         <div style={styleActive} className="formbutton d-flex justify-content-between">
             <div>
-                {formInfo.name}
+                {form.name}
             </div>
             <div className="d-flex justify-content-around align-items-center">
-                <Switch className="me-2" onChange={setSwitchState} checked={switchState} onColor="#fdbf4d" offColor="#e2e2e2" uncheckedIcon={false} checkedIcon={false} height={12} width={30} handleDiameter={18} offHandleColor="#f89f1e" onHandleColor="#f89f1e" />
-                <FontAwesomeIcon icon={faCog} onClick={toggle} style={{cursor: "pointer"}}></FontAwesomeIcon>
+                <Switch className="me-2" onChange={changeActive} checked={form.active} onColor="#fdbf4d" offColor="#e2e2e2" uncheckedIcon={false} checkedIcon={false} height={12} width={30} handleDiameter={18} offHandleColor="#f89f1e" onHandleColor="#f89f1e" />
+                <FontAwesomeIcon icon={faCog} onClick={toggle} style={{ cursor: "pointer" }}></FontAwesomeIcon>
             </div>
-            <FormSettingsModal isOpen={modal} toggle={toggle} modal={modal} form={formInfo}/>
+            <FormSettingsModal isOpen={modal} toggle={toggle} modal={modal} form={form} changeForm={setForm} />
         </div>
     );
 }
