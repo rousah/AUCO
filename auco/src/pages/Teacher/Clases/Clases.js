@@ -5,7 +5,7 @@ import CreateClassButton from '../../../components/Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
 import { getClasses } from '../../../services/getClasses';
 import { useState, useEffect } from 'react';
-import Loading from '../../../components/Loading'
+import Loading from '../../../components/Loading';
 
 const Clases = (props) => {
     const [classes, setClasses] = useState(null);
@@ -21,7 +21,17 @@ const Clases = (props) => {
             setClasses(classes);
         }
         getMyClasses();
-    }, [])
+    }, []);
+
+    const notifications = [{
+        nombre: "Lola",
+        tipo: "noresp",
+        detalle: ""
+    }, {
+        nombre: "Pepito",
+        tipo: "incidencia",
+        detalle: "Jaime ha pegado a Lara"
+    }]
 
     return (
         <div>
@@ -43,7 +53,7 @@ const Clases = (props) => {
                             {classes.map((val, i) => {
                                 return (
                                     <Col key={i} xs="3" className="mb-4">
-                                        <ClassButton id={val._id} name={val.name} year={val.year} numberStudents={val.students.length} notifications={Math.floor(Math.random() * 4)} students={val.students}></ClassButton>
+                                        <ClassButton id={val._id} name={val.name} year={val.year} numberStudents={val.students.length} notifications={notifications} students={val.students} ></ClassButton>
                                     </Col>
                                 )
                             })}

@@ -37,6 +37,16 @@ const formsInitial = [
     }
 ]
 
+const notifications = [{
+    nombre: "Lola",
+    tipo: "noresp",
+    detalle: ""
+}, {
+    nombre: "Pepito",
+    tipo: "incidencia",
+    detalle: "Jaime ha pegado a Lara"
+}]
+
 const Class = (props) => {
     let { id } = useParams();
 
