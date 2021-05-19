@@ -39,11 +39,11 @@ const formsInitial = [
 
 const notifications = [{
     nombre: "Lola",
-    tipo: "noresp",
-    detalle: ""
+    incidencia: false,
+    detalle: "no resp"
 }, {
     nombre: "Pepito",
-    tipo: "incidencia",
+    incidencia: true,
     detalle: "Jaime ha pegado a Lara"
 }]
 
@@ -170,16 +170,20 @@ const Class = (props) => {
                                     <Col>
                                         <DashboardCard title="Notificaciones" className="h-100" content={
                                             <div id="scroll-notifs" style={{ maxHeight: '300px' }}>
-                                                <Notification color="auco" content={
-                                                    <span>
-                                                        Pepito ha reportado <a href="#" className="alert-link">una incidencia</a>.
-                                            </span>}>
-                                                </Notification>
-                                                <Notification color="auco" content={
-                                                    <span>
-                                                        Lola no ha respondido al cuestionario 'Bullying'.
-                                            </span>}>
-                                                </Notification>
+                                                {notifications.map((val, i) => {
+                                                    console.log(val)
+                                                    return (
+                                                        <div>
+                                                            <Notification color="auco" content={
+                                                                <span>
+                                                                    {val.detalle}
+                                                                </span>}
+                                                                incidencia={val.incidencia} name={val.nombre}
+                                                            >
+                                                            </Notification>
+                                                        </div>
+                                                    )
+                                                })}
                                             </div>
                                         }></DashboardCard>
                                     </Col>

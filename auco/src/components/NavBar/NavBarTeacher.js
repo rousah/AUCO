@@ -22,12 +22,12 @@ const notifications = [
         notificaciones: [
             {
                 nombre: "Lola",
-                tipo: "noresp",
-                detalle: ""
+                incidencia: false,
+                detalle: "no ha respondido"
             },
             {
                 nombre: "Pepito",
-                tipo: "incidencia",
+                incidencia: true,
                 detalle: "Jaime ha pegado a Lara"
             }
         ]
@@ -36,8 +36,8 @@ const notifications = [
         notificaciones: [
             {
                 nombre: "Lola",
-                tipo: "noresp",
-                detalle: ""
+                incidencia: false,
+                detalle: "no viene a clase"
             }
         ]
     }
@@ -94,8 +94,10 @@ const NavBarTeacher = (props) => {
                                                     return (
                                                         <Notification color="auco" content={
                                                             <span>
-                                                                {notif.tipo}
-                                                            </span>}>
+                                                                {notif.detalle}
+                                                            </span>} 
+                                                            incidencia={notif.incidencia} name={notif.nombre}
+                                                        >
                                                         </Notification>
                                                     )
                                                 })}
