@@ -3,7 +3,7 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faUsers, faBell, faCog, faUser, faQuestion, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Badge } from 'reactstrap';
 import Notification from '../Notification/Notification';
 
 import {
@@ -79,10 +79,12 @@ const NavBarTeacher = (props) => {
                             <DropdownToggle tag="span"
                                 data-toggle="dropdown"
                                 aria-expanded={dropdownOpen}
-                                role="button">
+                                role="button"
+                                className="position-relative">
+                                <Badge color="primary" className="badge-notifications bg-teal rounded-pill">4</Badge>
                                 <FontAwesomeIcon icon={faBell} className="bi d-block mx-auto mb-1" size="lg" />
                                         Avisos
-                                    </DropdownToggle>
+                            </DropdownToggle>
                             <DropdownMenu className="col-sm-6" style={{ minWidth: "400px" }}>
                                 {notifications.map((val, i) => {
                                     console.log(val)
@@ -95,7 +97,7 @@ const NavBarTeacher = (props) => {
                                                         <Notification color="auco" content={
                                                             <span>
                                                                 {notif.detalle}
-                                                            </span>} 
+                                                            </span>}
                                                             incidencia={notif.incidencia} name={notif.nombre}
                                                         >
                                                         </Notification>

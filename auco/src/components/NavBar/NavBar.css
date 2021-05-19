@@ -40,3 +40,10 @@
   border-left: 1px solid hsla(200, 10%, 50%, 100);
   width: 1px;
 }
+
+.badge-notifications {
+  position: absolute;
+  left: 1.5rem;
+  z-index: 1000;
+  padding: 0.1rem 0.2rem !important;
+}
