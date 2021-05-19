@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUsers, faBell, faCog, faUser, faQuestion, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import Notification from '../Notification/Notification';
+import { faHome, faCog, faUser, faQuestion, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 import {
     NavbarBrand,

@@ -18,6 +18,8 @@ export default function useToken() {
         console.log("deleteToken")
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('role');
     }
 
     const isAuthenticated = () => {
@@ -53,6 +55,19 @@ export default function useToken() {
 
     const [role, setRole] = useState(getRole());
 
+    // CurrentUser
+    const getCurrentUser = () => {
+        const currentUser = localStorage.getItem('currentUser');
+        return currentUser;
+    };
+
+    const saveCurrentUser = currentUser => {
+        localStorage.setItem('currentUser', currentUser);
+        setCurrentUser(currentUser);
+    };
+
+    const [currentUser, setCurrentUser] = useState(getCurrentUser());
+
     return {
         setToken: saveToken,
         setId: saveId,
@@ -61,6 +76,8 @@ export default function useToken() {
         deleteToken: deleteToken,
         token,
         setRole: saveRole,
-        role
+        role,
+        setCurrentUser: saveCurrentUser,
+        currentUser
     }
 }
