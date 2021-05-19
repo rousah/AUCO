@@ -3,7 +3,7 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faUsers, faBell, faCog, faUser, faQuestion, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Badge } from 'reactstrap';
 import Notification from '../Notification/Notification';
 
 import {
@@ -22,12 +22,12 @@ const notifications = [
         notificaciones: [
             {
                 nombre: "Lola",
-                tipo: "noresp",
-                detalle: ""
+                incidencia: false,
+                detalle: "no ha respondido"
             },
             {
                 nombre: "Pepito",
-                tipo: "incidencia",
+                incidencia: true,
                 detalle: "Jaime ha pegado a Lara"
             }
         ]
@@ -36,14 +36,24 @@ const notifications = [
         notificaciones: [
             {
                 nombre: "Lola",
-                tipo: "noresp",
-                detalle: ""
+                incidencia: false,
+                detalle: "no viene a clase"
             }
         ]
     }
 ]
 
-const NavBarLanding = (props) => {
+const notifNumber = (notificationsPerClass) => {
+    let notifs = 0;
+    notificationsPerClass.map((oneClass, i) => {
+        oneClass.notificaciones.map((oneNotif, i) => {
+            notifs++;
+        })
+    })
+    return notifs;
+}
+
+const NavBarTeacher = (props) => {
     const { deleteToken, userId } = useToken();
 
     // Alert dropdown
@@ -79,10 +89,12 @@ const NavBarLanding = (props) => {
                             <DropdownToggle tag="span"
                                 data-toggle="dropdown"
                                 aria-expanded={dropdownOpen}
-                                role="button">
+                                role="button"
+                                className="position-relative">
+                                <Badge color="primary" className="badge-notifications bg-teal rounded-pill">{notifNumber(notifications)}</Badge>
                                 <FontAwesomeIcon icon={faBell} className="bi d-block mx-auto mb-1" size="lg" />
                                         Avisos
-                                    </DropdownToggle>
+                            </DropdownToggle>
                             <DropdownMenu className="col-sm-6" style={{ minWidth: "400px" }}>
                                 {notifications.map((val, i) => {
                                     console.log(val)
@@ -94,8 +106,10 @@ const NavBarLanding = (props) => {
                                                     return (
                                                         <Notification color="auco" content={
                                                             <span>
-                                                                {notif.tipo}
-                                                            </span>}>
+                                                                {notif.detalle}
+                                                            </span>}
+                                                            incidencia={notif.incidencia} name={notif.nombre}
+                                                        >
                                                         </Notification>
                                                     )
                                                 })}
@@ -137,4 +151,4 @@ const NavBarLanding = (props) => {
     );
 }
 
-export default NavBarLanding;
+export default NavBarTeacher;
