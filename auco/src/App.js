@@ -15,7 +15,7 @@ import Class from './pages/Teacher/Clases/Class';
 import useToken from './services/useToken';
 
 function App() {
-  const { token, setToken, isAuthenticated, setId, userId, setRole, role } = useToken();
+  const { token, setToken, isAuthenticated, setId, userId, setRole, role, setCurrentUser } = useToken();
 
   return (
     <Router>
@@ -23,7 +23,7 @@ function App() {
         <Route exact path='/' component={LandingPage} />
         <Route path='/choose-user' component={ChooseUser} />
         <Route path='/login'>
-          <Login setToken={setToken} setId={setId} token={token} setRole={setRole}></Login>
+          <Login setToken={setToken} setId={setId} token={token} setRole={setRole} setCurrentUser={setCurrentUser}></Login>
         </Route>
         <Route path='/create-account'>
           <Register setToken={setToken} setId={setId} token={token}></Register>

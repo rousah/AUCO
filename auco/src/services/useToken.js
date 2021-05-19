@@ -57,12 +57,12 @@ export default function useToken() {
 
     // CurrentUser
     const getCurrentUser = () => {
-        const currentUser = localStorage.getItem('currentUser');
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         return currentUser;
     };
 
     const saveCurrentUser = currentUser => {
-        localStorage.setItem('currentUser', currentUser);
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
         setCurrentUser(currentUser);
     };
 

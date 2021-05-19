@@ -35,6 +35,7 @@ const Login = (props) => {
         postLogin(formData).then(response => {
             // if login success
             if (response) {
+                props.setCurrentUser(response.userDetails);
                 props.setId(response.user);
                 props.setToken(response.token);
                 if (response.role === 'student') {
