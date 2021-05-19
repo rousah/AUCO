@@ -43,6 +43,16 @@ const notifications = [
     }
 ]
 
+const notifNumber = (notificationsPerClass) => {
+    let notifs = 0;
+    notificationsPerClass.map((oneClass, i) => {
+        oneClass.notificaciones.map((oneNotif, i) => {
+            notifs++;
+        })
+    })
+    return notifs;
+}
+
 const NavBarTeacher = (props) => {
     const { deleteToken, userId } = useToken();
 
@@ -81,7 +91,7 @@ const NavBarTeacher = (props) => {
                                 aria-expanded={dropdownOpen}
                                 role="button"
                                 className="position-relative">
-                                <Badge color="primary" className="badge-notifications bg-teal rounded-pill">4</Badge>
+                                <Badge color="primary" className="badge-notifications bg-teal rounded-pill">{notifNumber(notifications)}</Badge>
                                 <FontAwesomeIcon icon={faBell} className="bi d-block mx-auto mb-1" size="lg" />
                                         Avisos
                             </DropdownToggle>
