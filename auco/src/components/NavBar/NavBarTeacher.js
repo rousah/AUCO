@@ -97,7 +97,6 @@ const NavBarTeacher = (props) => {
                             </DropdownToggle>
                             <DropdownMenu className="col-sm-6" style={{ minWidth: "400px" }}>
                                 {notifications.map((val, i) => {
-                                    console.log(val)
                                     return (
                                         <div>
                                             <DropdownItem header>{val.nombre}</DropdownItem>
@@ -126,7 +125,7 @@ const NavBarTeacher = (props) => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="" className={props.profile ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink tag={RRNavLink} to={{ pathname: "/profile", state: { userId: userId } }} className={props.profile ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faUser} className="bi d-block mx-auto mb-1" size="lg" />
                                 Perfil
                             </NavLink>
