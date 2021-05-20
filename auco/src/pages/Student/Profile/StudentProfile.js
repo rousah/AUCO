@@ -1,19 +1,19 @@
 import React from 'react';
-import NavBarTeacher from '../../../components/NavBar/NavBarTeacher';
+import NavBarStudent from '../../../components/NavBar/NavBarStudent';
 import { Container, Row, Col } from 'reactstrap';
 import Loading from '../../../components/Loading';
 import useToken from '../../../services/useToken';
 import DashboardCard from '../../../components/Dashboard/DashboardCard';
 import { Input, Label } from 'reactstrap';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
-import teacherClassIllustration from '../../../assets/illustrations/teacherInClass.png';
+import studentsIllustration from '../../../assets/illustrations/students.png';
 
-const Profile = (props) => {
+const StudentProfile = (props) => {
     const { currentUser } = useToken();
     console.log(currentUser);
     return (
         <div>
-            <NavBarTeacher profile></NavBarTeacher>
+            <NavBarStudent profile></NavBarStudent>
             {
                 currentUser ?
                     <Container>
@@ -24,8 +24,8 @@ const Profile = (props) => {
                                 </h2>
                             </Col>
                         </Row>
-                        <Row className="justify-content-center">
-                            <Col>
+                        <Row className="mb-4">
+                            <Col xs="6">
                                 <DashboardCard title="Datos personales" content={
                                     <div>
                                         <Row>
@@ -46,7 +46,7 @@ const Profile = (props) => {
                                         </Row>
                                         <Row className="mb-2">
                                             <Col className="d-flex align-items-center">
-                                                <Label for="exampleEmail">Institución:</Label>
+                                                <Label for="exampleEmail">Clase:</Label>
                                             </Col>
                                             <Col xs="9">
                                                 <Input placeholder={currentUser.institution} plaintext />
@@ -58,15 +58,17 @@ const Profile = (props) => {
                                     </div>
                                 }></DashboardCard>
                             </Col>
-                            <Col>
+                        </Row>
+                        <Row>
+                            <Col xs="6">
                                 <DashboardCard title="Datos de usuario" content={
                                     <div>
                                         <Row>
                                             <Col className="d-flex align-items-center">
-                                                <Label for="exampleEmail">E-mail:</Label>
+                                                <Label for="exampleEmail">Usuario:</Label>
                                             </Col>
                                             <Col xs="9">
-                                                <Input placeholder={currentUser.user} plaintext />
+                                                <Input placeholder={currentUser.username} plaintext />
                                             </Col>
                                         </Row>
                                         <Row>
@@ -88,9 +90,9 @@ const Profile = (props) => {
                     :
                     <Loading></Loading>
             }
-            <img src={teacherClassIllustration} alt="teacher in class" style={{ width: "40%", position: "absolute", bottom: "0px", right: "60px" }}></img>
+            <img src={studentsIllustration} alt="teacher in class" style={{ width: "40%", position: "absolute", bottom: "0px", right: "60px" }}></img>
         </div>
     );
 }
 
-export default Profile;
+export default StudentProfile;
