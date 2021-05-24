@@ -5,7 +5,7 @@ import Loading from '../../../components/Loading';
 import useToken from '../../../services/useToken';
 
 const Home = (props) => {
-    const { setCurrentUser, currentUser } = useToken();
+    const { currentUser } = useToken();
     console.log(currentUser);
     return (
         <div>
