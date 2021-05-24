@@ -6,23 +6,7 @@ import Loading from '../../../components/Loading';
 import useToken from '../../../services/useToken';
 
 const StudentHome = (props) => {
-    const { setCurrentUser, currentUser } = useToken();
-
-    //const [student, setStudent] = useState(null);
-    useEffect(() => {
-        async function getMyStudent() {
-            const thisStudent = await getStudent(props.history.location.state.response.user).then(response => {
-                // if get student success
-                if (response) {
-                    console.log(response);
-                    return response;
-                }
-            });
-            //setStudent(thisStudent);
-            setCurrentUser(thisStudent);
-        }
-        getMyStudent();
-    }, []);
+    const { currentUser } = useToken();
 
     return (
         <div>
