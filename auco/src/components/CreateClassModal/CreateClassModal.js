@@ -8,6 +8,7 @@ import classnames from 'classnames';
 import './CreateClassModal.css'
 import file from '../../assets/files/plantilla_alumnos.xlsx'
 import { postClass } from '../../services/createClass';
+import useToken from '../../services/useToken';
 
 const initialFormData = Object.freeze({
     userId: "",
@@ -20,11 +21,11 @@ const initialFormData = Object.freeze({
 });
 
 const CreateClassModal = (props) => {
+    const { userId } = useToken();
     //let history = useHistory();
 
     const [activeTab, setActiveTab] = useState('1');
-    const userId = props.id['userId'];
-    console.log(userId)
+    const teacherId = userId;
 
     const [formData, updateFormData] = useState(initialFormData);
 
@@ -89,13 +90,12 @@ const CreateClassModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
-        data.append('userId', userId);
+        data.append('userId', teacherId);
         data.append('classname', formData.classname);
         data.append('year', formData.year);
         data.append('students', JSON.stringify(formData.students));
         data.append('withFile', formData.withFile);
         data.append('selectedFile', formData.selectedFile);
-        console.log(data);
         postClass(data).then(response => {
             // if login success
             if (response) {
