@@ -28,7 +28,7 @@ function App() {
           <Login setToken={setToken} setId={setId} token={token} setRole={setRole} setCurrentUser={setCurrentUser}></Login>
         </Route>
         <Route path='/create-account'>
-          <Register setToken={setToken} setId={setId} token={token}></Register>
+          <Register setToken={setToken} setId={setId} token={token} setRole={setRole} setCurrentUser={setCurrentUser}></Register>
         </Route>
         <PrivateRoute path='/home' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={role === 'teacher' ? Home : StudentHome} />
         <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Clases} />
