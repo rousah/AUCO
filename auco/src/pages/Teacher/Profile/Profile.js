@@ -66,7 +66,7 @@ const Profile = (props) => {
                                                 <Label for="exampleEmail">E-mail:</Label>
                                             </Col>
                                             <Col xs="9">
-                                                <Input placeholder={currentUser.user} plaintext />
+                                                <Input placeholder={currentUser.email} plaintext />
                                             </Col>
                                         </Row>
                                         <Row>
