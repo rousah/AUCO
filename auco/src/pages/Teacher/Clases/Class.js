@@ -48,6 +48,7 @@ const notifications = [{
     detalle: "Jaime ha pegado a Lara"
 }]
 
+
 const Class = (props) => {
     let { id } = useParams();
 
@@ -55,37 +56,50 @@ const Class = (props) => {
 
     const [myClass, setClass] = useState(null);
     const [users, setUsers] = useState(null);
+    const [gamification, setGamification] = useState([]);
+
+    function combineStudentGamification(thisClass, stud) {
+        let game = [];
+        for (let i = 0; i < thisClass.students.length; i++) {
+            game.push({
+                name: stud[i].name + " " + stud[i].surname,
+                score: thisClass.students[i].score
+            })
+        }
+
+        // Set all values here because flow wouldn't work otherwise
+        setClass(thisClass);
+        setUsers(stud);
+        setGamification(game);
+    }
 
     useEffect(() => {
-        async function getMyStudents() {
+        async function getMyStudents(thisClass) {
             const students = await getStudentsFromClass(id).then(response => {
                 // if get students success
                 if (response) {
                     return response;
                 }
             });
-            setUsers(students);
+
+            // Sets gamification info combining student with gamification student
+            combineStudentGamification(thisClass, students);
         }
 
         async function getMyClass() {
-            const myClass = await getClass(id).then(response => {
+            const thisClass = await getClass(id).then(response => {
                 // if get class success
                 if (response) {
                     return response;
                 }
             });
-            setClass(myClass);
+
+            // Get students from this class
+            getMyStudents(thisClass);
         }
 
-        /*function combineStudentGamification() {
-            students.forEach(student => {
-                setUsers((prevState) => (
-                    [...prevState, { name: student.name + " " + student.surname, score: student.score }]
-                ))
-            });
-        }*/
+        // Get class
         getMyClass();
-        getMyStudents();
     }, [])
 
     const changeForms = (newSettingsForms) => {
@@ -147,7 +161,7 @@ const Class = (props) => {
         <div>
             <NavBarTeacher clases></NavBarTeacher>
             {
-                users && myClass ?
+                users && myClass && gamification.length > 0 ?
                     <Container>
                         {/* Title and back button */}
                         <Row className="p-3 justify-content-between mt-3 mb-4">
@@ -186,7 +200,6 @@ const Class = (props) => {
                                         <DashboardCard title="Notificaciones" className="h-100" content={
                                             <div id="scroll-notifs" style={{ maxHeight: '300px' }}>
                                                 {notifications.map((val, i) => {
-                                                    console.log(val)
                                                     return (
                                                         <div>
                                                             <Notification color="auco" content={
@@ -219,7 +232,7 @@ const Class = (props) => {
                             </Col>
                             {/* Leaderboard column */}
                             <Col xs="4" className="mb-3">
-                                <LeaderBoard users={users} className="h-100" />
+                                <LeaderBoard users={gamification} className="h-100" />
                             </Col>
                         </Row>
                     </Container>
