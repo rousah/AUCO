@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBarTeacher from '../../../components/NavBar/NavBarTeacher'
 import { Container, Row, Col } from 'reactstrap';
 import { getClass } from '../../../services/getClass';
+import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import { useState, useEffect } from 'react';
 import Loading from '../../../components/Loading';
 import DashboardCard from '../../../components/Dashboard/DashboardCard';
@@ -53,24 +54,38 @@ const Class = (props) => {
     const [forms, setForms] = useState(formsInitial);
 
     const [myClass, setClass] = useState(null);
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState(null);
 
     useEffect(() => {
-        async function getMyClasses() {
+        async function getMyStudents() {
+            const students = await getStudentsFromClass(id).then(response => {
+                // if get students success
+                if (response) {
+                    return response;
+                }
+            });
+            setUsers(students);
+        }
+
+        async function getMyClass() {
             const myClass = await getClass(id).then(response => {
                 // if get class success
                 if (response) {
                     return response;
                 }
             });
-            myClass.students.forEach(student => {
+            setClass(myClass);
+        }
+
+        /*function combineStudentGamification() {
+            students.forEach(student => {
                 setUsers((prevState) => (
                     [...prevState, { name: student.name + " " + student.surname, score: student.score }]
                 ))
             });
-            setClass(myClass);
-        }
-        getMyClasses();
+        }*/
+        getMyClass();
+        getMyStudents();
     }, [])
 
     const changeForms = (newSettingsForms) => {
@@ -132,7 +147,7 @@ const Class = (props) => {
         <div>
             <NavBarTeacher clases></NavBarTeacher>
             {
-                myClass ?
+                users && myClass ?
                     <Container>
                         {/* Title and back button */}
                         <Row className="p-3 justify-content-between mt-3 mb-4">

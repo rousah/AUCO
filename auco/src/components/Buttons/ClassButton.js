@@ -40,29 +40,34 @@ const ClassButton = (props) => {
                     <DropdownItem><FontAwesomeIcon icon={faTrash} /> Eliminar</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
-            <a href={"/class/"+props.id} className="text-decoration-none text-body">
+            <a href={"/class/" + props.thisClass._id} className="text-decoration-none text-body">
                 <Row>
-                    <h3 className="p-0">{props.name} {props.year}</h3>
+                    <h3 className="p-0">{props.thisClass.name} {props.thisClass.year}</h3>
                 </Row>
                 <Row className="d-flex align-items-center direction-row">
                     <Col xs="1" className="d-flex justify-content-center">
                         <FontAwesomeIcon icon={faUsers}></FontAwesomeIcon>
                     </Col>
                     <Col>
-                        {props.numberStudents} alumnos
+                        {props.thisClass.students.length} alumnos
                     </Col>
                 </Row>
-                <Row className="d-flex align-items-center direction-row">
-                    <Col xs="1" className={props.notifications.length > 0 ? "d-flex justify-content-center text-primary" : "d-flex justify-content-center text-dark"}>
-                        <FontAwesomeIcon icon={faExclamationCircle}></FontAwesomeIcon>
-                    </Col>
-                    <Col>
-                        {props.notifications.length} {props.notifications.length !== 1 ? <span>notificaciones</span> : <span>notificación</span>}
-                    </Col>
-                </Row>
+                {
+                    // Only show notif icon etc. when there are actual notifications
+                    props.thisClass.notifications.length != 0 ?
+                        <Row className="d-flex align-items-center direction-row">
+                            <Col xs="1" className={props.thisClass.notifications.length > 0 ? "d-flex justify-content-center text-primary" : "d-flex justify-content-center text-dark"}>
+                                <FontAwesomeIcon icon={faExclamationCircle}></FontAwesomeIcon>
+                            </Col>
+                            <Col>
+                                {props.thisClass.notifications.length} {props.thisClass.notifications.length !== 1 ? <span>notificaciones</span> : <span>notificación</span>}
+                            </Col>
+                        </Row>
+                        : <span></span>
+                }
                 <Row className="d-flex align-items-center direction-row pt-5">
                     {
-                        props.students.slice(0, 3).map((val, i) => {
+                        props.thisClass.personalStudents.slice(0, 3).map((val, i) => {
                             let student = null;
                             if (i < 2) {
                                 student = val.name + ' ' + val.surname + ', ';
