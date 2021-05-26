@@ -4,12 +4,27 @@ import ClassButton from '../../../components/Buttons/ClassButton'
 import CreateClassButton from '../../../components/Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
 import { getClasses } from '../../../services/getClasses';
+import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import { useState, useEffect } from 'react';
 import Loading from '../../../components/Loading';
 
 const Clases = (props) => {
-    const [classes, setClasses] = useState(null);
+    const [completeClasses, setCompleteClasses] = useState(null);
+
     useEffect(() => {
+        async function getAllStudentsFromThisClass(id) {
+            const students = await getStudentsFromClass(id).then(response => {
+                // if get students from this class success
+                if (response) {
+                    console.log(response);
+                    return response;
+                }
+                else {
+                    return false;
+                }
+            });
+            return students;
+        }
         async function getMyClasses() {
             const classes = await getClasses(props.history.location.state).then(response => {
                 // if get classes success
@@ -18,7 +33,12 @@ const Clases = (props) => {
                     return response;
                 }
             });
-            setClasses(classes);
+            for (const thisClass of classes) {
+                const students = await getAllStudentsFromThisClass(thisClass._id);
+                thisClass.personalStudents = students;
+            }
+            console.log(classes);
+            setCompleteClasses(classes);
         }
         getMyClasses();
     }, []);
@@ -48,12 +68,12 @@ const Clases = (props) => {
                     </Col>
                 </Row>
                 <Row>
-                    {classes ?
+                    {completeClasses ?
                         <Row>
-                            {classes.map((val, i) => {
+                            {completeClasses.map((val, i) => {
                                 return (
                                     <Col key={i} xs="3" className="mb-4">
-                                        <ClassButton id={val._id} name={val.name} year={val.year} numberStudents={val.students.length} notifications={notifications} students={val.students} ></ClassButton>
+                                        <ClassButton thisClass={val}></ClassButton>
                                     </Col>
                                 )
                             })}

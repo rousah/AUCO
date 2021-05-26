@@ -33,11 +33,13 @@ const Register = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-        postRegister(formData).then(response => {
+        postRegister(formData, [props.setId, props.setToken, props.setCurrentUser]).then(response => {
             // if register success
             if (response) {
-                props.setId(response.user);
+                props.setId(response.userDetails._id);
                 props.setToken(response.token);
+                props.setCurrentUser(response.userDetails);
+                props.setRole('teacher');
                 history.push({
                     pathname: '/home',
                     state: { response }
@@ -115,7 +117,7 @@ const Register = (props) => {
                                     <Label for="passwordCheck">
                                         <h6>Repetir contraseña:</h6>
                                     </Label>
-                                    <Input type="password" name="passwordCheck" className="mb-3"/>
+                                    <Input type="password" name="passwordCheck" className="mb-3" />
                                 </FormGroup>
                                 <Button onClick={handleSubmit} style={{ background: "none", border: "none" }} className="w-100 mt-4 d-flex justify-content-center">
                                     <ButtonMain buttonText="CREAR CUENTA" className="w-50" fontWeight="500" fontSize="20px"></ButtonMain>

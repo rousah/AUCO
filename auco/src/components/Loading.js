@@ -7,7 +7,7 @@ const Loading = (props) => {
         <div className="position-absolute top-50 start-50 translate-middle text-center">
             <LottieAnimation lotti={loadingAnim} height={300} width={300} />
             <h2>
-                Cargando...
+                {props.text}
             </h2>
         </div>
     );

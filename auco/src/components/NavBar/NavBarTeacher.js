@@ -98,12 +98,12 @@ const NavBarTeacher = (props) => {
                             <DropdownMenu className="col-sm-6" style={{ minWidth: "400px" }}>
                                 {notifications.map((val, i) => {
                                     return (
-                                        <div>
+                                        <div key={i}>
                                             <DropdownItem header>{val.nombre}</DropdownItem>
                                             <div style={{ padding: "0.5rem 1rem" }}>
                                                 {val.notificaciones.map((notif, i) => {
                                                     return (
-                                                        <Notification color="auco" content={
+                                                        <Notification key={i} color="auco" content={
                                                             <span>
                                                                 {notif.detalle}
                                                             </span>}
