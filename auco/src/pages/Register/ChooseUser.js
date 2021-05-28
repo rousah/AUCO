@@ -22,7 +22,7 @@ const ChooseUser = (props) => {
     const closeBtn = <ButtonMain buttonText="x" className="px-3" fontWeight="700" fontSize="23px" onClick={toggle}></ButtonMain>
 
     return (
-        <div className="register fullscreen">
+        <div className="register fullscreen-mobile">
             <NavBarLanding showlogin></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
                 <Container className="align-content-center">
