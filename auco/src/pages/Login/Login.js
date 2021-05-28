@@ -57,7 +57,7 @@ const Login = (props) => {
         <div className="fullscreen login">
             <NavBarLanding showregister></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
-                <Container className="align-content-center login-container w-25 p-5">
+                <Container className="align-content-center login-container p-5">
                     <div className="d-flex justify-content-center mb-4">
                         <h3 style={{ fontWeight: 700 }}>Iniciar sesión:</h3>
                     </div>
