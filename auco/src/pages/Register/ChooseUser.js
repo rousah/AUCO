@@ -32,11 +32,11 @@ const ChooseUser = (props) => {
                         </Col>
                     </Row>
                     <Row className="mb-5">
-                        <Col className="align-items-center justify-content-center d-flex ps-5">
-                            <SquareButton href="/create-account" buttonText="Profesor/a" secondary illustration={teacher} alt="teacher" width="30%"></SquareButton>
+                        <Col className="align-items-center justify-content-center d-flex md-ps-5" xs="6">
+                            <SquareButton href="/create-account" buttonText="Profesor/a" secondary illustration={teacher} alt="teacher"></SquareButton>
                         </Col>
-                        <Col className="align-items-center justify-content-center d-flex pe-5">
-                            <SquareButton buttonText="Alumno/a" secondary illustration={student} alt="student" width="30%" onClick={toggle}></SquareButton>
+                        <Col className="align-items-center justify-content-center d-flex md-pe-5" xs="6">
+                            <SquareButton buttonText="Alumno/a" secondary illustration={student} alt="student" onClick={toggle}></SquareButton>
                         </Col>
                     </Row>
                 </Container>
