@@ -15,3 +15,25 @@
   left: 0;
   right: 0;
 }
+
+.square-button {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .square-button {
+    width: 70%;
+  }
+}
+
+@media (min-width: 768px) {
+  .square-button {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .square-button {
+    width: 30%;
+  }
+}
