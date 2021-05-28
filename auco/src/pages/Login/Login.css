@@ -1,6 +1,6 @@
 .login-container {
-    background-color: #edf1ff;
-    border-radius: 14px;
+  background-color: #edf1ff;
+  border-radius: 14px;
 }
 
 .login {
@@ -9,16 +9,30 @@
 }
 
 .login a {
-    text-decoration: none;
-    color: #0d4c8b;
-    font-weight: 700;
-    font-size: smaller;
+  text-decoration: none;
+  color: #0d4c8b;
+  font-weight: 700;
+  font-size: smaller;
 }
 
 .login a:hover {
-    color: #f89f1e;
+  color: #f89f1e;
 }
 
 .login h6 {
-    font-weight: 600;
+  font-weight: 600;
+}
+
+/* Medium */
+@media (min-width: 768px) {
+  .login-container {
+    width: 50% !important;
+  }
+}
+
+/* Large */
+@media (min-width: 992px) {
+  .login-container {
+    width: 25% !important;
+  }
 }
