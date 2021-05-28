@@ -54,8 +54,8 @@ const Register = (props) => {
             <NavBarLanding showlogin></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
                 <Container className="align-content-center h-75 create-user">
-                    <Row>
-                        <Col xs="6" className="p-5 explanation" style={{ color: "white" }}>
+                    <Row className="m-2 m-lg-0">
+                        <Col xs="12" lg="6" className="p-5 explanation mb-2 mg-lg-0" style={{ color: "white" }}>
                             <h1 style={{ fontWeight: "800" }} className="mb-3">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             </h1>
@@ -65,7 +65,7 @@ const Register = (props) => {
                                 Después de crear tu cuenta de pofesorado podrás dar de alta una clase para dar acceso a tus alumnos al contenido de la plataforma.
                             </p>
                         </Col>
-                        <Col xs="6" className="pt-5 pb-4 ps-5 pe-5 registration-form">
+                        <Col xs="12" lg="6" className="pt-5 pb-4 ps-5 pe-5 registration-form mb-2 mg-lg-0">
                             <h4 style={{ fontWeight: "700" }} className="mb-4">Crear cuenta de profesor/a:</h4>
                             <Form>
                                 <FormGroup>
