@@ -218,7 +218,7 @@ const Class = (props) => {
                                         }></DashboardCard>
                                     </Col>
                                     <Col>
-                                        <DashboardCard title="Formularios" content={
+                                        <DashboardCard title="Cuestionarios" content={
                                             <div>
                                                 {
                                                     forms.map((val, i) => {

@@ -57,10 +57,10 @@ const FormSettingsModal = (props) => {
 
     return (
         <Modal isOpen={props.modal} toggle={props.toggle} className={props.className + " formsettings"} >
-            <ModalHeader toggle={props.toggle} close={closeBtn}>Formulario {props.form.name}</ModalHeader>
+            <ModalHeader toggle={props.toggle} close={closeBtn}>Cuestionario {props.form.name}</ModalHeader>
             <ModalBody style={{ minHeight: '50vh' }}>
                 <p className="fs-6" style={styleBorder}>
-                    Aquí podrá indicar las distintas opciones sobre cuándo lanzar un formulario. Esto podrá ser de forma automática (cada cierto tiempo) o en una fecha concreta. Además, se puede activar o desactivar su lanzamiento tanto aquí como en la página de la clase, sin perder los ajustes.
+                    Aquí podrá indicar las distintas opciones sobre cuándo lanzar un cuestionario. Esto podrá ser de forma automática (cada cierto tiempo) o en una fecha concreta. Además, se puede activar o desactivar su lanzamiento tanto aquí como en la página de la clase, sin perder los ajustes.
                 </p>
                 <FormGroup className="d-flex align-items-center mb-3">
                     <Switch id="active" className="me-2" onChange={setSwitchState} checked={formSettings.active} onColor="#fdbf4d" offColor="#e2e2e2" uncheckedIcon={false} checkedIcon={false} height={12} width={30} handleDiameter={18} offHandleColor="#f89f1e" onHandleColor="#f89f1e" />
