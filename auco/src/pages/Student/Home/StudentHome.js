@@ -87,10 +87,14 @@ const StudentHome = (props) => {
                         <Row className="mt-3">
                             <Col xs="7" className="d-flex flex-column align-items-center">
                                 <Row className="w-75">
-                                    <DashboardCard className="mb-4" content={
+                                    <DashboardCard className="mb-4" title="Acciones rápidas" content={
                                         <div className="d-flex text-center flex-column align-items-center">
-                                            <h3 className="mb-3">Pregunta del día</h3>
-                                            <ButtonMain buttonText="RESPONDER AHORA" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
+                                            <Col className="mb-3">
+                                                <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
+                                            </Col>
+                                            <Col>
+                                                <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
+                                            </Col>
                                         </div>
                                     }></DashboardCard>
                                     <DashboardCard className="h-100 mb-4" title="Otras preguntas" content={
@@ -174,44 +178,44 @@ const StudentHome = (props) => {
                                     }></DashboardCard>
                                 </Row>
                             </Col>
-                        <Col>
-                            <Row className="mb-3">
-                                <DashboardCard title="Progreso" className="h-100" content={
-                                    <div className="d-flex">
-                                        <Col xs="2" className="me-3">
-                                            <img src={levelIllustration} alt="level badge" style={{ width: "100%" }}></img>
-                                        </Col>
-                                        <Col className="d-flex flex-column justify-content-center">
-                                            <Row>
-                                                <Col className="text-muted">
-                                                    Objetivo: Nivel 2
+                            <Col>
+                                <Row className="mb-3">
+                                    <DashboardCard title="Progreso" className="h-100" content={
+                                        <div className="d-flex">
+                                            <Col xs="2" className="me-3">
+                                                <img src={levelIllustration} alt="level badge" style={{ width: "100%" }}></img>
+                                            </Col>
+                                            <Col className="d-flex flex-column justify-content-center">
+                                                <Row>
+                                                    <Col className="text-muted">
+                                                        Objetivo: Nivel 2
                                                     </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col className="d-flex flex-column justify-content-center">
-                                                    <Progress value="50" color="primary" striped animated></Progress>
-                                                </Col>
-                                                <Col xs="2" className="d-flex flex-column justify-content-center p-0">
-                                                    <span>50/100</span>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col className="invisible">
-                                                    <Progress value="50" color="primary" striped animated></Progress>
-                                                </Col>
-                                            </Row>
-                                        </Col>
-                                    </div>
-                                }></DashboardCard>
-                            </Row>
-                            <Row className="mb-3">
-                                <LeaderBoard users={gamification} className="h-100" />
-                            </Row>
-                        </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col className="d-flex flex-column justify-content-center">
+                                                        <Progress value="50" color="primary" striped animated></Progress>
+                                                    </Col>
+                                                    <Col xs="2" className="d-flex flex-column justify-content-center p-0">
+                                                        <span>50/100</span>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col className="invisible">
+                                                        <Progress value="50" color="primary" striped animated></Progress>
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </div>
+                                    }></DashboardCard>
+                                </Row>
+                                <Row className="mb-3">
+                                    <LeaderBoard users={gamification} className="h-100" />
+                                </Row>
+                            </Col>
                         </Row>
                     </Container>
                     :
-<Loading></Loading>
+                    <Loading></Loading>
             }
         </div >
     );
