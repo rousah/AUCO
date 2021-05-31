@@ -9,8 +9,8 @@ import levelIllustration from '../../../assets/illustrations/badges/levels/LEVEL
 import { getClass } from '../../../services/getClass';
 import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
-import Circle from 'react-circle';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
+import Circle from 'react-circle';
 
 const StudentHome = (props) => {
     const styleMain = {
@@ -21,13 +21,12 @@ const StudentHome = (props) => {
         color: 'white',
         fontSize: props.fontSize,
         fontWeight: props.fontWeight,
-        padding: '0px 5px',
+        padding: '1rem 1rem 1rem 0rem ',
         textDecoration: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: '1.5rem',
-        width: 'fit-content'
+        margin: '1rem'
     };
 
     const { currentUser } = useToken();
@@ -50,7 +49,7 @@ const StudentHome = (props) => {
     }
 
     useEffect(() => {
-        async function getMyStudents(thisClass) {
+        const getMyStudents = async (thisClass) => {
             const students = await getStudentsFromClass(currentUser.id_class).then(response => {
                 // if get students success
                 if (response) {
@@ -62,7 +61,7 @@ const StudentHome = (props) => {
             combineStudentGamification(thisClass, students);
         }
 
-        async function getMyClass() {
+        const getMyClass = async () => {
             const thisClass = await getClass(currentUser.id_class).then(response => {
                 // if get class success
                 if (response) {
@@ -76,6 +75,7 @@ const StudentHome = (props) => {
 
         // Get class
         getMyClass();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -84,26 +84,19 @@ const StudentHome = (props) => {
             {
                 currentUser && gamification ?
                     <Container>
-                        { /*<Row className="p-3 justify-content-between mt-3 mb-4">
-                            <Col className="p-0 d-flex align-items-center">
-                                <h2>
-                                    Bienvenido/a {currentUser.name}!
-                                </h2>
-                            </Col>
-                        </Row> */}
                         <Row className="mt-3">
                             <Col xs="7" className="d-flex flex-column align-items-center">
                                 <Row className="w-75">
                                     <DashboardCard className="mb-4" content={
-                                        <div className="d-flex text-center flex-column">
-                                            <h3>Pregunta del día</h3>
+                                        <div className="d-flex text-center flex-column align-items-center">
+                                            <h3 className="mb-3">Pregunta del día</h3>
+                                            <ButtonMain buttonText="RESPONDER AHORA" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
                                         </div>
                                     }></DashboardCard>
-                                    <div className="text-center justify-content-center d-flex flex-column align-items-center">
-                                        <h3>Otros cuestionarios:</h3>
+                                    <DashboardCard className="h-100 mb-4" title="Otras preguntas" content={
                                         <Row className="justify-content-between">
-                                            <Col xs="6" style={styleMain} className="p-2 px-3">
-                                                <div className="d-flex text-center">
+                                            <Col xs="6" className="p-0">
+                                                <div className="d-flex text-center" style={styleMain}>
                                                     <Col className="me-3">
                                                         <Circle
                                                             animate={true} // Boolean: Animated/Static progress
@@ -127,8 +120,8 @@ const StudentHome = (props) => {
                                                     </Col>
                                                 </div>
                                             </Col>
-                                            <Col xs="6" style={styleMain} className="p-2 px-3">
-                                                <div className="d-flex text-center">
+                                            <Col xs="6" className="p-0">
+                                                <div className="d-flex text-center" style={styleMain}>
                                                     <Col className="me-3">
                                                         <Circle
                                                             animate={true} // Boolean: Animated/Static progress
@@ -152,8 +145,8 @@ const StudentHome = (props) => {
                                                     </Col>
                                                 </div>
                                             </Col>
-                                            <Col xs="6" style={styleMain} className="p-2 px-3">
-                                                <div className="d-flex text-center">
+                                            <Col xs="6" className="p-0">
+                                                <div className="d-flex text-center" style={styleMain}>
                                                     <Col className="me-3">
                                                         <Circle
                                                             animate={true} // Boolean: Animated/Static progress
@@ -178,74 +171,49 @@ const StudentHome = (props) => {
                                                 </div>
                                             </Col>
                                         </Row>
-                                        <DashboardCard className="h-100 mb-4 w-75" content={
-                                            <div className="d-flex text-center">
-                                                <Col>
-                                                    <Circle
-                                                        animate={true} // Boolean: Animated/Static progress
-                                                        size={70} // Number: Defines the size of the circle.
-                                                        lineWidth={50} // Number: Defines the thickness of the circle's stroke. 
-                                                        progress={63} // Number: Update to change the progress and percentage.
-                                                        progressColor="#3dd0ae"  // String: Color of "progress" portion of circle.
-                                                        bgColor="whitesmoke" // String: Color of "empty" portion of circle.
-                                                        textColor="#1d2128" // String: Color of percentage text color.
-                                                        textStyle={{
-                                                            font: 'bold 5rem Helvetica, Arial, sans-serif' // CSSProperties: Custom styling for percentage.
-                                                        }}
-                                                        percentSpacing={10} // Number: Adjust spacing of "%" symbol and number.
-                                                        roundedStroke={true} // Boolean: Rounded/Flat line ends
-                                                        showPercentage={true} // Boolean: Show/hide percentage.
-                                                        showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
-                                                    />
-                                                </Col>
-                                                <Col className="d-flex align-items-center justify-content-center">
-                                                    <h3>Sexismo</h3>
-                                                </Col>
-                                            </div>
-                                        }></DashboardCard>
-                                    </div>
-                                </Row>
-                            </Col>
-                            <Col>
-                                <Row className="mb-3">
-                                    <DashboardCard title="Progreso" className="h-100" content={
-                                        <div className="d-flex">
-                                            <Col xs="2" className="me-3">
-                                                <img src={levelIllustration} alt="level badge" style={{ width: "100%" }}></img>
-                                            </Col>
-                                            <Col className="d-flex flex-column justify-content-center">
-                                                <Row>
-                                                    <Col className="text-muted">
-                                                        Objetivo: Nivel 2
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col className="d-flex flex-column justify-content-center">
-                                                        <Progress value="50" color="primary" striped animated></Progress>
-                                                    </Col>
-                                                    <Col xs="2" className="d-flex flex-column justify-content-center p-0">
-                                                        <span>50/100</span>
-                                                    </Col>
-                                                </Row>
-                                                <Row>
-                                                    <Col className="invisible">
-                                                        <Progress value="50" color="primary" striped animated></Progress>
-                                                    </Col>
-                                                </Row>
-                                            </Col>
-                                        </div>
                                     }></DashboardCard>
                                 </Row>
-                                <Row className="mb-3">
-                                    <LeaderBoard users={gamification} className="h-100" />
-                                </Row>
                             </Col>
+                        <Col>
+                            <Row className="mb-3">
+                                <DashboardCard title="Progreso" className="h-100" content={
+                                    <div className="d-flex">
+                                        <Col xs="2" className="me-3">
+                                            <img src={levelIllustration} alt="level badge" style={{ width: "100%" }}></img>
+                                        </Col>
+                                        <Col className="d-flex flex-column justify-content-center">
+                                            <Row>
+                                                <Col className="text-muted">
+                                                    Objetivo: Nivel 2
+                                                    </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col className="d-flex flex-column justify-content-center">
+                                                    <Progress value="50" color="primary" striped animated></Progress>
+                                                </Col>
+                                                <Col xs="2" className="d-flex flex-column justify-content-center p-0">
+                                                    <span>50/100</span>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col className="invisible">
+                                                    <Progress value="50" color="primary" striped animated></Progress>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </div>
+                                }></DashboardCard>
+                            </Row>
+                            <Row className="mb-3">
+                                <LeaderBoard users={gamification} className="h-100" />
+                            </Row>
+                        </Col>
                         </Row>
                     </Container>
                     :
-                    <Loading></Loading>
+<Loading></Loading>
             }
-        </div>
+        </div >
     );
 }
 
