@@ -100,6 +100,8 @@ const Class = (props) => {
 
         // Get class
         getMyClass();
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const changeForms = (newSettingsForms) => {

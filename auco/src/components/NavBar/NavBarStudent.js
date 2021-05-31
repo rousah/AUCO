@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -16,11 +16,6 @@ import useToken from '../../services/useToken';
 
 const NavBarStudent = (props) => {
     const { deleteToken, userId } = useToken();
-
-    // Alert dropdown
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const toggle = () => setDropdownOpen(prevState => !prevState);
-
 
     const logout = (e) => {
         deleteToken();

@@ -12,8 +12,6 @@ const Form = (props) => {
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
-    const [switchState, setSwitchState] = useState(form.active);
-
     const styleActive = {
         backgroundColor: "#f7f7f7",
         marginBottom: "1rem",
@@ -22,7 +20,6 @@ const Form = (props) => {
     };
 
     const changeActive = (active) => {
-        setSwitchState(active);
         let formSettings = form;
         formSettings["active"] = active;
         setForm(formSettings);

@@ -45,8 +45,8 @@ const notifications = [
 
 const notifNumber = (notificationsPerClass) => {
     let notifs = 0;
-    notificationsPerClass.map((oneClass, i) => {
-        oneClass.notificaciones.map((oneNotif, i) => {
+    notificationsPerClass.forEach((oneClass, i) => {
+        oneClass.notificaciones.forEach((oneNotif, i) => {
             notifs++;
         })
     })
