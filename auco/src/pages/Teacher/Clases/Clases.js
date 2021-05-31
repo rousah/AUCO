@@ -41,17 +41,8 @@ const Clases = (props) => {
             setCompleteClasses(classes);
         }
         getMyClasses();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const notifications = [{
-        nombre: "Lola",
-        tipo: "noresp",
-        detalle: ""
-    }, {
-        nombre: "Pepito",
-        tipo: "incidencia",
-        detalle: "Jaime ha pegado a Lara"
-    }]
 
     return (
         <div>
