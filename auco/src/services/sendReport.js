@@ -3,7 +3,7 @@ import API from '../API';
 
 export async function postReport(report, id) {
     console.log("postReport()");
-    const notif = await API.post(`/class/`+id+`/report`, report)
+    const notif = await API.post(`/class/`+id+`/create-report`, report)
         .then(res => {
             console.log("Success creating report!");
             return res.data;

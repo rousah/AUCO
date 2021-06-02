@@ -13,7 +13,7 @@ const ReportModal = (props) => {
     const { currentUser } = useToken();
     const report = {
         id_student: currentUser._id,
-        name: currentUser.name,
+        name: currentUser.name + " " + currentUser.surname,
         incident: true,
         details: ""
     }
@@ -31,7 +31,7 @@ const ReportModal = (props) => {
     const handleChange = (e) => {
         setFormSettings({
             id_student: currentUser._id,
-            name: currentUser.name,
+            name: currentUser.name + " " + currentUser.surname,
             incident: true,
             details: e.currentTarget.value
         });
