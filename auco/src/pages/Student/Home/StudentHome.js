@@ -11,6 +11,8 @@ import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import Circle from 'react-circle';
+import ReportModal from '../../../components/Notification/ReportModal';
+import SuccessAlert from '../../../components/Notification/SuccessAlert';
 
 const StudentHome = (props) => {
     const styleMain = {
@@ -28,6 +30,29 @@ const StudentHome = (props) => {
         justifyContent: 'center',
         margin: '1rem'
     };
+
+    // Toast success
+    const [show, setShow] = useState(false);
+    const handleVisible = () => {
+        setShow(true)
+        setTimeout(() => {
+            // 2s
+            setShow(false)
+        }, 4000);
+    }
+    // Toast error
+    const [showError, setShowError] = useState(false);
+    const handleVisibleError = () => {
+        setShowError(true)
+        setTimeout(() => {
+            // 2s
+            setShowError(false)
+        }, 4000);
+    }
+
+    // Report modal
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
 
     const { currentUser } = useToken();
 
@@ -84,6 +109,8 @@ const StudentHome = (props) => {
             {
                 currentUser && gamification ?
                     <Container>
+                        <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
+                        <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
                         <Row className="mt-3">
                             <Col xs="7" className="d-flex flex-column align-items-center">
                                 <Row className="w-75">
@@ -93,7 +120,7 @@ const StudentHome = (props) => {
                                                 <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
                                             </Col>
                                             <Col>
-                                                <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
+                                                <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px" onClick={toggle}></ButtonMain>
                                             </Col>
                                         </div>
                                     }></DashboardCard>
@@ -213,6 +240,7 @@ const StudentHome = (props) => {
                                 </Row>
                             </Col>
                         </Row>
+                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} toggleToast={handleVisible} toggleError={handleVisibleError}/>
                     </Container>
                     :
                     <Loading></Loading>

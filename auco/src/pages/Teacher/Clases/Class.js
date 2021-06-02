@@ -201,14 +201,14 @@ const Class = (props) => {
                                     <Col>
                                         <DashboardCard title="Notificaciones" className="h-100" content={
                                             <div id="scroll-notifs" style={{ maxHeight: '300px' }}>
-                                                {notifications.map((val, i) => {
+                                                {myClass.notifications.map((val, i) => {
                                                     return (
                                                         <div>
                                                             <Notification color="auco" content={
                                                                 <span>
-                                                                    {val.detalle}
+                                                                    {val.details}
                                                                 </span>}
-                                                                incidencia={val.incidencia} name={val.nombre}
+                                                                incidencia={val.incident} name={val.name}
                                                             >
                                                             </Notification>
                                                         </div>
