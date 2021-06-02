@@ -52,6 +52,12 @@ const ReportModal = (props) => {
                 setLoading(false);
                 props.toggle();
             }
+            else {
+                props.toggleError();
+                setLoading(false);
+                props.toggle();
+            }
+
         });
     };
 

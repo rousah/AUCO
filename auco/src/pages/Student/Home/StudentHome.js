@@ -31,13 +31,22 @@ const StudentHome = (props) => {
         margin: '1rem'
     };
 
-    // Toast
+    // Toast success
     const [show, setShow] = useState(false);
     const handleVisible = () => {
         setShow(true)
         setTimeout(() => {
             // 2s
             setShow(false)
+        }, 4000);
+    }
+    // Toast error
+    const [showError, setShowError] = useState(false);
+    const handleVisibleError = () => {
+        setShowError(true)
+        setTimeout(() => {
+            // 2s
+            setShowError(false)
         }, 4000);
     }
 
@@ -100,7 +109,8 @@ const StudentHome = (props) => {
             {
                 currentUser && gamification ?
                     <Container>
-                        <SuccessAlert text="Reporte mandado!" show={show}></SuccessAlert>
+                        <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
+                        <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
                         <Row className="mt-3">
                             <Col xs="7" className="d-flex flex-column align-items-center">
                                 <Row className="w-75">
@@ -230,7 +240,7 @@ const StudentHome = (props) => {
                                 </Row>
                             </Col>
                         </Row>
-                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} toggleToast={handleVisible} />
+                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} toggleToast={handleVisible} toggleError={handleVisibleError}/>
                     </Container>
                     :
                     <Loading></Loading>

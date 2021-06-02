@@ -7,12 +7,20 @@ const SuccessAlert = (props) => {
         position: 'absolute',
         right: '1rem',
         backgroundColor: 'rgba(57, 174, 164, 0.7)',
-        borderColor: 'rgba(61, 208, 174)',
+        border: '0',
+        color: 'white'
+    }
+
+    const toastErrorStyle = {
+        position: 'absolute',
+        right: '1rem',
+        backgroundColor: 'rgba(250, 45, 45, 0.7)',
+        border: '0',
         color: 'white'
     }
 
     return (
-        <Toast isOpen={props.show} style={toastStyle}>
+        <Toast isOpen={props.show} style={props.error ? toastErrorStyle : toastStyle}>
             <ToastBody>
                 {props.text}
             </ToastBody>
