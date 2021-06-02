@@ -12,6 +12,7 @@ import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import Circle from 'react-circle';
 import ReportModal from '../../../components/Notification/ReportModal';
+import SuccessAlert from '../../../components/Notification/SuccessAlert';
 
 const StudentHome = (props) => {
     const styleMain = {
@@ -30,6 +31,17 @@ const StudentHome = (props) => {
         margin: '1rem'
     };
 
+    // Toast
+    const [show, setShow] = useState(false);
+    const handleVisible = () => {
+        setShow(true)
+        setTimeout(() => {
+            // 2s
+            setShow(false)
+        }, 4000);
+    }
+
+    // Report modal
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
@@ -88,6 +100,7 @@ const StudentHome = (props) => {
             {
                 currentUser && gamification ?
                     <Container>
+                        <SuccessAlert text="Reporte mandado!" show={show}></SuccessAlert>
                         <Row className="mt-3">
                             <Col xs="7" className="d-flex flex-column align-items-center">
                                 <Row className="w-75">
@@ -217,7 +230,7 @@ const StudentHome = (props) => {
                                 </Row>
                             </Col>
                         </Row>
-                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} />
+                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} toggleToast={handleVisible} />
                     </Container>
                     :
                     <Loading></Loading>

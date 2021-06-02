@@ -47,6 +47,7 @@ const ReportModal = (props) => {
         postReport(formSettings, currentUser.id_class).then(response => {
             // if send report success
             if (response) {
+                props.toggleToast();
                 console.log(response);
                 setLoading(false);
                 props.toggle();
