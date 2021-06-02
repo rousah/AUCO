@@ -11,6 +11,7 @@ import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import Circle from 'react-circle';
+import ReportModal from '../../../components/Notification/ReportModal';
 
 const StudentHome = (props) => {
     const styleMain = {
@@ -28,6 +29,9 @@ const StudentHome = (props) => {
         justifyContent: 'center',
         margin: '1rem'
     };
+
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
 
     const { currentUser } = useToken();
 
@@ -93,7 +97,7 @@ const StudentHome = (props) => {
                                                 <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
                                             </Col>
                                             <Col>
-                                                <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
+                                                <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px" onClick={toggle}></ButtonMain>
                                             </Col>
                                         </div>
                                     }></DashboardCard>
@@ -213,6 +217,7 @@ const StudentHome = (props) => {
                                 </Row>
                             </Col>
                         </Row>
+                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} />
                     </Container>
                     :
                     <Loading></Loading>
