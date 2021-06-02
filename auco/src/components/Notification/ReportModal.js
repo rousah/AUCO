@@ -4,7 +4,7 @@ import { FormGroup, Label, Input } from 'reactstrap';
 import ButtonMain from '../../components/Buttons/ButtonMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { postClass } from '../../services/createClass';
+import { postReport } from '../../services/sendReport';
 import Loading from '../../components/Loading';
 import useToken from '../../services/useToken';
 
@@ -44,7 +44,7 @@ const ReportModal = (props) => {
         setLoading(true);
 
         // Send formsettings report to server
-        postClass(formSettings).then(response => {
+        postReport(formSettings, currentUser.id_class).then(response => {
             // if send report success
             if (response) {
                 console.log(response);
