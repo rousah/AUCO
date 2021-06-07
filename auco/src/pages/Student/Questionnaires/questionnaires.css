@@ -1,0 +1,11 @@
+.fullscreen {
+  height: 85vh;
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.progress {
+  background-color: #e5eafc !important;
+}
