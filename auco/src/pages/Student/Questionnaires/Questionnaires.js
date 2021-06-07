@@ -2,12 +2,14 @@ import React from 'react';
 import NavBarStudent from '../../../components/NavBar/NavBarStudent';
 import { Container, Row, Col, Progress } from 'reactstrap';
 import Loading from '../../../components/Loading';
+import { useParams } from "react-router-dom";
 import useToken from '../../../services/useToken';
 import Question from '../../../components/Question/Question';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import './questionnaires.css';
 
 const Questionnaires = (props) => {
+    let { questionnaire } = useParams();
     const { currentUser } = useToken();
     console.log(currentUser);
     return (
@@ -19,15 +21,23 @@ const Questionnaires = (props) => {
                         <Container className="w-50 mt-3">
                             <div>
                                 <Row>
-                                    <h2>Sexismo</h2>
+                                    <h2>{questionnaire}</h2>
                                 </Row>
                                 <Row>
                                     <Col>
                                         <Progress value="10" color="secondary"></Progress>
                                     </Col>
                                 </Row>
-                                <Row className="mt-5">
-                                    <Question></Question>
+                                <Row className="mb-5 p-3">
+                                    A continuación, verás unas frases que se refieren a comportamientos que algunos chicos y chicas realizan en el colegio. Por favor, contesta con sinceridad y sin ningún miedo si algún compañero/a del colegio o instituto para molestarte de verdad, se ha comportado así contigo el curso anterior.
+                                </Row>
+                                <Row className="mt-3">
+                                    {
+                                        questionnaire == "Bullying" ?
+                                            <Question scale></Question>
+                                            :
+                                            <Question></Question>
+                                    }
                                 </Row>
                             </div>
                         </Container>

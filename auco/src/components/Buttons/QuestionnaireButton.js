@@ -21,7 +21,7 @@ const QuestionnaireButton = (props) => {
     };
 
     return (
-        <Link className="d-flex text-center" style={styleMain} tag={RRNavLink} to={{ pathname: "/questionnaire/sexism"}}>
+        <Link className="d-flex text-center" style={styleMain} tag={RRNavLink} to={{ pathname: "/questionnaire/" + props.questionnaire}}>
             <Col className="me-3">
                 <Circle
                     animate={true} // Boolean: Animated/Static progress
@@ -41,7 +41,7 @@ const QuestionnaireButton = (props) => {
                 />
             </Col>
             <Col className="d-flex align-items-center justify-content-center">
-                <h3 className="m-0 fw-light">Sexismo</h3>
+                <h3 className="m-0 fw-light">{props.questionnaire}</h3>
             </Col>
         </Link>
     );

@@ -5,3 +5,14 @@
   overflow-x: hidden;
   overflow-y: hidden;
 }
+
+/* center radio below label */
+.radioGroupBelow label{
+  display:inline-block;
+  text-align:center;
+  margin:0 0.2em;
+}
+.radioGroupBelow label input[type="radio"] {
+  display:block;
+  margin:0.5em auto;
+}

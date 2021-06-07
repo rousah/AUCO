@@ -115,13 +115,13 @@ const StudentHome = (props) => {
                                     <DashboardCard className="h-100 mb-4" title="Otras preguntas" content={
                                         <Row className="justify-content-between">
                                             <Col xs="6" className="p-0">
-                                                <QuestionnaireButton></QuestionnaireButton>
+                                                <QuestionnaireButton questionnaire="Bullying"></QuestionnaireButton>
                                             </Col>
                                             <Col xs="6" className="p-0">
-                                                <QuestionnaireButton></QuestionnaireButton>
+                                                <QuestionnaireButton questionnaire="Cyberbullying"></QuestionnaireButton>
                                             </Col>
                                             <Col xs="6" className="p-0">
-                                                <QuestionnaireButton></QuestionnaireButton>
+                                                <QuestionnaireButton questionnaire="Sexism"></QuestionnaireButton>
                                             </Col>
                                         </Row>
                                     }></DashboardCard>
