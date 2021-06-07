@@ -119,7 +119,7 @@ const StudentHome = (props) => {
                                     <DashboardCard className="mb-4" title="Acciones rápidas" content={
                                         <div className="d-flex text-center flex-column align-items-center">
                                             <Col className="mb-3">
-                                                <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
+                                                <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3 tw-animate-bounce" fontWeight="600" fontSize="20px"></ButtonMain>
                                             </Col>
                                             <Col data-tip data-for='happyFace'>
                                                 <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px" onClick={toggle}></ButtonMain>
