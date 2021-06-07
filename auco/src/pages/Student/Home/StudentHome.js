@@ -13,6 +13,8 @@ import ButtonMain from '../../../components/Buttons/ButtonMain';
 import Circle from 'react-circle';
 import ReportModal from '../../../components/Notification/ReportModal';
 import SuccessAlert from '../../../components/Notification/SuccessAlert';
+import ReactTooltip from 'react-tooltip';
+
 
 const StudentHome = (props) => {
     const styleMain = {
@@ -119,8 +121,9 @@ const StudentHome = (props) => {
                                             <Col className="mb-3">
                                                 <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3" fontWeight="600" fontSize="20px"></ButtonMain>
                                             </Col>
-                                            <Col>
+                                            <Col data-tip data-for='happyFace'>
                                                 <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px" onClick={toggle}></ButtonMain>
+                                                <ReactTooltip backgroundColor="#3956f7" id='happyFace' place="bottom" type="info" effect="solid" className="fw-bold">¡Ayuda a tus compañeros y recibe puntos!</ReactTooltip>
                                             </Col>
                                         </div>
                                     }></DashboardCard>
@@ -240,7 +243,7 @@ const StudentHome = (props) => {
                                 </Row>
                             </Col>
                         </Row>
-                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} toggleToast={handleVisible} toggleError={handleVisibleError}/>
+                        <ReportModal isOpen={modal} toggle={toggle} modal={modal} toggleToast={handleVisible} toggleError={handleVisibleError} />
                     </Container>
                     :
                     <Loading></Loading>
