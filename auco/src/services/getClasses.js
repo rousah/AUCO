@@ -10,7 +10,7 @@ export async function getClasses(id) {
         })
         .catch((err) => {
             console.log("Error in reception of classes!");
-            console.log(err);
+            console.log("Error: " + err);
             return false;
         });
     return token;

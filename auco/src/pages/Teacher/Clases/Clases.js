@@ -28,17 +28,19 @@ const Clases = (props) => {
         async function getMyClasses() {
             const classes = await getClasses(props.history.location.state).then(response => {
                 // if get classes success
-                if (response) {
-                    console.log(response);
-                    return response;
-                }
+                console.log(response)
+                return response;
             });
-            for (const thisClass of classes) {
-                const students = await getAllStudentsFromThisClass(thisClass._id);
-                thisClass.personalStudents = students;
+            if (classes) {
+                for (const thisClass of classes) {
+                    const students = await getAllStudentsFromThisClass(thisClass._id);
+                    thisClass.personalStudents = students;
+                }
+                console.log(classes);
+                setCompleteClasses(classes);
             }
-            console.log(classes);
-            setCompleteClasses(classes);
+            // No classes received
+            else setCompleteClasses([]);
         }
         getMyClasses();
         // eslint-disable-next-line react-hooks/exhaustive-deps
