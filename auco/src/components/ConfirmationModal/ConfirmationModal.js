@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ButtonMain from '../../components/Buttons/ButtonMain';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { postClass } from '../../services/createClass';
-import useToken from '../../services/useToken';
 import Loading from '../../components/Loading';
 
 const ConfirmationModal = (props) => {

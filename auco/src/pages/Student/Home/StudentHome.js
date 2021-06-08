@@ -44,10 +44,9 @@ const StudentHome = (props) => {
     const { currentUser } = useToken();
 
     const [gamification, setGamification] = useState();
+    const [myClass, setMyClass] = useState();
 
     function combineStudentGamification(thisClass, stud) {
-        console.log(thisClass.students)
-        console.log(stud)
         let game = [];
         for (let i = 0; i < thisClass.students.length; i++) {
             game.push({
@@ -58,6 +57,7 @@ const StudentHome = (props) => {
 
         // Set all values here because flow wouldn't work otherwise
         setGamification(game);
+        setMyClass(thisClass);
     }
 
     useEffect(() => {
@@ -77,7 +77,6 @@ const StudentHome = (props) => {
             const thisClass = await getClass(id).then(response => {
                 return response;
             });
-            console.log(thisClass);
 
             // Get students from this class
             getMyStudents(thisClass);
@@ -92,7 +91,7 @@ const StudentHome = (props) => {
         <div>
             <NavBarStudent home></NavBarStudent>
             {
-                currentUser && gamification ?
+                currentUser && gamification && myClass ?
                     <Container>
                         <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
                         <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
@@ -112,15 +111,15 @@ const StudentHome = (props) => {
                                     }></DashboardCard>
                                     <DashboardCard className="h-100 mb-4" title="Otras preguntas" content={
                                         <Row className="justify-content-between">
-                                            <Col xs="6" className="p-0">
-                                                <QuestionnaireButton questionnaire="Bullying"></QuestionnaireButton>
-                                            </Col>
-                                            <Col xs="6" className="p-0">
-                                                <QuestionnaireButton questionnaire="Cyberbullying"></QuestionnaireButton>
-                                            </Col>
-                                            <Col xs="6" className="p-0">
-                                                <QuestionnaireButton questionnaire="Sexism"></QuestionnaireButton>
-                                            </Col>
+                                            {
+                                                myClass.questionnaires.map((val, i) => {
+                                                    return (
+                                                        <Col xs="6" className="p-0" key={i}>
+                                                            <QuestionnaireButton questionnaire={val}></QuestionnaireButton>
+                                                        </Col>
+                                                    )
+                                                })
+                                            }
                                         </Row>
                                     }></DashboardCard>
                                 </Row>

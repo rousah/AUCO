@@ -35,7 +35,7 @@ function App() {
         <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Clases} />
         <PrivateRoute path='/profile' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={role === 'teacher' ? Profile : StudentProfile} />
         <PrivateRoute path='/class/:id' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Class} />
-        <PrivateRoute path='/questionnaire/:questionnaire' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Questionnaires} />
+        <PrivateRoute path='/questionnaire/:questionnaireId' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Questionnaires} />
       </div>
     </Router >
   );
