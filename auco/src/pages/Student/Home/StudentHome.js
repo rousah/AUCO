@@ -73,20 +73,18 @@ const StudentHome = (props) => {
             combineStudentGamification(thisClass, students);
         }
 
-        const getMyClass = async () => {
-            const thisClass = await getClass(currentUser.id_class).then(response => {
-                // if get class success
-                if (response) {
-                    return response;
-                }
+        const getMyClass = async (id) => {
+            const thisClass = await getClass(id).then(response => {
+                return response;
             });
+            console.log(thisClass);
 
             // Get students from this class
             getMyStudents(thisClass);
         }
 
         // Get class
-        getMyClass();
+        getMyClass(currentUser.id_class);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
