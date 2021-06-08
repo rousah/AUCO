@@ -8,7 +8,6 @@ import useToken from '../../services/useToken';
 import Loading from '../../components/Loading';
 
 const ConfirmationModal = (props) => {
-    const { userId } = useToken();
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = (e) => {
@@ -18,10 +17,10 @@ const ConfirmationModal = (props) => {
         setLoading(true);
 
         // Do action
-        props.action().then(response => {
+        props.action(props.actionInfo).then(response => {
+            console.log(response);
             // if create class success
             if (response) {
-                console.log(response);
                 setLoading(false);
                 props.toggle()
                 window.location.reload();
@@ -32,7 +31,7 @@ const ConfirmationModal = (props) => {
     return (
         <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
             <ModalHeader toggle={props.toggle} close={<div></div>}>{props.headerText}</ModalHeader>
-            <ModalBody>
+            <ModalBody style={{minHeight: "40vh"}}>
                 {
                     loading ?
                         <Loading text={props.loadingText}></Loading>
