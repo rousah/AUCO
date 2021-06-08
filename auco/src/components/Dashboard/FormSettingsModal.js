@@ -19,36 +19,32 @@ const FormSettingsModal = (props) => {
     }
 
     const handleChange = (e) => {
-
         // For when activation method changes
         if (["method"].includes(e.target.name)) {
-            setFormSettings({
-                name: formSettings.name,
-                activationMethod: e.currentTarget.value,
-                options: formSettings.options,
-                active: formSettings.active
-            });
+            let value = e.currentTarget.value.includes("true");
+            setFormSettings(prevState => ({
+                ...prevState,
+                automatic: value,
+            }));
         }
         else {
-            setFormSettings({
-                name: formSettings.name,
-                activationMethod: formSettings.activationMethod,
-                options: e.currentTarget.value,
-                active: formSettings.active
-            });
+            let date = e.currentTarget.value;
+            setFormSettings(prevState => ({
+                ...prevState,
+                options: date
+            }));
         }
     }
 
     const setSwitchState = (e) => {
-        setFormSettings({
-            name: formSettings.name,
-            activationMethod: formSettings.activationMethod,
-            options: formSettings.options,
+        setFormSettings(prevState => ({
+            ...prevState,
             active: e
-        });
+        }));
     }
 
     const saveSettings = (e) => {
+        console.log(formSettings);
         props.changeForm(formSettings);
         props.toggle();
     }
@@ -68,21 +64,21 @@ const FormSettingsModal = (props) => {
                 </FormGroup>
                 <FormGroup check className="mb-3">
                     <Label check>
-                        <Input type="radio" name="method" onChange={handleChange} value="automatic" checked={formSettings.activationMethod === "automatic"} />
+                        <Input type="radio" name="method" onChange={handleChange} value={true} checked={formSettings.automatic} />
                             Automático:
                     </Label>
-                    <Input type="select" name="select" id="exampleSelect" className="form-select" disabled={formSettings.activationMethod !== "automatic"} onChange={handleChange} value={formSettings.activationMethod === "automatic" ? formSettings.options : ""}>
-                        <option>Diario</option>
-                        <option>Semanal</option>
-                        <option>Mensual</option>
+                    <Input type="select" name="select" id="exampleSelect" className="form-select" disabled={!formSettings.automatic} onChange={handleChange} value={formSettings.automatic ? formSettings.options : ""}>
+                        <option>daily</option>
+                        <option>weekly</option>
+                        <option>monthly</option>
                     </Input>
                 </FormGroup>
                 <FormGroup check>
                     <Label check>
-                        <Input type="radio" name="method" onChange={handleChange} value="date" checked={formSettings.activationMethod === "date"} />
+                        <Input type="radio" name="method" onChange={handleChange} value={false} checked={!formSettings.automatic} />
                             Fecha concreta:
                     </Label>
-                    <Input type="date" name="date" disabled={formSettings.activationMethod !== "date"} onChange={handleChange} value={formSettings.activationMethod === "date" ? formSettings.options : ""} />
+                    <Input type="date" name="date" disabled={formSettings.automatic} onChange={handleChange} value={!formSettings.automatic ? formSettings.options : ""} />
                 </FormGroup>
             </ModalBody>
             <ModalFooter>

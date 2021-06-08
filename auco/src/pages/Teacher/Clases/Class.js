@@ -17,42 +17,12 @@ import './Class.css'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
-const formsInitial = [
-    {
-        name: "Bullying",
-        activationMethod: "automatic",
-        options: "Semanal",
-        active: true
-    },
-    {
-        name: "Cyberbullying",
-        activationMethod: "automatic",
-        options: "Diario",
-        active: true
-    },
-    {
-        name: "Sexismo",
-        activationMethod: "automatic",
-        options: "Semanal",
-        active: false
-    }
-]
-
-const notifications = [{
-    nombre: "Lola",
-    incidencia: false,
-    detalle: "no resp"
-}, {
-    nombre: "Pepito",
-    incidencia: true,
-    detalle: "Jaime ha pegado a Lara"
-}]
 
 
 const Class = (props) => {
     let { id } = useParams();
 
-    const [forms, setForms] = useState(formsInitial);
+    const [forms, setForms] = useState(null);
 
     const [myClass, setClass] = useState(null);
     const [users, setUsers] = useState(null);
@@ -69,6 +39,7 @@ const Class = (props) => {
 
         // Set all values here because flow wouldn't work otherwise
         setClass(thisClass);
+        setForms(thisClass.questionnaires);
         setUsers(stud);
         setGamification(game);
     }
