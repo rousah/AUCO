@@ -3,7 +3,7 @@ import API from '../API';
 
 export async function getClasses(id) {
     console.log("getClasses()");
-    const token = await API.get(`/class/classes/`+id.userId)
+    const token = await API.get(`/class/classes/`+id)
         .then(res => {
             console.log("Success receiving classes!");
             return res.data;

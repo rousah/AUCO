@@ -7,9 +7,11 @@ import { getClasses } from '../../../services/getClasses';
 import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import { useState, useEffect } from 'react';
 import Loading from '../../../components/Loading';
+import useToken from '../../../services/useToken';
 
 const Clases = (props) => {
     const [completeClasses, setCompleteClasses] = useState(null);
+    const { userId } = useToken();
 
     useEffect(() => {
         async function getAllStudentsFromThisClass(id) {
@@ -26,7 +28,7 @@ const Clases = (props) => {
             return students;
         }
         async function getMyClasses() {
-            const classes = await getClasses(props.history.location.state).then(response => {
+            const classes = await getClasses(userId).then(response => {
                 // if get classes success
                 console.log(response)
                 return response;

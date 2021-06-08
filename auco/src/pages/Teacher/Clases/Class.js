@@ -13,6 +13,7 @@ import PieGraph from '../../../components/Graphs/PieGraph';
 import NetworkGraph from '../../../components/Graphs/NetworkGraph';
 import Notification from '../../../components/Notification/Notification';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
+import { NavLink as RRNavLink, Link } from 'react-router-dom';
 import './Class.css'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -71,7 +72,7 @@ const Class = (props) => {
 
         // Get class
         getMyClass();
-        
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -144,7 +145,9 @@ const Class = (props) => {
                                 </h2>
                             </Col>
                             <Col xs="4" className="p-0 d-flex align-items-center justify-content-end">
-                                <ButtonMain buttonText="Volver a clases" className="px-2 rounded-4 py-1" fontWeight="500" fontSize="18px" href="javascript:history.back()"></ButtonMain>
+                                <Link tag={RRNavLink} to={{ pathname: "/clases/" }} className="text-decoration-none text-body">
+                                    <ButtonMain buttonText="Volver a clases" className="px-2 rounded-4 py-1" fontWeight="500" fontSize="18px"></ButtonMain>
+                                </Link>
                             </Col>
                         </Row>
 
