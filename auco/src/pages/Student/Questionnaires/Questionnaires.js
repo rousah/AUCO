@@ -14,9 +14,10 @@ import './questionnaires.css';
 
 const Questionnaires = (props) => {
     const [questionnaire, setQuestionnaire] = useState(false);
+    const [slideCount, setSlide] = useState(1);
+
     let { questionnaireId } = useParams();
     const { currentUser } = useToken();
-    console.log(questionnaireId);
 
     const noButtonStyle = {
         background: "none",
@@ -26,6 +27,12 @@ const Questionnaires = (props) => {
         font: "inherit",
         cursor: "default",
         outline: "inherit"
+    }
+    function countSlides() {
+        setSlide(slideCount + 1);
+    }
+    function uncountSlides() {
+        setSlide(slideCount - 1);
     }
 
     useEffect(() => {
@@ -52,7 +59,11 @@ const Questionnaires = (props) => {
                         <CarouselProvider
                             naturalSlideWidth={100}
                             naturalSlideHeight={60}
-                            totalSlides={questionnaire.questions.length}>
+                            totalSlides={questionnaire.questions.length}
+                            touchEnabled={false}
+                            dragEnabled={false}
+                            visibleSlides={1}
+                            isIntrinsicHeight={true}>
                             <Container className="w-50 mt-3">
                                 <div>
                                     <Row>
@@ -60,18 +71,18 @@ const Questionnaires = (props) => {
                                     </Row>
                                     <Row>
                                         <Col>
-                                            <Progress value="10" color="secondary"></Progress>
+                                            <Progress value={slideCount / questionnaire.questions.length * 100} color="secondary"></Progress>
                                         </Col>
                                     </Row>
                                     <Row className="mb-5 p-3">
                                         {questionnaire.description}
                                     </Row>
-                                    <Row className="mt-3">
+                                    <Row>
                                         <Slider>
                                             {
                                                 questionnaire.questions.map((val, i) => {
                                                     return (
-                                                        <Slide index={i}>
+                                                        <Slide index={i} key={i}>
                                                             <Question choice={val.type} answers={val.answers} question={val.question}></Question>
                                                         </Slide>
                                                     )
@@ -83,12 +94,12 @@ const Questionnaires = (props) => {
                             </Container>
                             <div className="border-top">
                                 <div className="w-50 container d-flex justify-content-between">
-                                    <ButtonBack style={noButtonStyle}>
-                                        <Link tag={RRNavLink} to={{ pathname: "/home" }} style={{ textDecoration: "none" }}>
-                                            <ButtonMain secondary buttonText="Volver" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
-                                        </Link>
+                                    <ButtonBack style={noButtonStyle} onClick={uncountSlides}>
+                                        {/* <Link tag={RRNavLink} to={{ pathname: "/home" }} style={{ textDecoration: "none" }}> */}
+                                        <ButtonMain secondary buttonText="Volver" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
+                                        {/*   </Link> */}
                                     </ButtonBack>
-                                    <ButtonNext style={noButtonStyle}>
+                                    <ButtonNext style={noButtonStyle} onClick={countSlides}>
                                         <ButtonMain buttonText="Siguiente" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonNext>
                                 </div>
