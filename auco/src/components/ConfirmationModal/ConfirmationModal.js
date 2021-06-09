@@ -9,25 +9,28 @@ const ConfirmationModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Show loading animation
-        setLoading(true);
+        if (props.server) {
+            // Show loading animation
+            setLoading(true);
 
-        // Do action
-        props.action(props.actionInfo).then(response => {
-            console.log(response);
-            // if create class success
-            if (response) {
-                setLoading(false);
-                props.toggle()
-                window.location.reload();
-            }
-        });
+            // Do action
+            props.action(props.actionInfo).then(response => {
+                console.log(response);
+                // if create class success
+                if (response) {
+                    setLoading(false);
+                    props.toggle()
+                    window.location.reload();
+                }
+            });
+        }
+        else props.action();
     };
 
     return (
         <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
             <ModalHeader toggle={props.toggle} close={<div></div>}>{props.headerText}</ModalHeader>
-            <ModalBody style={{minHeight: "40vh"}}>
+            <ModalBody>
                 {
                     loading ?
                         <Loading text={props.loadingText}></Loading>

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import NavBarStudent from '../../../components/NavBar/NavBarStudent';
 import { Container, Row, Col, Progress } from 'reactstrap';
 import Loading from '../../../components/Loading';
@@ -7,7 +8,7 @@ import useToken from '../../../services/useToken';
 import Question from '../../../components/Question/Question';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { getQuestionnaire } from '../../../services/getQuestionnaire';
-import { NavLink as RRNavLink, Link } from 'react-router-dom';
+import ConfirmationModal from '../../../components/ConfirmationModal/ConfirmationModal';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './questionnaires.css';
@@ -15,6 +16,10 @@ import './questionnaires.css';
 const Questionnaires = (props) => {
     const [questionnaire, setQuestionnaire] = useState(false);
     const [slideCount, setSlide] = useState(1);
+
+    // Confirmation modal on exit questionnaire
+    const [modal, setModal] = useState(false);
+    const toggleConfirmation = () => setModal(!modal);
 
     let { questionnaireId } = useParams();
     const { currentUser } = useToken();
@@ -34,6 +39,9 @@ const Questionnaires = (props) => {
     function uncountSlides() {
         setSlide(slideCount - 1);
     }
+
+    const history = useHistory();
+    const goBack = useCallback(() => history.push('/home'), [history]);
 
     useEffect(() => {
         const getMyQuestionnaire = async (id) => {
@@ -63,15 +71,13 @@ const Questionnaires = (props) => {
                             touchEnabled={false}
                             dragEnabled={false}
                             visibleSlides={1}
-                            isIntrinsicHeight={true}>
+                            isIntrinsicHeight={false}>
                             <Container className="w-50 mt-3">
                                 <div>
                                     <Row>
                                         <Col className="d-flex align-items-center justify-content-between mb-2">
                                             <h2>{questionnaire.name}</h2>
-                                            <Link tag={RRNavLink} to={{ pathname: "/home" }} style={{ textDecoration: "none" }}>
-                                                <ButtonMain buttonText="x" className="px-3" fontWeight="800" fontSize="25px"></ButtonMain>
-                                            </Link>
+                                            <ButtonMain buttonText="x" className="px-3" fontWeight="800" fontSize="25px" onClick={toggleConfirmation}></ButtonMain>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -107,6 +113,7 @@ const Questionnaires = (props) => {
                                     </ButtonNext>
                                 </div>
                             </div>
+                            <ConfirmationModal isOpen={modal} action={goBack} toggle={toggleConfirmation} modal={modal} headerText="¡Ciudado!" confirmationText={"Estás a punto de salir del questionario " + questionnaire.name + ". Tus respuestas no se guardarán. ¿Estás seguro/a de que quieres salir?"} actionText="Salir" loadingText="" />
                         </CarouselProvider>
                     </div>
                     :
