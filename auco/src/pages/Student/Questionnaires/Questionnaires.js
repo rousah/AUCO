@@ -67,7 +67,12 @@ const Questionnaires = (props) => {
                             <Container className="w-50 mt-3">
                                 <div>
                                     <Row>
-                                        <h2>{questionnaire.name}</h2>
+                                        <Col className="d-flex align-items-center justify-content-between mb-2">
+                                            <h2>{questionnaire.name}</h2>
+                                            <Link tag={RRNavLink} to={{ pathname: "/home" }} style={{ textDecoration: "none" }}>
+                                                <ButtonMain buttonText="x" className="px-3" fontWeight="800" fontSize="25px"></ButtonMain>
+                                            </Link>
+                                        </Col>
                                     </Row>
                                     <Row>
                                         <Col>
@@ -95,9 +100,7 @@ const Questionnaires = (props) => {
                             <div className="border-top mt-5">
                                 <div className="w-50 container d-flex justify-content-between">
                                     <ButtonBack style={noButtonStyle} onClick={uncountSlides}>
-                                        {/* <Link tag={RRNavLink} to={{ pathname: "/home" }} style={{ textDecoration: "none" }}> */}
-                                        <ButtonMain secondary buttonText="Volver" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
-                                        {/*   </Link> */}
+                                        <ButtonMain secondary buttonText="Anterior" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonBack>
                                     <ButtonNext style={noButtonStyle} onClick={countSlides}>
                                         <ButtonMain buttonText="Siguiente" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
