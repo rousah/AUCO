@@ -92,7 +92,7 @@ const StudentHome = (props) => {
             <NavBarStudent home></NavBarStudent>
             {
                 currentUser && gamification && myClass ?
-                    <Container>
+                    <Container fluid="xl">
                         <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
                         <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
                         <Row className="mt-3">

@@ -74,10 +74,10 @@ const Questionnaires = (props) => {
                                             <Progress value={slideCount / questionnaire.questions.length * 100} color="secondary"></Progress>
                                         </Col>
                                     </Row>
-                                    <Row className="mb-5 p-3">
+                                    <Row className="mb-3 p-3">
                                         {questionnaire.description}
                                     </Row>
-                                    <Row>
+                                    <Row className="mb-5">
                                         <Slider>
                                             {
                                                 questionnaire.questions.map((val, i) => {
@@ -92,7 +92,7 @@ const Questionnaires = (props) => {
                                     </Row>
                                 </div>
                             </Container>
-                            <div className="border-top">
+                            <div className="border-top mt-5">
                                 <div className="w-50 container d-flex justify-content-between">
                                     <ButtonBack style={noButtonStyle} onClick={uncountSlides}>
                                         {/* <Link tag={RRNavLink} to={{ pathname: "/home" }} style={{ textDecoration: "none" }}> */}
