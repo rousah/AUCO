@@ -162,7 +162,7 @@ const NavBarTeacher = (props) => {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink onClick={logout} className={props.logout ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink onClick={logout} href="" className={props.logout ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faSignOutAlt} className="bi d-block mx-auto mb-1" size="lg" />
                                 Salir
                             </NavLink>
