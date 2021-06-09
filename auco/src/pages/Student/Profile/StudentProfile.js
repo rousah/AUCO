@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBarStudent from '../../../components/NavBar/NavBarStudent';
+import { getStudentGamification } from '../../../services/getStudentGamification';
 import { Container, Row, Col } from 'reactstrap';
 import Loading from '../../../components/Loading';
 import useToken from '../../../services/useToken';
@@ -13,12 +14,28 @@ import level2 from '../../../assets/illustrations/badges/levels/LEVEL2.png';
 
 const StudentProfile = (props) => {
     const { currentUser } = useToken();
-    console.log(currentUser);
+    const [myGamification, setMyGamification] = useState();
+    useEffect(() => {
+        const getMyInfo = async () => {
+            const studentInfo = await getStudentGamification(currentUser._id).then(response => {
+                // if get students info success
+                if (response) {
+                    return response;
+                }
+            });
+
+            setMyGamification(studentInfo);
+        }
+
+        getMyInfo();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
         <div>
             <NavBarStudent profile></NavBarStudent>
             {
-                currentUser ?
+                currentUser && myGamification ?
                     <Container>
                         <Row className="p-3 justify-content-between mt-3 mb-4">
                             <Col className="p-0 d-flex align-items-center">
@@ -38,15 +55,15 @@ const StudentProfile = (props) => {
                                             <Col className="d-flex flex-column justify-content-center">
                                                 <Row>
                                                     <Col className="text-muted">
-                                                        Objetivo: Nivel 2
+                                                        Objetivo: Nivel {myGamification.level + 1}
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col className="d-flex flex-column justify-content-center">
-                                                        <Progress value="50" color="primary" striped animated></Progress>
+                                                        <Progress value={myGamification.score} color="primary" striped animated></Progress>
                                                     </Col>
                                                     <Col xs="2" className="d-flex flex-column justify-content-center p-0">
-                                                        <span>50/100</span>
+                                                        <span>{myGamification.score}/100</span>
                                                     </Col>
                                                 </Row>
                                                 <Row>

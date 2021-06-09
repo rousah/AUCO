@@ -8,6 +8,7 @@ import { Progress } from 'reactstrap';
 import levelIllustration from '../../../assets/illustrations/badges/levels/LEVEL1.png';
 import { getClass } from '../../../services/getClass';
 import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
+import { getStudentGamification } from '../../../services/getStudentGamification';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import ReportModal from '../../../components/Notification/ReportModal';
@@ -45,6 +46,7 @@ const StudentHome = (props) => {
 
     const [gamification, setGamification] = useState();
     const [myClass, setMyClass] = useState();
+    const [myGamification, setMyGamification] = useState();
 
     function combineStudentGamification(thisClass, stud) {
         let game = [];
@@ -61,6 +63,20 @@ const StudentHome = (props) => {
     }
 
     useEffect(() => {
+        const getMyInfo = async (thisClass, students) => {
+            const studentInfo = await getStudentGamification(currentUser._id).then(response => {
+                // if get students info success
+                if (response) {
+                    return response;
+                }
+            });
+
+            // Sets gamification info combining student with gamification student
+            combineStudentGamification(thisClass, students);
+
+            setMyGamification(studentInfo);
+        }
+
         const getMyStudents = async (thisClass) => {
             const students = await getStudentsFromClass(currentUser.id_class).then(response => {
                 // if get students success
@@ -69,8 +85,9 @@ const StudentHome = (props) => {
                 }
             });
 
+
             // Sets gamification info combining student with gamification student
-            combineStudentGamification(thisClass, students);
+            getMyInfo(thisClass, students);
         }
 
         const getMyClass = async (id) => {
@@ -91,8 +108,9 @@ const StudentHome = (props) => {
         <div>
             <NavBarStudent home></NavBarStudent>
             {
-                currentUser && gamification && myClass ?
+                currentUser && gamification && myClass && myGamification ?
                     <Container fluid="xl">
+                        {console.log(myGamification)}
                         <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
                         <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
                         <Row className="mt-3">
@@ -134,15 +152,15 @@ const StudentHome = (props) => {
                                             <Col className="d-flex flex-column justify-content-center">
                                                 <Row>
                                                     <Col className="text-muted">
-                                                        Objetivo: Nivel 2
+                                                        Objetivo: Nivel {myGamification.level + 1}
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col className="d-flex flex-column justify-content-center">
-                                                        <Progress value="50" color="primary" striped animated></Progress>
+                                                        <Progress value={myGamification.score} color="primary" striped animated></Progress>
                                                     </Col>
                                                     <Col xs="2" className="d-flex flex-column justify-content-center p-0">
-                                                        <span>50/100</span>
+                                                        <span>{myGamification.score}/100</span>
                                                     </Col>
                                                 </Row>
                                                 <Row>
