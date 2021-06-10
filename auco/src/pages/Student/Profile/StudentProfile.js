@@ -13,6 +13,8 @@ import studentsIllustration from '../../../assets/illustrations/students.png';
 const StudentProfile = (props) => {
     const { currentUser } = useToken();
     const [myGamification, setMyGamification] = useState();
+    const [myLevelBadges, setMyLevelBadges] = useState([]);
+
     useEffect(() => {
         const getMyInfo = async () => {
             const studentInfo = await getStudentGamification(currentUser._id).then(response => {
@@ -22,6 +24,8 @@ const StudentProfile = (props) => {
                 }
             });
 
+            var levels = Array.apply(null, {length: studentInfo.level}).map(Number.call, Number)
+            setMyLevelBadges(levels);
             setMyGamification(studentInfo);
         }
 
@@ -77,9 +81,15 @@ const StudentProfile = (props) => {
                                     <DashboardCard title="Mis logros" content={
                                         <div>
                                             <Row className="mb-4">
-                                                <Col xs="2" className="d-flex align-items-center">
-                                                    <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
-                                                </Col>
+                                                {
+                                                    myLevelBadges.map((value, i) => {
+                                                        return (
+                                                            <Col xs="2" className="d-flex align-items-center" key={i}>
+                                                                <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${value + 1}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
+                                                            </Col>
+                                                        )
+                                                    })
+                                                }
                                                 <Col xs="2" className="d-flex align-items-center">
                                                     <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level + 1}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                                 </Col>
