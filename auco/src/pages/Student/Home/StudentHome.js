@@ -103,6 +103,11 @@ const StudentHome = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const calculatePoints = (points) => {
+        let minus = Math.trunc(points/100);
+        return points - minus*100;
+    }
+
     return (
         <div>
             <NavBarStudent home></NavBarStudent>
@@ -156,10 +161,10 @@ const StudentHome = (props) => {
                                                 </Row>
                                                 <Row>
                                                     <Col className="d-flex flex-column justify-content-center">
-                                                        <Progress value={myGamification.score} color="primary" striped animated></Progress>
+                                                        <Progress value={calculatePoints(myGamification.score)} color="primary" striped animated></Progress>
                                                     </Col>
                                                     <Col xs="2" className="d-flex flex-column justify-content-center p-0">
-                                                        <span>{myGamification.score}/100</span>
+                                                        <span>{calculatePoints(myGamification.score)}/100</span>
                                                     </Col>
                                                 </Row>
                                                 <Row>
