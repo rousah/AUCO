@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import ButtonMain from '../Buttons/ButtonMain';
-import { Container, Row, Col, Input } from 'reactstrap';
-import { CustomInput, Form, FormGroup, Label } from 'reactstrap';
 import DashboardCard from '../Dashboard/DashboardCard';
 import './question.css';
 
 const Answer = (props) => {
     const [selected, setSelected] = useState(false);
 
-    function select () {
+    function select() {
+        // Add to selection
+        if (!selected) {
+            props.add(props.text);
+        }
+
+        // Delete from selection
+        else {
+            props.delete(props.text);
+            console.log("delete");
+        }
         setSelected(!selected);
     }
 

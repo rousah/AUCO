@@ -10,6 +10,7 @@ import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { getQuestionnaire } from '../../../services/getQuestionnaire';
 import ConfirmationModal from '../../../components/ConfirmationModal/ConfirmationModal';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import { saveResponses } from '../../../services/saveResponses';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './questionnaires.css';
 
@@ -23,6 +24,8 @@ const Questionnaire = (props) => {
     });
     const [responses, setResponses] = useState(initialResponses);
 
+    // Loading
+    const [loading, setLoading] = useState(false);
 
     // Questionnaire and question (slide) count
     const [questionnaire, setQuestionnaire] = useState(false);
@@ -73,6 +76,18 @@ const Questionnaire = (props) => {
         console.log(responses);
     }
 
+    // Save questionnaire responses recorded so far
+    const onClickSave = async () => {
+        console.log(responses);
+        setLoading(true);
+        const res = await saveResponses(responses).then(res => {
+            return res;
+        });
+        console.log(res);
+        setLoading(false);
+        goBack();
+    }
+
     useEffect(() => {
         const getMyQuestionnaire = async (id) => {
             const thisQuestionnaire = await getQuestionnaire(id).then(response => {
@@ -91,7 +106,7 @@ const Questionnaire = (props) => {
         <div>
             <NavBarStudent home></NavBarStudent>
             {
-                questionnaire ?
+                questionnaire && !loading ?
                     <div className="fullscreen justify-content-between d-flex flex-column">
                         <CarouselProvider
                             naturalSlideWidth={100}
@@ -137,7 +152,7 @@ const Questionnaire = (props) => {
                                     <ButtonBack style={slideCount > 1 ? noButtonStyle : hideButtonStyle} onClick={uncountSlides}>
                                         <ButtonMain secondary buttonText="<" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonBack>
-                                    <ButtonMain buttonText="Guardar" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
+                                    <ButtonMain buttonText="Guardar" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px" onClick={onClickSave}></ButtonMain>
                                     <ButtonNext style={slideCount < questionnaire.questions.length ? noButtonStyle : hideButtonStyle} onClick={countSlides}>
                                         <ButtonMain secondary buttonText=">" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonNext>
