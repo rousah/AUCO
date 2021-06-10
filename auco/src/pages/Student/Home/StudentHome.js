@@ -5,7 +5,6 @@ import Loading from '../../../components/Loading';
 import useToken from '../../../services/useToken';
 import DashboardCard from '../../../components/Dashboard/DashboardCard';
 import { Progress } from 'reactstrap';
-import levelIllustration from '../../../assets/illustrations/badges/levels/LEVEL1.png';
 import { getClass } from '../../../services/getClass';
 import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import { getStudentGamification } from '../../../services/getStudentGamification';
@@ -147,7 +146,7 @@ const StudentHome = (props) => {
                                     <DashboardCard title="Progreso" className="h-100" content={
                                         <div className="d-flex">
                                             <Col xs="2" className="me-3">
-                                                <img src={levelIllustration} alt="level badge" style={{ width: "100%" }}></img>
+                                                <img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                             </Col>
                                             <Col className="d-flex flex-column justify-content-center">
                                                 <Row>

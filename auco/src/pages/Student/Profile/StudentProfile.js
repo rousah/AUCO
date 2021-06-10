@@ -9,8 +9,6 @@ import { Input, Label } from 'reactstrap';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { Progress } from 'reactstrap';
 import studentsIllustration from '../../../assets/illustrations/students.png';
-import level1 from '../../../assets/illustrations/badges/levels/LEVEL1.png';
-import level2 from '../../../assets/illustrations/badges/levels/LEVEL2.png';
 
 const StudentProfile = (props) => {
     const { currentUser } = useToken();
@@ -50,7 +48,7 @@ const StudentProfile = (props) => {
                                     <DashboardCard title="Mi progreso" content={
                                         <div className="d-flex">
                                             <Col xs="2" className="me-3">
-                                                <img src={level1} alt="level badge" style={{ width: "100%" }}></img>
+                                                <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                             </Col>
                                             <Col className="d-flex flex-column justify-content-center">
                                                 <Row>
@@ -80,10 +78,10 @@ const StudentProfile = (props) => {
                                         <div>
                                             <Row className="mb-4">
                                                 <Col xs="2" className="d-flex align-items-center">
-                                                    <img src={level1} alt="level badge" style={{ width: "100%" }}></img>
+                                                    <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                                 </Col>
                                                 <Col xs="2" className="d-flex align-items-center">
-                                                    <img src={level2} alt="level badge" style={{ width: "100%" }}></img>
+                                                    <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level + 1}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                                 </Col>
                                             </Row>
                                         </div>
