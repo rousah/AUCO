@@ -14,15 +14,29 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import './questionnaires.css';
 
 const Questionnaire = (props) => {
+    // Responses of questionnaire
+    let { questionnaireId } = useParams();
+    const { currentUser } = useToken();
+    const initialResponses = Object.freeze({
+        id_student: currentUser._id,
+        id_questionnaire: questionnaireId
+    });
+    const [responses, setResponses] = useState(initialResponses);
+
+
+    // Questionnaire and question (slide) count
     const [questionnaire, setQuestionnaire] = useState(false);
     const [slideCount, setSlide] = useState(1);
+    function countSlides() {
+        setSlide(slideCount + 1);
+    }
+    function uncountSlides() {
+        setSlide(slideCount - 1);
+    }
 
     // Confirmation modal on exit questionnaire
     const [modal, setModal] = useState(false);
     const toggleConfirmation = () => setModal(!modal);
-
-    let { questionnaireId } = useParams();
-    const { currentUser } = useToken();
 
     // back and next buttons for question slides
     const noButtonStyle = {
@@ -45,15 +59,19 @@ const Questionnaire = (props) => {
         visibility: "hidden"
     }
 
-    function countSlides() {
-        setSlide(slideCount + 1);
-    }
-    function uncountSlides() {
-        setSlide(slideCount - 1);
-    }
-
+    // Routing
     const history = useHistory();
     const goBack = useCallback(() => history.push('/home'), [history]);
+
+    // When response to answer changes
+    const onChangeSelection = (answer) => {
+        console.log(answer)
+        setResponses(prevState => ({
+            ...prevState,
+            ...answer
+        }));
+        console.log(responses);
+    }
 
     useEffect(() => {
         const getMyQuestionnaire = async (id) => {
@@ -75,7 +93,6 @@ const Questionnaire = (props) => {
             {
                 questionnaire ?
                     <div className="fullscreen justify-content-between d-flex flex-column">
-                        {console.log(questionnaire)}
                         <CarouselProvider
                             naturalSlideWidth={100}
                             naturalSlideHeight={63}
@@ -106,7 +123,7 @@ const Questionnaire = (props) => {
                                                 questionnaire.questions.map((val, i) => {
                                                     return (
                                                         <Slide index={i} key={i}>
-                                                            <Question choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
+                                                            <Question onChangeSelection={onChangeSelection} qNumber={i} choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
                                                         </Slide>
                                                     )
                                                 })

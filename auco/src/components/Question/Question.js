@@ -4,6 +4,15 @@ import Answer from './Answer';
 import './question.css';
 
 const Question = (props) => {
+    const number = props.qNumber;
+    const change = (e) => {
+        const data = {};
+        data[number] = e.currentTarget.value;
+
+        console.log(data);
+        props.onChangeSelection(data)
+    }
+
     return (
         props.choice == "multiple choice" ?
             <div>
@@ -22,7 +31,7 @@ const Question = (props) => {
             </div >
             :
             <div>
-                <AnswerScale className="mt-3" question={props.question} answers={props.answers}></AnswerScale>
+                <AnswerScale className="mt-3" question={props.question} answers={props.answers} {...props} change={change}></AnswerScale>
             </div>
     );
 }

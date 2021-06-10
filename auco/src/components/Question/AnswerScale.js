@@ -14,7 +14,7 @@ const AnswerScale = (props) => {
                         return (
                             <Col className="radioGroupBelow d-flex justify-content-center" key={i}>
                                 <Label check>
-                                    <Input type="radio" name="radio1" />
+                                    <Input type="radio" name="radio1" onChange={props.change} value={val}/>
                                     {val}
                                 </Label>
                             </Col>
