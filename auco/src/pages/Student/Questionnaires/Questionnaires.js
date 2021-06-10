@@ -66,7 +66,7 @@ const Questionnaires = (props) => {
                         {console.log(questionnaire)}
                         <CarouselProvider
                             naturalSlideWidth={100}
-                            naturalSlideHeight={60}
+                            naturalSlideHeight={63}
                             totalSlides={questionnaire.questions.length}
                             touchEnabled={false}
                             dragEnabled={false}
@@ -94,7 +94,7 @@ const Questionnaires = (props) => {
                                                 questionnaire.questions.map((val, i) => {
                                                     return (
                                                         <Slide index={i} key={i}>
-                                                            <Question choice={val.type} answers={val.answers} question={val.question}></Question>
+                                                            <Question choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
                                                         </Slide>
                                                     )
                                                 })
