@@ -13,7 +13,7 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-re
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './questionnaires.css';
 
-const Questionnaires = (props) => {
+const Questionnaire = (props) => {
     const [questionnaire, setQuestionnaire] = useState(false);
     const [slideCount, setSlide] = useState(1);
 
@@ -125,4 +125,4 @@ const Questionnaires = (props) => {
     );
 }
 
-export default Questionnaires;
+export default Questionnaire;

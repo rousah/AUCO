@@ -13,7 +13,7 @@ import Clases from './pages/Teacher/Clases/Clases';
 import Class from './pages/Teacher/Clases/Class';
 import Profile from './pages/Teacher/Profile/Profile';
 import StudentProfile from './pages/Student/Profile/StudentProfile';
-import Questionnaires from './pages/Student/Questionnaires/Questionnaires';
+import Questionnaire from './pages/Student/Questionnaires/Questionnaire';
 
 import useToken from './services/useToken';
 
@@ -35,7 +35,7 @@ function App() {
         <PrivateRoute path='/clases' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Clases} />
         <PrivateRoute path='/profile' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={role === 'teacher' ? Profile : StudentProfile} />
         <PrivateRoute path='/class/:id' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Class} />
-        <PrivateRoute path='/questionnaire/:questionnaireId' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Questionnaires} />
+        <PrivateRoute path='/questionnaire/:questionnaireId' isAuthenticated={isAuthenticated()} token={token} userId={userId} component={Questionnaire} />
       </div>
     </Router >
   );
