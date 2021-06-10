@@ -6,7 +6,7 @@ import './question.css';
 
 const AnswerScale = (props) => {
     return (
-        <DashboardCard content={
+        <DashboardCard {...props} content={
             <div>
                 <h4 className="text-center">{props.question}</h4>
                 <Row>

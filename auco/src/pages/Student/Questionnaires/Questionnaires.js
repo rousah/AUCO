@@ -75,7 +75,7 @@ const Questionnaires = (props) => {
                             <Container className="w-50 mt-3">
                                 <div>
                                     <Row>
-                                        <Col className="d-flex align-items-center justify-content-between mb-2">
+                                        <Col className="d-flex align-items-center justify-content-between mb-1">
                                             <h2>{questionnaire.name}</h2>
                                             <ButtonMain buttonText="x" className="px-3" fontWeight="800" fontSize="25px" onClick={toggleConfirmation}></ButtonMain>
                                         </Col>
@@ -85,10 +85,10 @@ const Questionnaires = (props) => {
                                             <Progress value={slideCount / questionnaire.questions.length * 100} color="secondary"></Progress>
                                         </Col>
                                     </Row>
-                                    <Row className="mb-3 p-3">
+                                    <Row className="mb-2 p-3">
                                         {questionnaire.description}
                                     </Row>
-                                    <Row className="mb-5">
+                                    <Row className="">
                                         <Slider>
                                             {
                                                 questionnaire.questions.map((val, i) => {
@@ -106,10 +106,12 @@ const Questionnaires = (props) => {
                             <div className="border-top mt-5">
                                 <div className="w-50 container d-flex justify-content-between">
                                     <ButtonBack style={noButtonStyle} onClick={uncountSlides}>
-                                        <ButtonMain secondary buttonText="Anterior" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
+                                        <ButtonMain secondary buttonText="<" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonBack>
+                                    <ButtonMain buttonText="Guardar" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
+
                                     <ButtonNext style={noButtonStyle} onClick={countSlides}>
-                                        <ButtonMain buttonText="Siguiente" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
+                                        <ButtonMain secondary buttonText=">" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonNext>
                                 </div>
                             </div>

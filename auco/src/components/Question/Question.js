@@ -22,7 +22,7 @@ const Question = (props) => {
             </div >
             :
             <div>
-                <AnswerScale question={props.question} answers={props.answers}></AnswerScale>
+                <AnswerScale className="mt-3" question={props.question} answers={props.answers}></AnswerScale>
             </div>
     );
 }
