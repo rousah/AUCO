@@ -24,6 +24,7 @@ const Questionnaire = (props) => {
     let { questionnaireId } = useParams();
     const { currentUser } = useToken();
 
+    // back and next buttons for question slides
     const noButtonStyle = {
         background: "none",
         color: "inherit",
@@ -33,6 +34,17 @@ const Questionnaire = (props) => {
         cursor: "default",
         outline: "inherit"
     }
+    const hideButtonStyle = {
+        background: "none",
+        color: "inherit",
+        border: "none",
+        padding: "0",
+        font: "inherit",
+        cursor: "default",
+        outline: "inherit",
+        visibility: "hidden"
+    }
+
     function countSlides() {
         setSlide(slideCount + 1);
     }
@@ -105,12 +117,11 @@ const Questionnaire = (props) => {
                             </Container>
                             <div className="border-top mt-5">
                                 <div className="w-50 container d-flex justify-content-between">
-                                    <ButtonBack style={noButtonStyle} onClick={uncountSlides}>
+                                    <ButtonBack style={slideCount > 1 ? noButtonStyle : hideButtonStyle} onClick={uncountSlides}>
                                         <ButtonMain secondary buttonText="<" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonBack>
                                     <ButtonMain buttonText="Guardar" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
-
-                                    <ButtonNext style={noButtonStyle} onClick={countSlides}>
+                                    <ButtonNext style={slideCount < questionnaire.questions.length ? noButtonStyle : hideButtonStyle} onClick={countSlides}>
                                         <ButtonMain secondary buttonText=">" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
                                     </ButtonNext>
                                 </div>
