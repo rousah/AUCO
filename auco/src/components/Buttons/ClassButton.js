@@ -88,7 +88,7 @@ const ClassButton = (props) => {
                     }
                 </Row>
             </Link>
-            <ConfirmationModal isOpen={modal} action={deleteClass} actionInfo={props.thisClass._id} toggle={toggleConfirmation} modal={modal} headerText="¡Ciudado!" confirmationText={"Estás a punto de eliminar la clase " + props.thisClass.name + ". Se borrará toda la información de la clase, y también las cuentas de los estudiantes. Ya no tendrán acceso a la plataforma. ¿Estás seguro de que quieres eliminar la clase " + props.thisClass.name + "?"} actionText="Eliminar" loadingText="Eliminando clase..." />
+            <ConfirmationModal server isOpen={modal} action={deleteClass} actionInfo={props.thisClass._id} toggle={toggleConfirmation} modal={modal} headerText="¡Ciudado!" confirmationText={"Estás a punto de eliminar la clase " + props.thisClass.name + ". Se borrará toda la información de la clase, y también las cuentas de los estudiantes. Ya no tendrán acceso a la plataforma. ¿Estás seguro de que quieres eliminar la clase " + props.thisClass.name + "?"} actionText="Eliminar" loadingText="Eliminando clase..." />
         </div>
     );
 }

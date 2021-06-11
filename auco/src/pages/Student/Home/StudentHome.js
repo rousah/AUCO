@@ -5,9 +5,9 @@ import Loading from '../../../components/Loading';
 import useToken from '../../../services/useToken';
 import DashboardCard from '../../../components/Dashboard/DashboardCard';
 import { Progress } from 'reactstrap';
-import levelIllustration from '../../../assets/illustrations/badges/levels/LEVEL1.png';
 import { getClass } from '../../../services/getClass';
 import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
+import { getStudentGamification } from '../../../services/getStudentGamification';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import ReportModal from '../../../components/Notification/ReportModal';
@@ -45,6 +45,7 @@ const StudentHome = (props) => {
 
     const [gamification, setGamification] = useState();
     const [myClass, setMyClass] = useState();
+    const [myGamification, setMyGamification] = useState();
 
     function combineStudentGamification(thisClass, stud) {
         let game = [];
@@ -61,6 +62,20 @@ const StudentHome = (props) => {
     }
 
     useEffect(() => {
+        const getMyInfo = async (thisClass, students) => {
+            const studentInfo = await getStudentGamification(currentUser._id).then(response => {
+                // if get students info success
+                if (response) {
+                    return response;
+                }
+            });
+
+            // Sets gamification info combining student with gamification student
+            combineStudentGamification(thisClass, students);
+
+            setMyGamification(studentInfo);
+        }
+
         const getMyStudents = async (thisClass) => {
             const students = await getStudentsFromClass(currentUser.id_class).then(response => {
                 // if get students success
@@ -69,8 +84,9 @@ const StudentHome = (props) => {
                 }
             });
 
+
             // Sets gamification info combining student with gamification student
-            combineStudentGamification(thisClass, students);
+            getMyInfo(thisClass, students);
         }
 
         const getMyClass = async (id) => {
@@ -87,12 +103,18 @@ const StudentHome = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const calculatePoints = (points) => {
+        let minus = Math.trunc(points/100);
+        return points - minus*100;
+    }
+
     return (
         <div>
             <NavBarStudent home></NavBarStudent>
             {
-                currentUser && gamification && myClass ?
-                    <Container>
+                currentUser && gamification && myClass && myGamification ?
+                    <Container fluid="xl">
+                        {console.log(myGamification)}
                         <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
                         <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
                         <Row className="mt-3">
@@ -129,20 +151,20 @@ const StudentHome = (props) => {
                                     <DashboardCard title="Progreso" className="h-100" content={
                                         <div className="d-flex">
                                             <Col xs="2" className="me-3">
-                                                <img src={levelIllustration} alt="level badge" style={{ width: "100%" }}></img>
+                                                <img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                             </Col>
                                             <Col className="d-flex flex-column justify-content-center">
                                                 <Row>
                                                     <Col className="text-muted">
-                                                        Objetivo: Nivel 2
+                                                        Objetivo: Nivel {myGamification.level + 1}
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col className="d-flex flex-column justify-content-center">
-                                                        <Progress value="50" color="primary" striped animated></Progress>
+                                                        <Progress value={calculatePoints(myGamification.score)} color="primary" striped animated></Progress>
                                                     </Col>
                                                     <Col xs="2" className="d-flex flex-column justify-content-center p-0">
-                                                        <span>50/100</span>
+                                                        <span>{calculatePoints(myGamification.score)}/100</span>
                                                     </Col>
                                                 </Row>
                                                 <Row>

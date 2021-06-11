@@ -197,7 +197,7 @@ const Class = (props) => {
                                                 {
                                                     forms.map((val, i) => {
                                                         return (
-                                                            <Form key={i} formInfo={val} changeForm={changeForms}></Form>
+                                                            <Form key={i} formInfo={val} changeForm={changeForms} classid={id}></Form>
                                                         )
                                                     })
                                                 }

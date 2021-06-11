@@ -12,17 +12,17 @@ const QuestionnaireButton = (props) => {
         color: 'white',
         fontSize: props.fontSize,
         fontWeight: props.fontWeight,
-        padding: '1rem 1rem 1rem 0rem ',
+        padding: '10px 10px 10px 10px',
         textDecoration: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: '1rem'
+        margin: '5px'
     };
 
     return (
         <Link className="d-flex text-center" style={styleMain} tag={RRNavLink} to={{ pathname: "/questionnaire/" + props.questionnaire.id_questionnaire}}>
-            <Col className="me-3">
+            <Col className="me-1 ms-1" xs={4}>
                 <Circle
                     animate={true} // Boolean: Animated/Static progress
                     size={70} // Number: Defines the size of the circle.
@@ -31,6 +31,7 @@ const QuestionnaireButton = (props) => {
                     progressColor="#3956f7"  // String: Color of "progress" portion of circle.
                     bgColor="#a5b0fb" // String: Color of "empty" portion of circle.
                     textColor="#ffffff" // String: Color of percentage text color.
+                    responsive={true}
                     textStyle={{
                         font: '7rem "Baloo 2", Helvetica, sans-serif' // CSSProperties: Custom styling for percentage.
                     }}
@@ -40,8 +41,8 @@ const QuestionnaireButton = (props) => {
                     showPercentageSymbol={true} // Boolean: Show/hide only the "%" symbol.
                 />
             </Col>
-            <Col className="d-flex align-items-center justify-content-center">
-                <h3 className="m-0 fw-light">{props.questionnaire.name}</h3>
+            <Col className="d-flex align-items-center justify-content-end">
+                <h5 className="m-0 fw-light">Cuestionario {props.questionnaire.name}</h5>
             </Col>
         </Link>
     );

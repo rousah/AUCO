@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBarStudent from '../../../components/NavBar/NavBarStudent';
+import { getStudentGamification } from '../../../services/getStudentGamification';
 import { Container, Row, Col } from 'reactstrap';
 import Loading from '../../../components/Loading';
 import useToken from '../../../services/useToken';
@@ -8,17 +9,40 @@ import { Input, Label } from 'reactstrap';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { Progress } from 'reactstrap';
 import studentsIllustration from '../../../assets/illustrations/students.png';
-import level1 from '../../../assets/illustrations/badges/levels/LEVEL1.png';
-import level2 from '../../../assets/illustrations/badges/levels/LEVEL2.png';
 
 const StudentProfile = (props) => {
     const { currentUser } = useToken();
-    console.log(currentUser);
+    const [myGamification, setMyGamification] = useState();
+    const [myLevelBadges, setMyLevelBadges] = useState([]);
+
+    useEffect(() => {
+        const getMyInfo = async () => {
+            const studentInfo = await getStudentGamification(currentUser._id).then(response => {
+                // if get students info success
+                if (response) {
+                    return response;
+                }
+            });
+
+            var levels = Array.apply(null, {length: studentInfo.level}).map(Number.call, Number)
+            setMyLevelBadges(levels);
+            setMyGamification(studentInfo);
+        }
+
+        getMyInfo();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const calculatePoints = (points) => {
+        let minus = Math.trunc(points/100);
+        return points - minus*100;
+    }
+
     return (
         <div>
             <NavBarStudent profile></NavBarStudent>
             {
-                currentUser ?
+                currentUser && myGamification ?
                     <Container>
                         <Row className="p-3 justify-content-between mt-3 mb-4">
                             <Col className="p-0 d-flex align-items-center">
@@ -33,20 +57,20 @@ const StudentProfile = (props) => {
                                     <DashboardCard title="Mi progreso" content={
                                         <div className="d-flex">
                                             <Col xs="2" className="me-3">
-                                                <img src={level1} alt="level badge" style={{ width: "100%" }}></img>
+                                                <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                             </Col>
                                             <Col className="d-flex flex-column justify-content-center">
                                                 <Row>
                                                     <Col className="text-muted">
-                                                        Objetivo: Nivel 2
+                                                        Objetivo: Nivel {myGamification.level + 1}
                                                     </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col className="d-flex flex-column justify-content-center">
-                                                        <Progress value="50" color="primary" striped animated></Progress>
+                                                        <Progress value={calculatePoints(myGamification.score)} color="primary" striped animated></Progress>
                                                     </Col>
                                                     <Col xs="2" className="d-flex flex-column justify-content-center p-0">
-                                                        <span>50/100</span>
+                                                        <span>{calculatePoints(myGamification.score)}/100</span>
                                                     </Col>
                                                 </Row>
                                                 <Row>
@@ -62,11 +86,17 @@ const StudentProfile = (props) => {
                                     <DashboardCard title="Mis logros" content={
                                         <div>
                                             <Row className="mb-4">
+                                                {
+                                                    myLevelBadges.map((value, i) => {
+                                                        return (
+                                                            <Col xs="2" className="d-flex align-items-center" key={i}>
+                                                                <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${value + 1}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
+                                                            </Col>
+                                                        )
+                                                    })
+                                                }
                                                 <Col xs="2" className="d-flex align-items-center">
-                                                    <img src={level1} alt="level badge" style={{ width: "100%" }}></img>
-                                                </Col>
-                                                <Col xs="2" className="d-flex align-items-center">
-                                                    <img src={level2} alt="level badge" style={{ width: "100%" }}></img>
+                                                    <img img src={require(`../../../assets/illustrations/badges/levels/LEVEL${myGamification.level + 1}.png`).default} alt="level badge" style={{ width: "100%" }}></img>
                                                 </Col>
                                             </Row>
                                         </div>

@@ -1,25 +1,63 @@
-import React from 'react';
-import ButtonMain from '../Buttons/ButtonMain';
-import { Container, Row, Col } from 'reactstrap';
+import React, { useState } from 'react';
 import AnswerScale from './AnswerScale';
 import Answer from './Answer';
-import DashboardCard from '../Dashboard/DashboardCard';
 import './question.css';
 
 const Question = (props) => {
+    const [selected, setSelected] = useState([]);
+
+    // Question number
+    const number = props.qNumber;
+
+    // For saving single choice selection (radio)
+    const changeSelection = (e) => {
+        const data = {};
+        data[number] = e.currentTarget.value;
+        props.onChangeSelection(data)
+    }
+
+    // For saving multiple choice selection
+    const changeMultipleSelection = (value) => {
+        const data = {};
+        data[number] = value;
+        console.log(data);
+        props.onChangeSelection(data);
+    }
+
+    const addToAnswers = (value) => {
+        const answers = selected.concat(value);
+        setSelected(answers);
+        changeMultipleSelection(answers);
+    }
+
+    const removeFromAnswers = (value) => {
+
+        // Filter selected to delete that item (return all that don't have the same value)
+        var filtered = selected.filter(function (e) { return e !== value });
+
+        setSelected(filtered);
+        changeMultipleSelection(filtered);
+    }
+
     return (
-        props.scale ?
+        props.choice == "multiple choice" ?
             <div>
-                <AnswerScale question="Algún compañero/a me ha pegado o golpeado para hacerme daño de verdad"></AnswerScale>
-            </div>
+                <h4 className="text-center">{props.question}</h4>
+                {props.description != undefined ?
+                    <span> {props.description} </span>
+                    : <span></span>
+                }
+                {
+                    props.answers.map((val, i) => {
+                        return (
+                            <Answer key={i} text={val} add={addToAnswers} delete={removeFromAnswers}></Answer>
+                        )
+                    })
+                }
+            </div >
             :
             <div>
-                <h4 className="text-center">Cuando has respondido a las preguntas anteriores, ¿en quién estabas pensando?</h4>
-                <Answer text="En un compañero especialmente"></Answer>
-                <Answer text="En una compañera especialmente"></Answer>
-                <Answer text="En un compañero especialmente, acompañado de un grupo de amigos/as que le apoyan"></Answer>
-                <Answer text="En una compañera especialmente, acompañada de un grupo de amigos/as que le apoyan"></Answer>
-                <Answer text="En varios compañeros/as que son un grupo de amigos"></Answer>
+                <AnswerScale className="mt-3" question={props.question} answers={props.answers} {...props} change={changeSelection}></AnswerScale>
             </div>
     );
 }
