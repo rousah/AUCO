@@ -95,6 +95,15 @@ const Questionnaire = (props) => {
             });
 
             setQuestionnaire(thisQuestionnaire);
+
+            let r = [];
+            for(let i = 0; i < thisQuestionnaire.questions.length; i++) {
+                r.push(null);
+            }
+            setResponses(prevState => ({
+                ...prevState,
+                ...r
+            }));
         }
 
         // Get questionnaire

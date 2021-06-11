@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col } from 'reactstrap';
 import Circle from 'react-circle';
 import { NavLink as RRNavLink, Link } from 'react-router-dom';
 
 const QuestionnaireButton = (props) => {
+    const [percentage, setPercentage] = useState(0);
+
     const styleMain = {
         boxShadow: '0px 4px 0px 0px #a3b2ff',
         backgroundColor: "#c3cdff",
@@ -20,14 +22,45 @@ const QuestionnaireButton = (props) => {
         margin: '5px'
     };
 
+    useEffect(() => {
+        // Length of actual answered questions of the questionnaire
+        let myResponsesLength = 0;
+
+        // Object with answers to questionnaire
+        let myResponse;
+
+        // Find the responses to this questionnaire
+        props.responses.forEach(element => {
+            if (element.id_questionnaire === props.questionnaire.id_questionnaire) myResponse = element;
+            else myResponse = null;
+        });
+
+        // If responses exist
+        if (myResponse != null) {
+            // Find responses are not null
+            for (var response in myResponse) {
+                if (myResponse.hasOwnProperty(response)) {
+                    if (myResponse[response] != null) myResponsesLength++;
+                }
+            }
+
+            // Calculate percentage -> - 3 to count out ids
+            var p = Math.trunc(myResponsesLength / (Object.keys(myResponse).length - 3) * 100);
+            setPercentage(p);
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
     return (
-        <Link className="d-flex text-center" style={styleMain} tag={RRNavLink} to={{ pathname: "/questionnaire/" + props.questionnaire.id_questionnaire}}>
+        <Link className="d-flex text-center" style={styleMain} tag={RRNavLink} to={{ pathname: "/questionnaire/" + props.questionnaire.id_questionnaire }}>
             <Col className="me-1 ms-1" xs={4}>
                 <Circle
                     animate={true} // Boolean: Animated/Static progress
                     size={70} // Number: Defines the size of the circle.
                     lineWidth={50} // Number: Defines the thickness of the circle's stroke. 
-                    progress={63} // Number: Update to change the progress and percentage.
+                    progress={percentage} // Number: Update to change the progress and percentage.
                     progressColor="#3956f7"  // String: Color of "progress" portion of circle.
                     bgColor="#a5b0fb" // String: Color of "empty" portion of circle.
                     textColor="#ffffff" // String: Color of percentage text color.

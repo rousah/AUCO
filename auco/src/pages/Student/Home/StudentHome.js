@@ -138,7 +138,7 @@ const StudentHome = (props) => {
                                                     if (val.active) {
                                                         return (
                                                             <Col xs="6" className="p-0" key={i}>
-                                                                <QuestionnaireButton questionnaire={val}></QuestionnaireButton>
+                                                                <QuestionnaireButton questionnaire={val} responses={myGamification.responses}></QuestionnaireButton>
                                                             </Col>
                                                         )
                                                     } else return null;
