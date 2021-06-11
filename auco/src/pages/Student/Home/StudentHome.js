@@ -135,11 +135,13 @@ const StudentHome = (props) => {
                                         <Row className="justify-content-between">
                                             {
                                                 myClass.questionnaires.map((val, i) => {
-                                                    return (
-                                                        <Col xs="6" className="p-0" key={i}>
-                                                            <QuestionnaireButton questionnaire={val}></QuestionnaireButton>
-                                                        </Col>
-                                                    )
+                                                    if (val.active) {
+                                                        return (
+                                                            <Col xs="6" className="p-0" key={i}>
+                                                                <QuestionnaireButton questionnaire={val}></QuestionnaireButton>
+                                                            </Col>
+                                                        )
+                                                    } else return null;
                                                 })
                                             }
                                         </Row>
