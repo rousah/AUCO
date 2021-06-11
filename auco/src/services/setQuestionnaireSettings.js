@@ -1,9 +1,9 @@
 // setQuestionnaireSettings.js
 import API from '../API';
 
-export async function setQuestionnaireSettings(classid, form) {
+export async function setQuestionnaireSettings(form) {
     console.log("setQuestionnaireSettings()");
-    const resp = await API.put(`/class/`+classid+`/update-formsettings`, form)
+    const resp = await API.put(`/class/update-formsettings`, form)
         .then(res => {
             console.log("Success setQuestionnaireSettings!");
             return res.data;

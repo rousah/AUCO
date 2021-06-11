@@ -50,7 +50,7 @@ const FormSettingsModal = (props) => {
     const saveSettings = async (e) => {
         setLoading(true);
 
-        const savedSettings = await setQuestionnaireSettings(props.classid, formSettings).then(response => {
+        const savedSettings = await setQuestionnaireSettings(formSettings).then(response => {
             // if set questionnaire settings success
             if (response) {
                 props.changeForm(formSettings);
