@@ -14,7 +14,6 @@ const Answer = (props) => {
         // Delete from selection
         else {
             props.delete(props.text);
-            console.log("delete");
         }
         setSelected(!selected);
     }

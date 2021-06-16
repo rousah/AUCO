@@ -12,6 +12,7 @@ import ConfirmationModal from '../../../components/ConfirmationModal/Confirmatio
 import GamificationModal from '../../../components/GamificationModal/GamificationModal';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import { saveResponses } from '../../../services/saveResponses';
+import { savePoints } from '../../../services/savePoints';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './questionnaires.css';
 
@@ -74,17 +75,14 @@ const Questionnaire = (props) => {
 
     // When response to answer changes
     const onChangeSelection = (answer) => {
-        console.log(answer)
         setResponses(prevState => ({
             ...prevState,
             ...answer
         }));
-        console.log(responses);
     }
 
     // Save questionnaire responses recorded so far
     const onClickSave = async () => {
-        console.log(responses);
         setLoading(true);
 
         let answersCount = 0;
@@ -102,7 +100,16 @@ const Questionnaire = (props) => {
             const res = await saveResponses(responses).then(res => {
                 return res;
             });
-            console.log(res);
+
+            if (res) {
+                console.log("add points")
+                // Add points answers
+                const points = await savePoints(currentUser._id, questionnaire.points).then(res => {
+                    return res;
+                });
+                console.log(points);
+            }
+
 
             // Modal well done, sets loading false and goes back to home
             toggleGameModal();
@@ -193,7 +200,7 @@ const Questionnaire = (props) => {
                     </div>
                     :
                     <div>
-                        <GamificationModal isOpen={gameModal} toggle={toggleGameModal} modal={gameModal} setLoading={setLoading} points={questionnaire.points}/>
+                        <GamificationModal isOpen={gameModal} toggle={toggleGameModal} modal={gameModal} setLoading={setLoading} points={questionnaire.points} />
                         <Loading></Loading>
                     </div>
             }
