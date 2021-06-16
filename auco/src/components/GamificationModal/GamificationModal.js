@@ -20,7 +20,7 @@ const GamificationModal = (props) => {
     return (
         <Modal isOpen={props.modal} toggle={props.toggle} className={props.className} centered>
             <ModalBody className="position-relative">
-                <LottieAnimation loop={true} lotti={presentAnim} height={300} width={300} className="position-absolute top-0 start-50 translate-middle" />
+                <LottieAnimation loop={false} lotti={presentAnim} height={300} width={300} className="position-absolute top-0 start-50 translate-middle" />
                 <div style={{ height: '0px', paddingBottom: '25%' }}></div>
                 <div className="text-center display-6 fw-bold">
                     ¡Felicidades!<br></br>
