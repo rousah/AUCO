@@ -9,6 +9,7 @@ import Question from '../../../components/Question/Question';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { getQuestionnaire } from '../../../services/getQuestionnaire';
 import ConfirmationModal from '../../../components/ConfirmationModal/ConfirmationModal';
+import GamificationModal from '../../../components/GamificationModal/GamificationModal';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import { saveResponses } from '../../../services/saveResponses';
 import 'pure-react-carousel/dist/react-carousel.es.css';
@@ -30,6 +31,7 @@ const Questionnaire = (props) => {
     // Questionnaire and question (slide) count
     const [questionnaire, setQuestionnaire] = useState(false);
     const [slideCount, setSlide] = useState(1);
+
     function countSlides() {
         setSlide(slideCount + 1);
     }
@@ -40,6 +42,10 @@ const Questionnaire = (props) => {
     // Confirmation modal on exit questionnaire
     const [modal, setModal] = useState(false);
     const toggleConfirmation = () => setModal(!modal);
+
+    // Gamification modal on send questionnaire
+    const [gameModal, setGameModal] = useState(false);
+    const toggleGameModal = () => setGameModal(!gameModal);
 
     // back and next buttons for question slides
     const noButtonStyle = {
@@ -80,12 +86,27 @@ const Questionnaire = (props) => {
     const onClickSave = async () => {
         console.log(responses);
         setLoading(true);
-        const res = await saveResponses(responses).then(res => {
-            return res;
-        });
-        console.log(res);
-        setLoading(false);
-        goBack();
+
+        let answersCount = 0;
+        // Count responses
+        for (var response in responses) {
+            if (responses.hasOwnProperty(response)) {
+                if (responses[response] != null) answersCount++;
+            }
+        }
+        if (answersCount > 0) {
+            // To not take into account ids
+            answersCount = answersCount - 2;
+
+            // Save answers
+            const res = await saveResponses(responses).then(res => {
+                return res;
+            });
+            console.log(res);
+
+            // Modal well done, sets loading false and goes back to home
+            toggleGameModal();
+        }
     }
 
     useEffect(() => {
@@ -97,7 +118,7 @@ const Questionnaire = (props) => {
             setQuestionnaire(thisQuestionnaire);
 
             let r = [];
-            for(let i = 0; i < thisQuestionnaire.questions.length; i++) {
+            for (let i = 0; i < thisQuestionnaire.questions.length; i++) {
                 r.push(null);
             }
             setResponses(prevState => ({
@@ -171,7 +192,10 @@ const Questionnaire = (props) => {
                         </CarouselProvider>
                     </div>
                     :
-                    <Loading></Loading>
+                    <div>
+                        <GamificationModal isOpen={gameModal} toggle={toggleGameModal} modal={gameModal} setLoading={setLoading} />
+                        <Loading></Loading>
+                    </div>
             }
         </div>
     );
