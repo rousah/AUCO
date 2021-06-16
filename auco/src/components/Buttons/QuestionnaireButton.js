@@ -26,14 +26,8 @@ const QuestionnaireButton = (props) => {
         // Length of actual answered questions of the questionnaire
         let myResponsesLength = 0;
 
-        // Object with answers to questionnaire
-        let myResponse;
-
         // Find the responses to this questionnaire
-        props.responses.forEach(element => {
-            if (element.id_questionnaire === props.questionnaire.id_questionnaire) myResponse = element;
-            else myResponse = null;
-        });
+        const myResponse = props.responses.filter(q => q.id_questionnaire === props.questionnaire.id_questionnaire)[0];
 
         // If responses exist
         if (myResponse != null) {
