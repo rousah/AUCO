@@ -20,7 +20,6 @@ const Question = (props) => {
     const changeMultipleSelection = (value) => {
         const data = {};
         data[number] = value;
-        console.log(data);
         props.onChangeSelection(data);
     }
 

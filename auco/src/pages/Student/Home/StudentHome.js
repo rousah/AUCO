@@ -114,7 +114,6 @@ const StudentHome = (props) => {
             {
                 currentUser && gamification && myClass && myGamification ?
                     <Container fluid="xl">
-                        {console.log(myGamification)}
                         <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
                         <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
                         <Row className="mt-3">
