@@ -193,7 +193,7 @@ const Questionnaire = (props) => {
                     </div>
                     :
                     <div>
-                        <GamificationModal isOpen={gameModal} toggle={toggleGameModal} modal={gameModal} setLoading={setLoading} />
+                        <GamificationModal isOpen={gameModal} toggle={toggleGameModal} modal={gameModal} setLoading={setLoading} points={questionnaire.points}/>
                         <Loading></Loading>
                     </div>
             }
