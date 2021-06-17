@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Col } from 'reactstrap';
 import Circle from 'react-circle';
 import { NavLink as RRNavLink, Link } from 'react-router-dom';
+import { getQuestionnaire } from '../../services/getQuestionnaire';
 
 const QuestionnaireButton = (props) => {
     const [percentage, setPercentage] = useState(0);
@@ -23,25 +24,41 @@ const QuestionnaireButton = (props) => {
     };
 
     useEffect(() => {
-        // Length of actual answered questions of the questionnaire
-        let myResponsesLength = 0;
+        const getMyQuestionnaire = async (id) => {
+            // Get questionnaire
+            const thisQuestionnaire = await getQuestionnaire(id).then(response => {
+                return response;
+            });
 
-        // Find the responses to this questionnaire
-        const myResponse = props.responses.filter(q => q.id_questionnaire === props.questionnaire.id_questionnaire)[0];
+            console.log(thisQuestionnaire)
+            // Find the responses to this questionnaire
+            const myResponse = props.responses.filter(q => q.id_questionnaire === props.questionnaire.id_questionnaire)[0];
 
-        // If responses exist
-        if (myResponse != null) {
-            // Find responses are not null
-            for (var response in myResponse) {
-                if (myResponse.hasOwnProperty(response)) {
-                    if (myResponse[response] != null) myResponsesLength++;
+            // If responses exist
+            if (myResponse != null) {
+
+                // Calculate percentage -> - 3 to count out ids
+                let answersCount = 0;
+                // Count responses
+                for (var response in myResponse) {
+                    if (myResponse.hasOwnProperty(response)) {
+                        answersCount++;
+                    }
+                }
+                answersCount = answersCount - 3;
+
+                // If there are answers
+                if (answersCount > 0) {
+                    var p = Math.trunc(answersCount / thisQuestionnaire.questions.length * 100);
+                    setPercentage(p);
+                }
+                else {
+                    setPercentage(0);
                 }
             }
-
-            // Calculate percentage -> - 3 to count out ids
-            var p = Math.trunc(myResponsesLength / (Object.keys(myResponse).length - 3) * 100);
-            setPercentage(p);
         }
+
+        getMyQuestionnaire(props.questionnaire.id_questionnaire);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

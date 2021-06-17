@@ -141,7 +141,7 @@ const Questionnaire = (props) => {
 
             setQuestionnaire(thisQuestionnaire);
 
-            if (thisQuestionnaire.questions != undefined) {
+            /*if (thisQuestionnaire.questions != undefined) {
                 let r = [];
                 for (let i = 0; i < thisQuestionnaire.totalQuestions; i++) {
                     r.push(null);
@@ -150,7 +150,7 @@ const Questionnaire = (props) => {
                     ...prevState,
                     ...r
                 }));
-            }
+            } */
         }
 
         // Get questionnaire
