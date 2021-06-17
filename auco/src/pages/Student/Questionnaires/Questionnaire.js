@@ -194,7 +194,7 @@ const Questionnaire = (props) => {
                                                 questionnaire.questions.map((val, i) => {
                                                     return (
                                                         <Slide index={i} key={i}>
-                                                            <Question onChangeSelection={onChangeSelection} qNumber={i} choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
+                                                            <Question onChangeSelection={onChangeSelection} qNumber={val.questionNumber} choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
                                                         </Slide>
                                                     )
                                                 })
