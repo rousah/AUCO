@@ -8,6 +8,7 @@ import useToken from '../../../services/useToken';
 import Question from '../../../components/Question/Question';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { getQuestionnaire } from '../../../services/getQuestionnaire';
+import { getRandomQuestionsOfQuestionnaire } from '../../../services/getRandomQuestionsOfQuestionnaire';
 import ConfirmationModal from '../../../components/ConfirmationModal/ConfirmationModal';
 import GamificationModal from '../../../components/GamificationModal/GamificationModal';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
@@ -110,7 +111,6 @@ const Questionnaire = (props) => {
                 console.log(points);
             }
 
-
             // Modal well done, sets loading false and goes back to home
             toggleGameModal();
         }
@@ -118,20 +118,39 @@ const Questionnaire = (props) => {
 
     useEffect(() => {
         const getMyQuestionnaire = async (id) => {
-            const thisQuestionnaire = await getQuestionnaire(id).then(response => {
+            // OLD WORKING VERSION
+            /*   const thisQuestionnaire = await getQuestionnaire(id).then(response => {
+                   return response;
+               });
+   
+               setQuestionnaire(thisQuestionnaire);
+   
+               let r = [];
+               for (let i = 0; i < thisQuestionnaire.questions.length; i++) {
+                   r.push(null);
+               }
+               setResponses(prevState => ({
+                   ...prevState,
+                   ...r
+               })); */
+
+            // TESTING AND ADAPTING FOR GET PACKAGE OF RANDOM QUESTIONS
+            const thisQuestionnaire = await getRandomQuestionsOfQuestionnaire(id, currentUser._id).then(response => {
                 return response;
             });
 
             setQuestionnaire(thisQuestionnaire);
 
-            let r = [];
-            for (let i = 0; i < thisQuestionnaire.questions.length; i++) {
-                r.push(null);
+            if (thisQuestionnaire.questions != undefined) {
+                let r = [];
+                for (let i = 0; i < thisQuestionnaire.totalQuestions; i++) {
+                    r.push(null);
+                }
+                setResponses(prevState => ({
+                    ...prevState,
+                    ...r
+                }));
             }
-            setResponses(prevState => ({
-                ...prevState,
-                ...r
-            }));
         }
 
         // Get questionnaire
