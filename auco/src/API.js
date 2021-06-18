@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: `http://auco.gti-ia.upv.es`,
+  baseURL: `http://localhost:8082`,
   rejectUnauthorized: false
 });
