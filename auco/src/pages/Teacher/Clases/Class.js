@@ -14,6 +14,7 @@ import NetworkGraph from '../../../components/Graphs/NetworkGraph';
 import Notification from '../../../components/Notification/Notification';
 import LeaderBoard from '../../../components/Leaderboard/LeaderBoard';
 import { NavLink as RRNavLink, Link } from 'react-router-dom';
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import './Class.css'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -43,6 +44,17 @@ const Class = (props) => {
         setForms(thisClass.questionnaires);
         setUsers(stud);
         setGamification(game);
+    }
+
+    const hideButtonStyle = {
+        background: "none",
+        color: "inherit",
+        border: "none",
+        padding: "0",
+        font: "inherit",
+        cursor: "pointer",
+        outline: "inherit",
+        fontSize: '1.5rem'
     }
 
     useEffect(() => {
@@ -142,34 +154,55 @@ const Class = (props) => {
                                 <Row className="mb-3">
                                     <Col xs="6">
                                         <DashboardCard title="Respuestas" content={
-                                            myClass.questionnaires.map((val, i) => {
-                                                console.log(val)
-                                                // Show graph of active questionnaires
-                                                if (val.active) {
-                                                    return (
-                                                        <div>
-                                                            <h6 className="text-center">Cuestionario {val.name}</h6>
-                                                            <div style={{ height: "300px" }}>
-                                                                <PieGraph data={[
-                                                                    {
-                                                                        "id": "Respuestas",
-                                                                        "label": "Respuestas",
-                                                                        "value": val.answered,
-                                                                        "color": "#f89f1e"
-                                                                    },
-                                                                    {
-                                                                        "id": "Sin responder",
-                                                                        "label": "Sin responder",
-                                                                        "value": myClass.students.length - val.answered,
-                                                                        "color": "#fdbf4d"
-                                                                    }
-                                                                ]} key={i} />
-                                                            </div>
-                                                        </div>
-                                                    )
-                                                }
-                                                else return null;
-                                            })
+                                            <Container className="p-0 mt-3">
+                                                <CarouselProvider
+                                                    naturalSlideWidth={300}
+                                                    naturalSlideHeight={300}
+                                                    totalSlides={3}
+                                                    touchEnabled={false}
+                                                    dragEnabled={false}
+                                                    visibleSlides={1}
+                                                    isIntrinsicHeight={false}
+                                                    className="d-flex"
+                                                >
+                                                    <ButtonBack style={hideButtonStyle}>
+                                                        &lt;
+                                                    </ButtonBack>
+                                                    <Slider>{
+                                                        myClass.questionnaires.map((val, i) => {
+                                                            console.log(val)
+                                                            // Show graph of active questionnaires
+                                                            if (val.active) {
+                                                                return (
+                                                                    <Slide index={i} key={i}>
+                                                                        <h6 className="text-center">Cuestionario {val.name}</h6>
+                                                                        <div style={{ height: "300px" }}>
+                                                                            <PieGraph data={[
+                                                                                {
+                                                                                    "id": "Respuestas",
+                                                                                    "label": "Respuestas",
+                                                                                    "value": val.answered,
+                                                                                    "color": "#f89f1e"
+                                                                                },
+                                                                                {
+                                                                                    "id": "Sin responder",
+                                                                                    "label": "Sin responder",
+                                                                                    "value": myClass.students.length - val.answered,
+                                                                                    "color": "#fdbf4d"
+                                                                                }
+                                                                            ]} key={i} />
+                                                                        </div>
+                                                                    </Slide>
+                                                                )
+                                                            }
+                                                            else return null;
+                                                        })}
+                                                    </Slider>
+                                                    <ButtonNext style={hideButtonStyle}>
+                                                        &gt;
+                                                    </ButtonNext>
+                                                </CarouselProvider>
+                                            </Container>
                                         }></DashboardCard>
                                     </Col>
                                     <Col xs="6">
