@@ -80,22 +80,6 @@ const Class = (props) => {
         setForms(newSettingsForms);
     }
 
-
-    const answered = [
-        {
-            "id": "Respuestas",
-            "label": "Respuestas",
-            "value": 20,
-            "color": "#fdbf4d"
-        },
-        {
-            "id": "Sin responder",
-            "label": "Sin responder",
-            "value": 8,
-            "color": "#f89f1e"
-        }
-    ]
-
     const relationships = {
         "nodes": [
             {
@@ -158,16 +142,45 @@ const Class = (props) => {
                                 <Row className="mb-3">
                                     <Col xs="6">
                                         <DashboardCard title="Respuestas" content={
-                                            <div style={{ height: "300px" }}>
-                                                <PieGraph data={answered} />
-                                            </div>
+                                            myClass.questionnaires.map((val, i) => {
+                                                console.log(val)
+                                                // Show graph of active questionnaires
+                                                if (val.active) {
+                                                    return (
+                                                        <div>
+                                                            <h6 className="text-center">Cuestionario {val.name}</h6>
+                                                            <div style={{ height: "300px" }}>
+                                                                <PieGraph data={[
+                                                                    {
+                                                                        "id": "Respuestas",
+                                                                        "label": "Respuestas",
+                                                                        "value": val.answered,
+                                                                        "color": "#f89f1e"
+                                                                    },
+                                                                    {
+                                                                        "id": "Sin responder",
+                                                                        "label": "Sin responder",
+                                                                        "value": myClass.students.length - val.answered,
+                                                                        "color": "#fdbf4d"
+                                                                    }
+                                                                ]} key={i} />
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                                else return null;
+                                            })
                                         }></DashboardCard>
                                     </Col>
                                     <Col xs="6">
                                         <DashboardCard title="Relaciones" content={
-                                            <div style={{ height: "300px" }}>
-                                                <NetworkGraph data={relationships} />
+                                            <div>
+                                                <h6 className="invisible">Cuestionario</h6>
+                                                <div style={{ height: "300px" }}>
+                                                    <NetworkGraph data={relationships} />
+                                                </div>
                                             </div>
+
                                         }></DashboardCard>
                                     </Col>
                                 </Row>

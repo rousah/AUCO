@@ -95,7 +95,7 @@ const Questionnaire = (props) => {
                 if (responses[response] != null) answersCount++;
             }
         }
-        console.log(responses);
+
         if (answersCount > 0) {
             // To not take into account ids
             answersCount = answersCount - 2;
