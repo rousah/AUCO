@@ -124,9 +124,9 @@ const StudentHome = (props) => {
                                             <Col className="mb-3">
                                                 <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3 tw-animate-bounce" fontWeight="600" fontSize="20px"></ButtonMain>
                                             </Col>
-                                            <Col data-tip data-for='happyFace'>
+                                            <Col data-tip data-for='report'>
                                                 <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px" onClick={toggle}></ButtonMain>
-                                                <ReactTooltip backgroundColor="#3956f7" id='happyFace' place="bottom" type="info" effect="solid" className="fw-bold">¡Ayuda a tus compañeros y recibe puntos!</ReactTooltip>
+                                                <ReactTooltip backgroundColor="#3956f7" id='report' place="bottom" type="info" effect="solid" className="fw-bold">¡Ayuda a tus compañeros y recibe puntos!</ReactTooltip>
                                             </Col>
                                         </div>
                                     }></DashboardCard>
