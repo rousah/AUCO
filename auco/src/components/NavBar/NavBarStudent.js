@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faCog, faUser, faQuestion, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faCog, faUser, faQuestion, faSignOutAlt, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import ReportModal from '../Notification/ReportModal';
+import SuccessAlert from '../Notification/SuccessAlert';
 
 import {
     NavbarBrand,
@@ -17,6 +19,29 @@ import useToken from '../../services/useToken';
 const NavBarStudent = (props) => {
     const { deleteToken, userId } = useToken();
 
+    // Toast success
+    const [show, setShow] = useState(false);
+    const handleVisible = () => {
+        setShow(true)
+        setTimeout(() => {
+            // 2s
+            setShow(false)
+        }, 4000);
+    }
+    // Toast error
+    const [showError, setShowError] = useState(false);
+    const handleVisibleError = () => {
+        setShowError(true)
+        setTimeout(() => {
+            // 2s
+            setShowError(false)
+        }, 4000);
+    }
+
+    // Report modal
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
+
     const logout = (e) => {
         deleteToken();
         window.location.href = '/';
@@ -25,6 +50,8 @@ const NavBarStudent = (props) => {
 
     return (
         <header className="px-3 pt-1 navbar-teacher text-white">
+            <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
+            <SuccessAlert text="Error al enviar reporte, inténtelo más tarde." error show={showError}></SuccessAlert>
             <Container>
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <NavbarBrand href="/" className="logo me-lg-auto"><h1 style={{ fontWeight: "800" }} className="m-0">AUCO</h1></NavbarBrand>
@@ -35,6 +62,10 @@ const NavBarStudent = (props) => {
                                 Home
                             </NavLink>
                         </NavItem>
+                        <NavLink onClick={toggle} className="py-0 teacher" style={{cursor: 'pointer'}}>
+                            <FontAwesomeIcon icon={faExclamationCircle} className="bi d-block mx-auto mb-1" size="lg" />
+                            Reportar
+                        </NavLink>
                         <NavItem>
                             <NavLink href="" className={props.settings ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faCog} className="bi d-block mx-auto mb-1" size="lg" />
@@ -63,7 +94,8 @@ const NavBarStudent = (props) => {
                     </Nav>
                 </div>
             </Container>
-        </header >
+            <ReportModal isOpen={modal} toggle={toggle} modal={modal} toggleToast={handleVisible} toggleError={handleVisibleError} />
+        </header>
     );
 }
 
