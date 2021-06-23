@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import useToken from '../../../services/useToken';
 import Question from '../../../components/Question/Question';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
-import { getQuestionnaire } from '../../../services/getQuestionnaire';
+import { getRandomQuestionsOfQuestionnaire } from '../../../services/getRandomQuestionsOfQuestionnaire';
 import ConfirmationModal from '../../../components/ConfirmationModal/ConfirmationModal';
 import GamificationModal from '../../../components/GamificationModal/GamificationModal';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
@@ -28,6 +28,9 @@ const Questionnaire = (props) => {
 
     // Loading
     const [loading, setLoading] = useState(false);
+
+    // Points received for modal
+    const [finalPoints, setPoints] = useState(0);
 
     // Questionnaire and question (slide) count
     const [questionnaire, setQuestionnaire] = useState(false);
@@ -92,6 +95,7 @@ const Questionnaire = (props) => {
                 if (responses[response] != null) answersCount++;
             }
         }
+
         if (answersCount > 0) {
             // To not take into account ids
             answersCount = answersCount - 2;
@@ -103,13 +107,13 @@ const Questionnaire = (props) => {
 
             if (res) {
                 console.log("add points")
-                // Add points answers
-                const points = await savePoints(currentUser._id, questionnaire.points).then(res => {
+                // Add points answers (point per question * number of questions)
+                const points = await savePoints(currentUser._id, questionnaire.points * answersCount).then(res => {
                     return res;
                 });
+                setPoints(questionnaire.points * answersCount);
                 console.log(points);
             }
-
 
             // Modal well done, sets loading false and goes back to home
             toggleGameModal();
@@ -118,20 +122,22 @@ const Questionnaire = (props) => {
 
     useEffect(() => {
         const getMyQuestionnaire = async (id) => {
-            const thisQuestionnaire = await getQuestionnaire(id).then(response => {
+            const thisQuestionnaire = await getRandomQuestionsOfQuestionnaire(id, currentUser._id).then(response => {
                 return response;
             });
 
             setQuestionnaire(thisQuestionnaire);
 
-            let r = [];
-            for (let i = 0; i < thisQuestionnaire.questions.length; i++) {
-                r.push(null);
-            }
-            setResponses(prevState => ({
-                ...prevState,
-                ...r
-            }));
+            /*if (thisQuestionnaire.questions != undefined) {
+                let r = [];
+                for (let i = 0; i < thisQuestionnaire.totalQuestions; i++) {
+                    r.push(null);
+                }
+                setResponses(prevState => ({
+                    ...prevState,
+                    ...r
+                }));
+            } */
         }
 
         // Get questionnaire
@@ -175,7 +181,7 @@ const Questionnaire = (props) => {
                                                 questionnaire.questions.map((val, i) => {
                                                     return (
                                                         <Slide index={i} key={i}>
-                                                            <Question onChangeSelection={onChangeSelection} qNumber={i} choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
+                                                            <Question onChangeSelection={onChangeSelection} qNumber={val.questionNumber} choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
                                                         </Slide>
                                                     )
                                                 })
@@ -200,7 +206,7 @@ const Questionnaire = (props) => {
                     </div>
                     :
                     <div>
-                        <GamificationModal isOpen={gameModal} toggle={toggleGameModal} modal={gameModal} setLoading={setLoading} points={questionnaire.points} />
+                        <GamificationModal isOpen={gameModal} toggle={toggleGameModal} modal={gameModal} setLoading={setLoading} points={finalPoints} />
                         <Loading></Loading>
                     </div>
             }
