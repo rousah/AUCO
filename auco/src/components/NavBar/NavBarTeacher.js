@@ -62,7 +62,7 @@ const NavBarTeacher = (props) => {
     // To get notifs from all classes
     useEffect(() => {
         async function getMyClasses() {
-            const classes = await getClasses({userId: userId}).then(response => {
+            const classes = await getClasses(userId).then(response => {
                 // if get classes success
                 if (response) {
                     console.log(response);
@@ -119,6 +119,7 @@ const NavBarTeacher = (props) => {
                                 {
                                     completeClasses ?
                                         completeClasses.map((val, i) => {
+                                            console.log(val)
                                             return (
                                                 <div key={i}>
                                                     <DropdownItem header>{val.name}</DropdownItem>
