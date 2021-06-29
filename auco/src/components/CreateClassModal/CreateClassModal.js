@@ -24,7 +24,6 @@ const initialFormData = Object.freeze({
 const CreateClassModal = (props) => {
     const { userId } = useToken();
     const [loading, setLoading] = useState(false);
-    //let history = useHistory();
 
     const [activeTab, setActiveTab] = useState('1');
     const teacherId = userId;
@@ -106,9 +105,8 @@ const CreateClassModal = (props) => {
         postClass(data).then(response => {
             // if create class success
             if (response) {
-                console.log(response);
                 setLoading(false);
-                props.toggle()
+                props.toggle();
                 window.location.reload();
             }
         });

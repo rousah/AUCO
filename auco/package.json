@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0",
     "css-loader": "^5.2.4",
+    "file-saver": "^2.0.5",
     "nivo": "^0.31.0",
     "node-sass": "^5.0.0",
     "pure-react-carousel": "^1.27.6",
