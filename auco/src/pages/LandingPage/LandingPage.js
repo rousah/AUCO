@@ -24,7 +24,7 @@ const LandingPage = (props) => {
                         </Col>
                         <Col className="text-center d-flex flex-column h-50 py-3 justify-content-between align-items-center flex-nowrap">
                             <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
-                                <h1 style={{ fontWeight: "600" }}>Empezar aquí lorem ipsum</h1>
+                                <h1 style={{ fontWeight: "600" }}>¡Empieza a crear un buen ambiente en clase con <b>AUCO</b>!</h1>
                             </Row>
                             <Row className=" align-content-center justify-content-center align-self-stretch" style={{ flex: "1" }}>
                                 <ButtonMain className="h-50 w-75 fs-3" buttonText={"EMPEZAR"} href="/choose-user" fontWeight="bold"></ButtonMain>
@@ -50,7 +50,7 @@ const LandingPage = (props) => {
                         <Col className="justify-content-center d-flex flex-column px-md-5">
                             <h4 style={{ fontWeight: "800", color: "#0d4c8b" }}>STOP bullying!</h4>
                             <p>
-                                AUCO pretende enseñar a los niños la importancia de tratarse bien y así intentar combatir el bullying. También ofrece ciertas herramientas al profesorado que pueden utilizar para identificar posibles problemas que puede haber en su clase.
+                                <b>AUCO</b> pretende ayudar a los niños de las escuelas y el personal académico a combatir el bullying. Ofrece ciertas herramientas al profesorado que pueden utilizar para identificar los posibles problemas que puedan haber en su clase, con colaboración de los estudiantes.
                             </p>
                         </Col>
                     </Row>
@@ -62,7 +62,7 @@ const LandingPage = (props) => {
                         <Col className="justify-content-center d-flex flex-column px-md-5 text-md-end">
                             <h4 style={{ fontWeight: "800", color: "#0d4c8b" }}>¿Cómo funciona?</h4>
                             <p>
-                                Lo que hace AUCO es pedir la completación de ciertos formularios a los alumnos. Mediante los resultados de los formularios el profesorado puede tomar decisiones y ayudar a los niños que lo necesiten. A cambio, los alumnos recibirán recompensas: insignias, puntos... para crear una experiencia divertida
+                                Lo que hace <b>AUCO</b> es pedir a los estudiantes que respondan ciertas preguntas acerca del bullying, sus emociones, su entorno... Mediante los resultados de los cuestionarios el profesorado puede tomar decisiones y ayudar a los niños que lo necesiten. A cambio, los alumnos recibirán recompensas en forma de insignias y puntos, para crear una experiencia divertida y motivarlos.
                             </p>
                         </Col>
                         <Col className="col-12 col-md-4 justify-content-center d-flex flex-column px-md-4 align-items-center">
@@ -74,13 +74,13 @@ const LandingPage = (props) => {
             <br></br>
             <section id="start" className="d-flex flex-column justify-content-center align-items-center text-center my-md-5 p-1 p-md-4 py-3">
                 <p style={{ fontWeight: 500 }}>
-                    AUCO es una plataforma diseñada por y para el bienestar de los niños en un ambiente escolar y fomentar su aprendizaje sobre temas como el bullying.
+                    AUCO es una plataforma diseñada por y para el bienestar de los niños en un ambiente escolar y fomentar un buen clima de trabajo, enfocando principalmente en temas como el bullying.
                     <br />
                     <br />
-                    Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua esse cillum dolore eu fugiat.
+                    Si eres profesor, regístrate, y hoy mismo podrás ayudar a tus alumnos a tratarse mejor y así ser más felices.
                 </p>
                 <br></br>
-                <ButtonMain className="h-50 fs-3" buttonText={"EMPEZAR"} href="/choose-user" fontWeight="600"></ButtonMain>
+                <ButtonMain className="h-50 fs-3 px-3" buttonText={"EMPEZAR"} href="/choose-user" fontWeight="600"></ButtonMain>
             </section>
             <section id="footer" className="d-flex justify-content-center align-items-center text-center my-5">
                 <img src={kidsTeacher} alt="children with teacher" className="w-100"></img>

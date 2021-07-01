@@ -57,12 +57,12 @@ const Register = (props) => {
                     <Row className="m-2 m-lg-0">
                         <Col xs="12" lg="6" className="p-5 explanation mb-2 mg-lg-0" style={{ color: "white" }}>
                             <h1 style={{ fontWeight: "800" }} className="mb-3">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Regístrate, y hoy mismo podrás empezar a ayudar.
                             </h1>
                             <p style={{ fontWeight: 600, fontSize: '20px' }}>
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Únete a <b>AUCO</b> y ayudarás a combatir el bullying y enseñar buenos valores a las generaciones del futuro. Rellena el formulario de la derecha con tus datos personales y entrarás a la plataforma.
                                 <br /><br />
-                                Después de crear tu cuenta de pofesorado podrás dar de alta una clase para dar acceso a tus alumnos al contenido de la plataforma.
+                                Después de crear tu cuenta de profesorado, podrás dar de alta una clase y dar acceso a tus alumnos al contenido de la plataforma.
                             </p>
                         </Col>
                         <Col xs="12" lg="6" className="pt-5 pb-4 ps-5 pe-5 registration-form mb-2 mg-lg-0">

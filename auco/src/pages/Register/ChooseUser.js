@@ -44,7 +44,7 @@ const ChooseUser = (props) => {
             <Modal isOpen={modal} toggle={toggle} className={className}>
                 <ModalHeader toggle={toggle} close={closeBtn}>¡Ups!</ModalHeader>
                 <ModalBody style={{ paddingBottom: '9rem' }} className="text-center">
-                    Para obtener una cuenta de estudiante, tu profesor tendrá que inscribirte. ¡Infórmale a tu profesor de la plataforma y obtendrás acceso a todo el contenido de AUCO muy pronto!
+                    Para obtener una cuenta de estudiante, tu profesor tendrá que inscribirte. ¡Infórmale a tu profesor de la plataforma y muy pronto obtendrás acceso a todo el contenido de <b>AUCO</b>!
                     <img src={oopsIllustration} alt="error" style={{ width: "40%", position: 'absolute', bottom: '0', left: '2rem' }}></img>
                 </ModalBody>
                 <ModalFooter className="justify-content-center">
