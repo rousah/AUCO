@@ -41,14 +41,19 @@ const Login = (props) => {
                 if (response.role === 'student') {
                     console.log("Student logged in");
                     props.setRole(response.role);
+
+                    history.push({
+                        pathname: '/home',
+                        state: { response }
+                    });  // redirect
                 }
                 else {
                     props.setRole('teacher');
+                    history.push({
+                        pathname: '/clases',
+                        state: { response }
+                    });  // redirect
                 }
-                history.push({
-                    pathname: '/home',
-                    state: { response }
-                });  // redirect
             }
         });
     };
