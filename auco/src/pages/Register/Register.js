@@ -50,10 +50,10 @@ const Register = (props) => {
     };
 
     return (
-        <div className="register fullscreen">
+        <div className="register fullscreen-r">
             <NavBarLanding showlogin></NavBarLanding>
             <div className="d-flex h-100 align-items-center">
-                <Container className="align-content-center h-75 create-user">
+                <Container className="align-content-center create-user">
                     <Row className="m-2 m-lg-0">
                         <Col xs="12" lg="6" className="p-5 explanation mb-2 mg-lg-0" style={{ color: "white" }}>
                             <h1 style={{ fontWeight: "800" }} className="mb-3">
@@ -120,7 +120,7 @@ const Register = (props) => {
                                     <Input type="password" name="passwordCheck" className="mb-3" />
                                 </FormGroup>
                                 <Button onClick={handleSubmit} style={{ background: "none", border: "none" }} className="w-100 mt-4 d-flex justify-content-center">
-                                    <ButtonMain buttonText="CREAR CUENTA" className="w-50" fontWeight="500" fontSize="20px"></ButtonMain>
+                                    <ButtonMain buttonText="CREAR CUENTA" className="w-md-50" fontWeight="500" fontSize="20px"></ButtonMain>
                                 </Button>
                             </Form>
                         </Col>
