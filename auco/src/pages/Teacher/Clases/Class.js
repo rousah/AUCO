@@ -20,8 +20,6 @@ import { faCaretSquareLeft, faCaretSquareRight } from '@fortawesome/free-solid-s
 import './Class.css'
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
-
 
 const Class = (props) => {
     let { id } = useParams();

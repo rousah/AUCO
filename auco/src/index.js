@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // eslint-disable-next-line import/no-webpack-loader-syntax
-//import '!style-loader!css-loader!bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "../src/main.scss";
 import './index.css';
