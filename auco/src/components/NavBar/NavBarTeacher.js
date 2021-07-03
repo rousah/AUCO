@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUsers, faBell, faCog, faUser, faQuestion, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faBell, faCog, faUser, faQuestion, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Badge } from 'reactstrap';
 import Notification from '../Notification/Notification';
 import { getClasses } from '../../services/getClasses';
@@ -16,33 +16,6 @@ import {
 } from 'reactstrap';
 
 import useToken from '../../services/useToken';
-
-const notifications = [
-    {
-        nombre: "etica",
-        notificaciones: [
-            {
-                nombre: "Lola",
-                incidencia: false,
-                detalle: "no ha respondido"
-            },
-            {
-                nombre: "Pepito",
-                incidencia: true,
-                detalle: "Jaime ha pegado a Lara"
-            }
-        ]
-    }, {
-        nombre: "lengua",
-        notificaciones: [
-            {
-                nombre: "Lola",
-                incidencia: false,
-                detalle: "no viene a clase"
-            }
-        ]
-    }
-]
 
 const notifNumber = (notificationsPerClass) => {
     let notifs = 0;

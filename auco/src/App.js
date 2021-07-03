@@ -7,7 +7,6 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import ChooseUser from './pages/Register/ChooseUser';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
-import Home from './pages/Teacher/Home/Home';
 import StudentHome from './pages/Student/Home/StudentHome';
 import Clases from './pages/Teacher/Clases/Clases';
 import Class from './pages/Teacher/Clases/Class';
