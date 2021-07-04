@@ -68,7 +68,7 @@ const ReportModal = (props) => {
             <ModalHeader toggle={props.toggle} close={closeBtn}>Reportar Incidente</ModalHeader>
             <ModalBody style={{ minHeight: '50vh' }}>
                 <p className="fs-6" style={styleBorder}>
-                    ¿Has visto ?
+                    ¿Has visto alguna situación negativa en clase o en el colegio que te ha llamado la atención? ¿Hay algún problema que te preocupa y te gustaría avisar o hablarlo con tu profesor? <br></br>Escribe lo que quieras en el cuadro de texto, y se le enviará un mensaje a tu profesor.
                 </p>
                 {
                     loading ?
