@@ -8,7 +8,6 @@ const Answer = (props) => {
     const preferenceNumber = props.number +1;
 
     const handleChange = (e, newValue, plainValue) => {
-        console.log(e)
         updateText(e.target.value);
         if (e.target.value.match(/\d/) != null) {
             props.add(plainValue, e.target.value.match(/\d/));

@@ -90,7 +90,6 @@ const Questionnaire = (props) => {
 
     // Save questionnaire responses recorded so far
     const onClickSave = async () => {
-        console.log(responses)
 
         setLoading(true);
 
@@ -106,6 +105,8 @@ const Questionnaire = (props) => {
             // To not take into account ids
             answersCount = answersCount - 2;
 
+            console.log("responses")
+            console.log(responses)
             // Save answers
             const res = await saveResponses(responses).then(res => {
                 return res;
@@ -118,7 +119,6 @@ const Questionnaire = (props) => {
                     return res;
                 });
                 setPoints(questionnaire.points * answersCount);
-                console.log(points);
             }
 
             // Modal well done, sets loading false and goes back to home
@@ -139,7 +139,6 @@ const Questionnaire = (props) => {
             students.forEach(element => {
                 mentionStudents.push({ id: element._id, display: element.name + " " + element.surname });
             });
-            console.log(mentionStudents)
             setClass(mentionStudents);
         }
 
