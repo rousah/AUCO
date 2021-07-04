@@ -32,7 +32,7 @@ const Answer = (props) => {
                     <Mention
                         trigger="@"
                         markup={"@[__display__]__" + props.number + "__"}
-                        data={[{ id: 1, display: "santi" }, { id: 2, display: "rosa" }]}
+                        data={props.students}
                     />
                 </MentionsInput>
             </div>

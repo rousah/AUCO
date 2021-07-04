@@ -81,7 +81,7 @@ const Question = (props) => {
                     {
                         props.answers.map((val, i) => {
                             return (
-                                <AnswerList key={i} number={i} add={addTextToAnswers} text={val}></AnswerList>
+                                <AnswerList key={i} number={i} add={addTextToAnswers} text={val} students={props.students}></AnswerList>
                             )
                         })
                     }
