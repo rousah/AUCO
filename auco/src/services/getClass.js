@@ -3,7 +3,7 @@ import API from '../API';
 
 export async function getClass(id) {
     console.log("getClass()");
-    const token = await API.get(`/class/`+id)
+    const thisClass = await API.get(`/class/` + id)
         .then(res => {
             console.log("Success receiving class!");
             return res.data;
@@ -13,5 +13,5 @@ export async function getClass(id) {
             console.log(err);
             return false;
         });
-    return token;
+    return thisClass;
 }
