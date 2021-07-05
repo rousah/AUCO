@@ -183,7 +183,6 @@ const Class = (props) => {
                                                         </ButtonBack>
                                                         <Slider>{
                                                             myClass.questionnaires.map((val, i) => {
-                                                                console.log(val)
                                                                 // Show graph of active questionnaires
                                                                 if (val.active) {
                                                                     return (
