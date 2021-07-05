@@ -28,21 +28,22 @@ const Class = (props) => {
     const [slideN, setSlideN] = useState(0);
 
     const [myClass, setClass] = useState(null);
+    const [relationships, setRelationships] = useState(null);
     const [users, setUsers] = useState(null);
     const [gamification, setGamification] = useState([]);
 
     function combineStudentGamification(thisClass, stud) {
         let game = [];
-        for (let i = 0; i < thisClass.students.length; i++) {
+        for (let i = 0; i < thisClass.myClass.students.length; i++) {
             game.push({
                 name: stud[i].name + " " + stud[i].surname,
-                score: thisClass.students[i].score
+                score: thisClass.myClass.students[i].score
             })
         }
 
         let n = 0;
         // Calculate number of active questionnaires
-        thisClass.questionnaires.forEach(element => {
+        thisClass.myClass.questionnaires.forEach(element => {
             if (element.active) {
                 n++;
                 console.log(slideN);
@@ -51,8 +52,9 @@ const Class = (props) => {
         setSlideN(n);
 
         // Set all values here because flow wouldn't work otherwise
-        setClass(thisClass);
-        setForms(thisClass.questionnaires);
+        setClass(thisClass.myClass);
+        setRelationships(thisClass.relationships)
+        setForms(thisClass.myClass.questionnaires);
         setUsers(stud);
         setGamification(game);
     }
@@ -103,7 +105,7 @@ const Class = (props) => {
         setForms(newSettingsForms);
     }
 
-    const relationships = {
+    const relationships2 = {
         "nodes": [
             {
                 "id": "1",
@@ -142,7 +144,7 @@ const Class = (props) => {
         <div>
             <NavBarTeacher clases></NavBarTeacher>
             {
-                users && myClass && gamification.length > 0 ?
+                users && myClass && relationships && gamification.length > 0 ?
                     <Container>
                         {/* Title and back button */}
                         <Row className="p-3 justify-content-between mt-3 mb-4">
@@ -181,7 +183,6 @@ const Class = (props) => {
                                                         </ButtonBack>
                                                         <Slider>{
                                                             myClass.questionnaires.map((val, i) => {
-                                                                console.log(val)
                                                                 // Show graph of active questionnaires
                                                                 if (val.active) {
                                                                     return (

@@ -8,6 +8,7 @@ import useToken from '../../../services/useToken';
 import Question from '../../../components/Question/Question';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { getRandomQuestionsOfQuestionnaire } from '../../../services/getRandomQuestionsOfQuestionnaire';
+import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import ConfirmationModal from '../../../components/ConfirmationModal/ConfirmationModal';
 import GamificationModal from '../../../components/GamificationModal/GamificationModal';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
@@ -31,6 +32,9 @@ const Questionnaire = (props) => {
 
     // Points received for modal
     const [finalPoints, setPoints] = useState(0);
+
+    // Class students info
+    const [thisClassStudents, setClass] = useState(false);
 
     // Questionnaire and question (slide) count
     const [questionnaire, setQuestionnaire] = useState(false);
@@ -86,6 +90,7 @@ const Questionnaire = (props) => {
 
     // Save questionnaire responses recorded so far
     const onClickSave = async () => {
+
         setLoading(true);
 
         let answersCount = 0;
@@ -100,6 +105,8 @@ const Questionnaire = (props) => {
             // To not take into account ids
             answersCount = answersCount - 2;
 
+            console.log("responses")
+            console.log(responses)
             // Save answers
             const res = await saveResponses(responses).then(res => {
                 return res;
@@ -112,7 +119,6 @@ const Questionnaire = (props) => {
                     return res;
                 });
                 setPoints(questionnaire.points * answersCount);
-                console.log(points);
             }
 
             // Modal well done, sets loading false and goes back to home
@@ -121,23 +127,28 @@ const Questionnaire = (props) => {
     }
 
     useEffect(() => {
+        const getMyStudents = async () => {
+            const students = await getStudentsFromClass(currentUser.id_class).then(response => {
+                // if get students success
+                if (response) {
+                    return response;
+                }
+            });
+
+            let mentionStudents = [];
+            students.forEach(element => {
+                mentionStudents.push({ id: element._id, display: element.name + " " + element.surname });
+            });
+            setClass(mentionStudents);
+        }
+
         const getMyQuestionnaire = async (id) => {
             const thisQuestionnaire = await getRandomQuestionsOfQuestionnaire(id, currentUser._id).then(response => {
                 return response;
             });
 
             setQuestionnaire(thisQuestionnaire);
-
-            /*if (thisQuestionnaire.questions != undefined) {
-                let r = [];
-                for (let i = 0; i < thisQuestionnaire.totalQuestions; i++) {
-                    r.push(null);
-                }
-                setResponses(prevState => ({
-                    ...prevState,
-                    ...r
-                }));
-            } */
+            await getMyStudents();
         }
 
         // Get questionnaire
@@ -149,11 +160,11 @@ const Questionnaire = (props) => {
         <div>
             <NavBarStudent home></NavBarStudent>
             {
-                questionnaire && !loading ?
-                    <div className="fullscreen justify-content-between d-flex flex-column">
+                questionnaire && thisClassStudents && !loading ?
+                    <div className="justify-content-between d-flex flex-column">
                         <CarouselProvider
                             naturalSlideWidth={100}
-                            naturalSlideHeight={63}
+                            naturalSlideHeight={65}
                             totalSlides={questionnaire.questions.length}
                             touchEnabled={false}
                             dragEnabled={false}
@@ -181,7 +192,7 @@ const Questionnaire = (props) => {
                                                 questionnaire.questions.map((val, i) => {
                                                     return (
                                                         <Slide index={i} key={i}>
-                                                            <Question onChangeSelection={onChangeSelection} qNumber={val.questionNumber} choice={val.type} answers={val.answers} question={val.question} description={val.description}></Question>
+                                                            <Question onChangeSelection={onChangeSelection} qNumber={val.questionNumber} choice={val.type} answers={val.answers} question={val.question} description={val.description} students={thisClassStudents}></Question>
                                                         </Slide>
                                                     )
                                                 })
@@ -190,7 +201,7 @@ const Questionnaire = (props) => {
                                     </Row>
                                 </div>
                             </Container>
-                            <div className="border-top mt-5">
+                            <div className="border-top mb-5">
                                 <div className="w-50 container d-flex justify-content-between">
                                     <ButtonBack style={slideCount > 1 ? noButtonStyle : hideButtonStyle} onClick={uncountSlides}>
                                         <ButtonMain secondary buttonText="<" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>

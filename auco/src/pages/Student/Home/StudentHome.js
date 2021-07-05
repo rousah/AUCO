@@ -95,7 +95,7 @@ const StudentHome = (props) => {
             });
 
             // Get students from this class
-            getMyStudents(thisClass);
+            getMyStudents(thisClass.myClass);
         }
 
         // Get class
