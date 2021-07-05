@@ -108,18 +108,29 @@ const Questionnaire = (props) => {
 
             console.log("responses")
             console.log(responses)
-            // Save answers
-            const res = await saveResponses(responses).then(res => {
-                return res;
-            });
 
-            if (res) {
+            if (questionnaireId == "question-of-the-day") {
                 console.log("add points")
                 // Add points answers (point per question * number of questions)
-                const points = await savePoints(currentUser._id, questionnaire.points * answersCount).then(res => {
+                const points = await savePoints(currentUser._id, 5).then(res => {
                     return res;
                 });
-                setPoints(questionnaire.points * answersCount);
+                setPoints(5);
+            }
+            else {
+                // Save answers
+                const res = await saveResponses(responses).then(res => {
+                    return res;
+                });
+
+                if (res) {
+                    console.log("add points")
+                    // Add points answers (point per question * number of questions)
+                    const points = await savePoints(currentUser._id, questionnaire.points * answersCount).then(res => {
+                        return res;
+                    });
+                    setPoints(questionnaire.points * answersCount);
+                }
             }
 
             // Modal well done, sets loading false and goes back to home
