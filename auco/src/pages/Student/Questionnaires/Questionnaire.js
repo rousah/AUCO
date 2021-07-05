@@ -8,6 +8,7 @@ import useToken from '../../../services/useToken';
 import Question from '../../../components/Question/Question';
 import ButtonMain from '../../../components/Buttons/ButtonMain';
 import { getRandomQuestionsOfQuestionnaire } from '../../../services/getRandomQuestionsOfQuestionnaire';
+import { getRandomQuestion } from '../../../services/getRandomQuestion';
 import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import ConfirmationModal from '../../../components/ConfirmationModal/ConfirmationModal';
 import GamificationModal from '../../../components/GamificationModal/GamificationModal';
@@ -143,9 +144,17 @@ const Questionnaire = (props) => {
         }
 
         const getMyQuestionnaire = async (id) => {
-            const thisQuestionnaire = await getRandomQuestionsOfQuestionnaire(id, currentUser._id).then(response => {
-                return response;
-            });
+            let thisQuestionnaire;
+            if (id == "question-of-the-day") {
+                thisQuestionnaire = await getRandomQuestion().then(response => {
+                    return response;
+                });
+            }
+            else {
+                thisQuestionnaire = await getRandomQuestionsOfQuestionnaire(id, currentUser._id).then(response => {
+                    return response;
+                });
+            }
 
             setQuestionnaire(thisQuestionnaire);
             await getMyStudents();

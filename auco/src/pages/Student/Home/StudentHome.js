@@ -14,6 +14,7 @@ import ReportModal from '../../../components/Notification/ReportModal';
 import SuccessAlert from '../../../components/Notification/SuccessAlert';
 import QuestionnaireButton from '../../../components/Buttons/QuestionnaireButton';
 import ReactTooltip from 'react-tooltip';
+import { NavLink as RRNavLink, Link } from 'react-router-dom';
 
 
 const StudentHome = (props) => {
@@ -104,8 +105,8 @@ const StudentHome = (props) => {
     }, [])
 
     const calculatePoints = (points) => {
-        let minus = Math.trunc(points/100);
-        return points - minus*100;
+        let minus = Math.trunc(points / 100);
+        return points - minus * 100;
     }
 
     return (
@@ -122,7 +123,10 @@ const StudentHome = (props) => {
                                     <DashboardCard className="mb-4" title="Acciones rápidas" content={
                                         <div className="d-flex text-center flex-column align-items-center">
                                             <Col className="mb-3">
-                                                <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3 tw-animate-bounce" fontWeight="600" fontSize="20px"></ButtonMain>
+                                                <Link className="d-flex text-center" tag={RRNavLink} to={{ pathname: "/questionnaire/question-of-the-day" }} style={{textDecoration: 'none'}}>
+                                                    <ButtonMain buttonText="RESPONDER PREGUNTA DEL DÍA" className="py-2 px-3 tw-animate-bounce" fontWeight="600" fontSize="20px">
+                                                    </ButtonMain>
+                                                </Link>
                                             </Col>
                                             <Col data-tip data-for='report'>
                                                 <ButtonMain buttonText="REPORTAR INCIDENTE" className="py-2 px-3" fontWeight="600" fontSize="20px" onClick={toggle}></ButtonMain>
