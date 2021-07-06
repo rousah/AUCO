@@ -105,41 +105,6 @@ const Class = (props) => {
         setForms(newSettingsForms);
     }
 
-    const relationships2 = {
-        "nodes": [
-            {
-                "id": "1",
-                "radius": 8,
-                "depth": 1,
-                "color": "rgb(97, 205, 187)"
-            },
-            {
-                "id": "2",
-                "radius": 8,
-                "depth": 1,
-                "color": "rgb(97, 205, 187)"
-            },
-            {
-                "id": "3",
-                "radius": 8,
-                "depth": 1,
-                "color": "rgb(97, 205, 187)"
-            }
-        ],
-        "links": [
-            {
-                "source": "2",
-                "target": "1",
-                "distance": 50
-            },
-            {
-                "source": "1",
-                "target": "3",
-                "distance": 30
-            }
-        ]
-    }
-
     return (
         <div>
             <NavBarTeacher clases></NavBarTeacher>

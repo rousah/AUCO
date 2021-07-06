@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import classnames from 'classnames';
-import './CreateClassModal.css'
 import file from '../../assets/files/plantilla_alumnos.xlsx'
 import { postClass } from '../../services/createClass';
 import useToken from '../../services/useToken';
 import Loading from '../../components/Loading';
+import './CreateClassModal.css'
 
 const initialFormData = Object.freeze({
     userId: "",
@@ -38,10 +38,7 @@ const CreateClassModal = (props) => {
         if (tab === '1') withFile = 'false';
         else withFile = 'true';
         let data = {
-            classname: formData.classname,
-            year: formData.year,
-            students: formData.students,
-            selectedFile: formData.selectedFile,
+            ...formData,
             withFile: withFile
         }
         updateFormData(data);
@@ -51,6 +48,7 @@ const CreateClassModal = (props) => {
 
     const addStudent = (e) => {
         updateFormData((prevState) => ({
+            ...formData,
             students: [...prevState.students, { name: "", surname: "" }],
         }));
     }
@@ -59,11 +57,8 @@ const CreateClassModal = (props) => {
     const onFileChange = event => {
         // Update the state 
         let data = {
-            classname: formData.classname,
-            year: formData.year,
-            students: formData.students,
-            selectedFile: event.target.files[0],
-            withFile: formData.withFile
+            ...formData,
+            selectedFile: event.target.files[0]
         }
         updateFormData(data);
     };
@@ -73,12 +68,11 @@ const CreateClassModal = (props) => {
         if (["name", "surname"].includes(e.target.name)) {
             let students = [...formData.students];
             students[e.target.dataset.id][e.target.name] = e.target.value.trim();
+
+            // Withfile always false in this case because we're on tab 1
             let data = {
-                classname: formData.classname,
-                year: formData.year,
-                students: students,
-                selectedFile: formData.selectedFile,
-                withFile: formData.withFile
+                ...formData,
+                students: students
             }
             updateFormData(data);
         }
