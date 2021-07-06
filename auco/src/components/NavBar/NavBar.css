@@ -22,6 +22,11 @@
   padding: 0rem 1rem;
 }
 
+.dropdown-menu {
+  transform: translate3d(16px, 50px, 0px) !important;
+  min-width: 400px;
+}
+
 .nav-link.teacher.active {
   border-bottom: 5px solid #f89f1e;
 }
