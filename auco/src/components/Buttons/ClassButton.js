@@ -62,7 +62,6 @@ const ClassButton = (props) => {
                 </Row>
                 {
                     // Only show notif icon etc. when there are actual notifications
-                    props.thisClass.notifications.length != 0 ?
                         <Row className="d-flex align-items-center direction-row">
                             <Col xs="1" className={props.thisClass.notifications.length > 0 ? "d-flex justify-content-center text-primary" : "d-flex justify-content-center text-dark"}>
                                 <FontAwesomeIcon icon={faExclamationCircle}></FontAwesomeIcon>
@@ -71,7 +70,6 @@ const ClassButton = (props) => {
                                 {props.thisClass.notifications.length} {props.thisClass.notifications.length !== 1 ? <span>notificaciones</span> : <span>notificación</span>}
                             </Col>
                         </Row>
-                        : <span></span>
                 }
                 <Row className="d-flex align-items-center direction-row pt-5">
                     {
