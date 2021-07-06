@@ -66,7 +66,7 @@ const NavBarTeacher = (props) => {
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <NavbarBrand href="/" className="logo me-lg-auto"><h1 style={{ fontWeight: "800" }} className="m-0">AUCO</h1></NavbarBrand>
                     <Nav className="col-12 col-lg-auto my-2 justify-content-center my-md-0">
-                      {/*  <NavItem>
+                        {/*  <NavItem>
                             <NavLink tag={RRNavLink} to={{ pathname: "/home", state: { userId: userId } }} className={props.home ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faHome} className="bi d-block mx-auto mb-1" size="lg" />
                                 Home
@@ -84,9 +84,10 @@ const NavBarTeacher = (props) => {
                                 aria-expanded={dropdownOpen}
                                 role="button"
                                 className="position-relative">
-                                <Badge color="primary" className="badge-notifications bg-teal rounded-pill">{completeClasses ? notifNumber(completeClasses) : ""}</Badge>
+                                <Badge className="badge-notifications bg-teal rounded-pill tw-animate-ping text-teal">{completeClasses ? notifNumber(completeClasses) : ""}</Badge>
+                                <Badge className="badge-notifications bg-teal rounded-pill">{completeClasses ? notifNumber(completeClasses) : ""}</Badge>
                                 <FontAwesomeIcon icon={faBell} className="bi d-block mx-auto mb-1" size="lg" />
-                                        Avisos
+                                Avisos
                             </DropdownToggle>
                             <DropdownMenu className="col-sm-6">
                                 {
