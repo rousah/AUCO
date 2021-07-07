@@ -13,13 +13,13 @@ function Notification(props) {
                     props.incidencia ? <span>{props.name} ha mandado una incidencia: "{props.content}"</span> :  <span>{props.name} {props.content}</span>
                 }
             </div>
-            <button
+         {/*   <button
                 type="button"
                 className="close btn-close"
                 data-dismiss="alert"
                 aria-label="Close"
             >
-            </button>
+         </button> */}
         </UncontrolledAlert>
     );
 }
