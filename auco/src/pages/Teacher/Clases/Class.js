@@ -177,7 +177,7 @@ const Class = (props) => {
                                             <div>
                                                 <h6 className="invisible">Cuestionario</h6>
                                                 <div style={{ height: "320px" }}>
-                                                    {/*<NetworkGraph data={relationships} /> */}
+                                                    <NetworkGraph data={relationships} />
                                                 </div>
                                             </div>
 
