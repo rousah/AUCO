@@ -176,7 +176,7 @@ const Class = (props) => {
                                                             })}
                                                         </Slider>
                                                         <ButtonNext style={hideButtonStyle}>
-                                                        <FontAwesomeIcon icon={faCaretSquareRight}></FontAwesomeIcon>
+                                                            <FontAwesomeIcon icon={faCaretSquareRight}></FontAwesomeIcon>
                                                         </ButtonNext>
                                                     </div>
                                                 </CarouselProvider>
@@ -198,26 +198,36 @@ const Class = (props) => {
                                 <Row className="mb-3">
                                     <Col>
                                         <DashboardCard title="Notificaciones" className="h-100" content={
-                                            <div id="scroll-notifs" style={{ maxHeight: '300px' }}>
-                                                {myClass.notifications.map((val, i) => {
-                                                    return (
-                                                        <div>
-                                                            <Notification color="auco" content={
-                                                                <span>
-                                                                    {val.details}
-                                                                </span>}
-                                                                incidencia={val.incident} name={val.name}
-                                                            >
-                                                            </Notification>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </div>
-                                        }></DashboardCard>
+                                            myClass.notifications.length > 0 ?
+                                                <div id="scroll-notifs" style={{ maxHeight: '200px', height: "100%" }}>
+                                                    {
+                                                        myClass.notifications.map((val, i) => {
+                                                            return (
+                                                                <div>
+                                                                    <Notification color="auco" content={
+                                                                        <span>
+                                                                            {val.details}
+                                                                        </span>}
+                                                                        incidencia={val.incident} name={val.name}
+                                                                    >
+                                                                    </Notification>
+                                                                </div>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                                :
+                                                <div className="h-100 d-flex text-center align-items-center" style={{ height: '300px' }}>
+                                                    <span className="fw-light text-center text-muted w-50 mb-5 fs-6" style={{ height: 'fit-content' }}>
+                                                        de momento no hay notificaciones de esta clase
+                                                    </span>
+                                                </div>
+
+                                        } ></DashboardCard>
                                     </Col>
                                     <Col>
                                         <DashboardCard title="Cuestionarios" content={
-                                            <div>
+                                            <div id="scroll-notifs" style={{ maxHeight: '200px', height: "100%" }}>
                                                 {
                                                     forms.map((val, i) => {
                                                         return (
