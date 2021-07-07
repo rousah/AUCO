@@ -1,18 +1,10 @@
-.fullscreen {
-  height: 90vh;
-  min-height: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
 .progress {
   background-color: #e5eafc !important;
 }
 
 .carousel__inner-slide {
   width: calc(100% - 50px);
-  height: calc(100% - 50px);
+  /*height: calc(100% - 50px);*/
   left: 20px;
   top: 10px;
   position: relative !important;

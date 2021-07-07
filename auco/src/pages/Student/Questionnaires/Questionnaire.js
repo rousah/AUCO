@@ -184,12 +184,13 @@ const Questionnaire = (props) => {
                     <div className="justify-content-between d-flex flex-column">
                         <CarouselProvider
                             naturalSlideWidth={100}
-                            naturalSlideHeight={65}
+                            naturalSlideHeight={80}
                             totalSlides={questionnaire.questions.length}
                             touchEnabled={false}
                             dragEnabled={false}
                             visibleSlides={1}
-                            isIntrinsicHeight={false}>
+                            isIntrinsicHeight={false}
+                            style={{ height: '90vh' }}>
                             <Container className="w-50 mt-3">
                                 <div>
                                     <Row>
@@ -207,7 +208,7 @@ const Questionnaire = (props) => {
                                         {questionnaire.description}
                                     </Row>
                                     <Row className="">
-                                        <Slider>
+                                        <Slider className={questionnaire.questions.length < 2 ? "overflow-y-visible overflow-x-visible" : ""}>
                                             {
                                                 questionnaire.questions.map((val, i) => {
                                                     return (
@@ -221,15 +222,19 @@ const Questionnaire = (props) => {
                                     </Row>
                                 </div>
                             </Container>
-                            <div className="border-top mb-5">
+                            <div className="border-top mb-3 position-absolute bottom-0 w-100">
                                 <div className="w-50 container d-flex justify-content-between">
                                     <ButtonBack style={slideCount > 1 ? noButtonStyle : hideButtonStyle} onClick={uncountSlides}>
-                                        <ButtonMain secondary buttonText="<" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
+                                        <ButtonMain secondary buttonText="< Pregunta anterior" className="py-2 px-3 mt-4" fontWeight="500" fontSize="20px"></ButtonMain>
                                     </ButtonBack>
-                                    <ButtonMain buttonText="Guardar" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px" onClick={onClickSave}></ButtonMain>
-                                    <ButtonNext style={slideCount < questionnaire.questions.length ? noButtonStyle : hideButtonStyle} onClick={countSlides}>
-                                        <ButtonMain secondary buttonText=">" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px"></ButtonMain>
-                                    </ButtonNext>
+                                    {
+                                        slideCount < questionnaire.questions.length ?
+                                            <ButtonNext style={noButtonStyle} onClick={countSlides}>
+                                                <ButtonMain secondary buttonText="Pregunta siguiente >" className="py-2 px-3 mt-4" fontWeight="500" fontSize="20px"></ButtonMain>
+                                            </ButtonNext>
+                                            :
+                                            <ButtonMain buttonText="Enviar" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px" onClick={onClickSave}></ButtonMain>
+                                    }
                                 </div>
                             </div>
                             <ConfirmationModal isOpen={modal} action={goBack} toggle={toggleConfirmation} modal={modal} headerText="¡Ciudado!" confirmationText={"Estás a punto de salir del questionario " + questionnaire.name + ". Tus respuestas no se guardarán. ¿Estás seguro/a de que quieres salir?"} actionText="Salir" loadingText="" />

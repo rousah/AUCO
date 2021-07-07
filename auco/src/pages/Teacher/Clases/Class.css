@@ -9,5 +9,5 @@
 #scroll-notifs:hover,
 #scroll-notifs:active,
 #scroll-notifs:focus {
-  overflow-y: auto;
+  overflow-y: scroll;
 }
