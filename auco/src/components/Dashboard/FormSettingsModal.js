@@ -44,6 +44,7 @@ const FormSettingsModal = (props) => {
             ...prevState,
             active: e
         }));
+        props.setChecked(e);
     }
 
     // Save questionnaire settings
