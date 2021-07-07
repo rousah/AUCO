@@ -158,13 +158,13 @@ const Class = (props) => {
                                                                                     {
                                                                                         "id": "Respondido",
                                                                                         "label": "Respondido",
-                                                                                        "value": val.answered,
+                                                                                        "value": val.answered / 2,
                                                                                         "color": "#f89f1e"
                                                                                     },
                                                                                     {
                                                                                         "id": "Sin responder",
                                                                                         "label": "Sin responder",
-                                                                                        "value": myClass.students.length - val.answered,
+                                                                                        "value": myClass.students.length - val.answered / 2,
                                                                                         "color": "#fdbf4d"
                                                                                     }
                                                                                 ]} key={i} />
@@ -184,7 +184,7 @@ const Class = (props) => {
                                         }></DashboardCard>
                                     </Col>
                                     <Col xs="6">
-                                        <DashboardCard title="Relaciones" content={
+                                        <DashboardCard title="Sociograma" content={
                                             <div>
                                                 <h6 className="invisible">Cuestionario</h6>
                                                 <div style={{ height: "320px" }}>
