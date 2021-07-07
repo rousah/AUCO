@@ -41,15 +41,7 @@ const Class = (props) => {
             })
         }
 
-        let n = 0;
-        // Calculate number of active questionnaires
-        thisClass.myClass.questionnaires.forEach(element => {
-            if (element.active) {
-                n++;
-                console.log(slideN);
-            }
-        });
-        setSlideN(n);
+        setSlideN(thisClass.myClass.questionnaires.length);
 
         // Set all values here because flow wouldn't work otherwise
         setClass(thisClass.myClass);
@@ -149,30 +141,27 @@ const Class = (props) => {
                                                         <Slider>{
                                                             myClass.questionnaires.map((val, i) => {
                                                                 // Show graph of active questionnaires
-                                                                if (val.active) {
-                                                                    return (
-                                                                        <Slide index={i} key={i}>
-                                                                            <h6 className="text-center">Cuestionario {val.name}</h6>
-                                                                            <div style={{ height: "300px" }}>
-                                                                                <PieGraph data={[
-                                                                                    {
-                                                                                        "id": "Respondido",
-                                                                                        "label": "Respondido",
-                                                                                        "value": val.answered / 2,
-                                                                                        "color": "#f89f1e"
-                                                                                    },
-                                                                                    {
-                                                                                        "id": "Sin responder",
-                                                                                        "label": "Sin responder",
-                                                                                        "value": myClass.students.length - val.answered / 2,
-                                                                                        "color": "#fdbf4d"
-                                                                                    }
-                                                                                ]} key={i} />
-                                                                            </div>
-                                                                        </Slide>
-                                                                    )
-                                                                }
-                                                                else return null;
+                                                                return (
+                                                                    <Slide index={i} key={i}>
+                                                                        <h6 className="text-center">Cuestionario {val.name}</h6>
+                                                                        <div style={{ height: "300px" }}>
+                                                                            <PieGraph data={[
+                                                                                {
+                                                                                    "id": "Respondido",
+                                                                                    "label": "Respondido",
+                                                                                    "value": val.answered / 2,
+                                                                                    "color": "#f89f1e"
+                                                                                },
+                                                                                {
+                                                                                    "id": "Sin responder",
+                                                                                    "label": "Sin responder",
+                                                                                    "value": myClass.students.length - val.answered / 2,
+                                                                                    "color": "#fdbf4d"
+                                                                                }
+                                                                            ]} key={i} />
+                                                                        </div>
+                                                                    </Slide>
+                                                                )
                                                             })}
                                                         </Slider>
                                                         <ButtonNext style={hideButtonStyle}>
@@ -188,7 +177,7 @@ const Class = (props) => {
                                             <div>
                                                 <h6 className="invisible">Cuestionario</h6>
                                                 <div style={{ height: "320px" }}>
-                                                    <NetworkGraph data={relationships} />
+                                                    {/*<NetworkGraph data={relationships} /> */}
                                                 </div>
                                             </div>
 
@@ -218,7 +207,7 @@ const Class = (props) => {
                                                 </div>
                                                 :
                                                 <div className="h-50 d-flex text-center align-items-center text-muted justify-content-center">
-                                                        De momento no hay notificaciones de esta clase
+                                                    De momento no hay notificaciones de esta clase
                                                 </div>
 
                                         } ></DashboardCard>

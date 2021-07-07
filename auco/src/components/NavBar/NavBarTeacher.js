@@ -19,7 +19,6 @@ import useToken from '../../services/useToken';
 
 const notifNumber = (notificationsPerClass) => {
     let notifs = 0;
-    console.log(notificationsPerClass)
     notificationsPerClass.forEach((oneClass, i) => {
         oneClass.notifications.forEach((oneNotif, i) => {
             notifs++;
@@ -38,11 +37,9 @@ const NavBarTeacher = (props) => {
             const classes = await getClasses(userId).then(response => {
                 // if get classes success
                 if (response) {
-                    console.log(response);
                     return response;
                 }
             });
-            console.log(classes);
             setCompleteClasses(classes);
         }
         getMyClasses();
@@ -93,7 +90,6 @@ const NavBarTeacher = (props) => {
                                 {
                                     completeClasses ?
                                         completeClasses.map((val, i) => {
-                                            console.log(val)
                                             return (
                                                 <div key={i}>
                                                     <DropdownItem header>{val.name}</DropdownItem>
