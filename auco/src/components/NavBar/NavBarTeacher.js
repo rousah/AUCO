@@ -57,9 +57,13 @@ const NavBarTeacher = (props) => {
         // return false;
     }
 
+    const pageDoesntExist = () => {
+        alert("Ups! Esta página todavía no existe.")
+    }
+
     return (
         <header className="px-3 pt-1 navbar-teacher text-white">
-            < Container >
+            <Container>
                 <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <NavbarBrand href="/" className="logo me-lg-auto"><h1 style={{ fontWeight: "800" }} className="m-0">AUCO</h1></NavbarBrand>
                     <Nav className="col-12 col-lg-auto my-2 justify-content-center my-md-0">
@@ -114,7 +118,7 @@ const NavBarTeacher = (props) => {
                             </DropdownMenu>
                         </Dropdown>
                         <NavItem>
-                            <NavLink href="" className={props.settings ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink onClick={pageDoesntExist} className={props.settings ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faCog} className="bi d-block mx-auto mb-1" size="lg" />
                                 Ajustes
                             </NavLink>
@@ -127,7 +131,7 @@ const NavBarTeacher = (props) => {
                         </NavItem>
                         <span id="vertical-separation" className="mt-1 mb-2"></span>
                         <NavItem>
-                            <NavLink href="" className={props.help ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink onClick={pageDoesntExist} className={props.help ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faQuestion} className="bi d-block mx-auto mb-1" size="lg" />
                                 Ayuda
                             </NavLink>

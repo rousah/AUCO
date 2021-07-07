@@ -48,6 +48,10 @@ const NavBarStudent = (props) => {
         // return false;
     }
 
+    const pageDoesntExist = () => {
+        alert("Ups! Esta página todavía no existe.")
+    }
+
     return (
         <header className="px-3 pt-1 navbar-teacher text-white">
             <SuccessAlert text="¡Reporte enviado con éxito!" show={show}></SuccessAlert>
@@ -62,12 +66,12 @@ const NavBarStudent = (props) => {
                                 Home
                             </NavLink>
                         </NavItem>
-                        <NavLink onClick={toggle} className="py-0 teacher" style={{cursor: 'pointer'}}>
+                        <NavLink onClick={toggle} className="py-0 teacher" style={{ cursor: 'pointer' }}>
                             <FontAwesomeIcon icon={faExclamationCircle} className="bi d-block mx-auto mb-1" size="lg" />
                             Reportar
                         </NavLink>
                         <NavItem>
-                            <NavLink href="" className={props.settings ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink onClick={pageDoesntExist} className={props.settings ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faCog} className="bi d-block mx-auto mb-1" size="lg" />
                                 Ajustes
                             </NavLink>
@@ -80,7 +84,7 @@ const NavBarStudent = (props) => {
                         </NavItem>
                         <span id="vertical-separation" className="mt-1 mb-2"></span>
                         <NavItem>
-                            <NavLink href="" className={props.help ? "py-0 teacher active" : "py-0 teacher "}>
+                            <NavLink onClick={pageDoesntExist} className={props.help ? "py-0 teacher active" : "py-0 teacher "}>
                                 <FontAwesomeIcon icon={faQuestion} className="bi d-block mx-auto mb-1" size="lg" />
                                 Ayuda
                             </NavLink>
