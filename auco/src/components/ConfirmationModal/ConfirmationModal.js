@@ -30,7 +30,7 @@ const ConfirmationModal = (props) => {
     return (
         <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
             <ModalHeader toggle={props.toggle} close={<div></div>}>{props.headerText}</ModalHeader>
-            <ModalBody>
+            <ModalBody style={{minHeight: '400px'}}>
                 {
                     loading ?
                         <Loading text={props.loadingText}></Loading>
