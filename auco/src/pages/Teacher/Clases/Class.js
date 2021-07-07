@@ -217,10 +217,8 @@ const Class = (props) => {
                                                     }
                                                 </div>
                                                 :
-                                                <div className="h-100 d-flex text-center align-items-center" style={{ height: '300px' }}>
-                                                    <span className="fw-light text-center text-muted w-50 mb-5 fs-6" style={{ height: 'fit-content' }}>
-                                                        de momento no hay notificaciones de esta clase
-                                                    </span>
+                                                <div className="h-50 d-flex text-center align-items-center text-muted justify-content-center">
+                                                        De momento no hay notificaciones de esta clase
                                                 </div>
 
                                         } ></DashboardCard>
