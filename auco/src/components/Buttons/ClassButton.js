@@ -32,6 +32,10 @@ const ClassButton = (props) => {
         height: '100%'
     };
 
+    const notPossible = () => {
+        alert("Ups! Esta acción todavía no está disponible.")
+    }
+
     return (
         <div style={style}>
             <Dropdown isOpen={dropdownOpen} toggle={toggle} className="position-absolute top-0 end-0 mt-3 me-3" direction="left">
@@ -42,8 +46,12 @@ const ClassButton = (props) => {
                     <FontAwesomeIcon icon={faEllipsisV}></FontAwesomeIcon>
                 </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem><FontAwesomeIcon icon={faExternalLinkAlt} /> Abrir</DropdownItem>
-                    <DropdownItem><FontAwesomeIcon icon={faUserPlus} /> Invitar</DropdownItem>
+                    <Link tag={RRNavLink} to={{ pathname: "/class/" + props.thisClass._id }} className="text-decoration-none text-body" rel='noopener noreferrer' target="_blank">
+                        <DropdownItem>
+                            <FontAwesomeIcon icon={faExternalLinkAlt} /> Abrir
+                        </DropdownItem>
+                    </Link>
+                    <DropdownItem onClick={notPossible}><FontAwesomeIcon icon={faUserPlus} /> Invitar</DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem onClick={toggleConfirmation}><FontAwesomeIcon icon={faTrash} /> Eliminar</DropdownItem>
                 </DropdownMenu>
@@ -62,14 +70,14 @@ const ClassButton = (props) => {
                 </Row>
                 {
                     // Only show notif icon etc. when there are actual notifications
-                        <Row className="d-flex align-items-center direction-row">
-                            <Col xs="1" className={props.thisClass.notifications.length > 0 ? "d-flex justify-content-center text-primary" : "d-flex justify-content-center text-dark"}>
-                                <FontAwesomeIcon icon={faExclamationCircle}></FontAwesomeIcon>
-                            </Col>
-                            <Col>
-                                {props.thisClass.notifications.length} {props.thisClass.notifications.length !== 1 ? <span>notificaciones</span> : <span>notificación</span>}
-                            </Col>
-                        </Row>
+                    <Row className="d-flex align-items-center direction-row">
+                        <Col xs="1" className={props.thisClass.notifications.length > 0 ? "d-flex justify-content-center text-primary" : "d-flex justify-content-center text-dark"}>
+                            <FontAwesomeIcon icon={faExclamationCircle}></FontAwesomeIcon>
+                        </Col>
+                        <Col>
+                            {props.thisClass.notifications.length} {props.thisClass.notifications.length !== 1 ? <span>notificaciones</span> : <span>notificación</span>}
+                        </Col>
+                    </Row>
                 }
                 <Row className="d-flex align-items-center direction-row pt-5">
                     {

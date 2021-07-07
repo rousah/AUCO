@@ -38,6 +38,10 @@ const StudentProfile = (props) => {
         return points - minus*100;
     }
 
+    const notPossible = () => {
+        alert("Ups! Esta acción todavía no está disponible.")
+    }
+
     return (
         <div>
             <NavBarStudent profile></NavBarStudent>
@@ -125,7 +129,7 @@ const StudentProfile = (props) => {
                                                     </Col>
                                                 </Row>
                                                 <Row className="justify-content-center d-flex">
-                                                    <ButtonMain buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
+                                                    <ButtonMain onClick={notPossible} buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
                                                 </Row>
                                             </div>
                                         }></DashboardCard>
@@ -152,7 +156,7 @@ const StudentProfile = (props) => {
                                                     </Col>
                                                 </Row>
                                                 <Row className="justify-content-center d-flex">
-                                                    <ButtonMain buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
+                                                    <ButtonMain onClick={notPossible} buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
                                                 </Row>
                                             </div>
                                         }></DashboardCard>

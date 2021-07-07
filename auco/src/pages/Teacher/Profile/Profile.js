@@ -11,6 +11,11 @@ import teacherClassIllustration from '../../../assets/illustrations/teacherInCla
 const Profile = (props) => {
     const { currentUser } = useToken();
     console.log(currentUser);
+
+    const notPossible = () => {
+        alert("Ups! Esta acción todavía no está disponible.")
+    }
+
     return (
         <div>
             <NavBarTeacher profile></NavBarTeacher>
@@ -53,7 +58,7 @@ const Profile = (props) => {
                                             </Col>
                                         </Row>
                                         <Row className="justify-content-center d-flex">
-                                            <ButtonMain buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
+                                            <ButtonMain onClick={notPossible} buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
                                         </Row>
                                     </div>
                                 }></DashboardCard>
@@ -78,7 +83,7 @@ const Profile = (props) => {
                                             </Col>
                                         </Row>
                                         <Row className="justify-content-center d-flex">
-                                            <ButtonMain buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
+                                            <ButtonMain onClick={notPossible} buttonText="Editar" className="px-4" fontWeight="500" fontSize="20px"></ButtonMain>
                                         </Row>
                                     </div>
                                 }></DashboardCard>
