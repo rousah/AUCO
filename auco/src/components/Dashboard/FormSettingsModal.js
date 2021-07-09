@@ -86,9 +86,9 @@ const FormSettingsModal = (props) => {
                                     Automático:
                                 </Label>
                                 <Input type="select" name="select" id="exampleSelect" className="form-select" disabled={!formSettings.automatic} onChange={handleChange} value={formSettings.automatic ? formSettings.options : ""}>
-                                    <option>daily</option>
-                                    <option>weekly</option>
-                                    <option>monthly</option>
+                                    <option value="daily">Diario</option>
+                                    <option value="weekly">Semanal</option>
+                                    <option value="monthly">Mensual</option>
                                 </Input>
                             </FormGroup>
                             <FormGroup check>
