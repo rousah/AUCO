@@ -90,7 +90,7 @@ const NavBarTeacher = (props) => {
                                 <FontAwesomeIcon icon={faBell} className="bi d-block mx-auto mb-1" size="lg" />
                                 Avisos
                             </DropdownToggle>
-                            <DropdownMenu className="col-sm-6">
+                            <DropdownMenu className="col-sm-6" id="scroll-notifs" style={{ height: '400px' }}>
                                 {
                                     completeClasses ?
                                         completeClasses.map((val, i) => {
