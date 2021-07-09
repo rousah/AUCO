@@ -3,7 +3,7 @@ import '../../App.css';
 import './Login.css';
 import NavBarLanding from '../../components/NavBar/NavBarLanding';
 import { Container } from 'reactstrap';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import ButtonMain from '../../components/Buttons/ButtonMain';
 import { postLogin } from '../../services/loggingIn';
 import { withRouter } from 'react-router-dom'
@@ -15,8 +15,15 @@ const initialFormData = Object.freeze({
     password: ""
 });
 
+const noExiste = () => {
+    alert("¡Ups! Esta función todavía no está disponible.")
+}
+
 const Login = (props) => {
     const [formData, updateFormData] = React.useState(initialFormData);
+    const [visible, setVisible] = React.useState(false);
+
+    const showAlert = () => setVisible(true);
 
     let history = useHistory();
 
@@ -55,6 +62,10 @@ const Login = (props) => {
                     });  // redirect
                 }
             }
+            else {
+                updateFormData({ email: "", password: "" });
+                showAlert();
+            }
         });
     };
 
@@ -71,15 +82,18 @@ const Login = (props) => {
                             <Label for="email">
                                 <h6>Correo electrónico o usuario:</h6>
                             </Label>
-                            <Input type="text" name="email" className="mb-3" onChange={handleChange} />
+                            <Input type="text" name="email" className="mb-3" onChange={handleChange} value={formData.email} />
                         </FormGroup>
                         <FormGroup>
                             <Label for="password">
                                 <h6>Contraseña:</h6>
                             </Label>
-                            <Input type="password" name="password" onChange={handleChange} />
-                            <a href="/" className="mb-3">¿Has olvidado tu contraseña?</a>
+                            <Input type="password" name="password" onChange={handleChange} value={formData.password} autoComplete="on"/>
+                            <a href="/login" className="mb-3" onClick={noExiste}>¿Has olvidado tu contraseña?</a>
                         </FormGroup>
+                        <Alert color="danger" isOpen={visible}>
+                            Usuario, correo electrónico o contraseña incorrecta
+                        </Alert>
                         <Button type="submit" style={{ background: "none", border: "none", cursor: 'default' }} className="w-100 mt-4 d-flex justify-content-center">
                             <ButtonMain buttonText="ENTRAR" className="px-3" fontWeight="500" fontSize="20px"></ButtonMain>
                         </Button>
