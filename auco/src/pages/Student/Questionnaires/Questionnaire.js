@@ -225,12 +225,12 @@ const Questionnaire = (props) => {
                             <div className="border-top mb-3 position-absolute bottom-0 w-100">
                                 <div className="w-50 container d-flex justify-content-between">
                                     <ButtonBack style={slideCount > 1 ? noButtonStyle : hideButtonStyle} onClick={uncountSlides}>
-                                        <ButtonMain secondary buttonText="< Pregunta anterior" className="py-2 px-3 mt-4" fontWeight="500" fontSize="20px"></ButtonMain>
+                                        <ButtonMain buttonText="< Pregunta anterior" className="py-2 px-3 mt-4" fontWeight="500" fontSize="20px"></ButtonMain>
                                     </ButtonBack>
                                     {
                                         slideCount < questionnaire.questions.length ?
                                             <ButtonNext style={noButtonStyle} onClick={countSlides}>
-                                                <ButtonMain secondary buttonText="Pregunta siguiente >" className="py-2 px-3 mt-4" fontWeight="500" fontSize="20px"></ButtonMain>
+                                                <ButtonMain buttonText="Pregunta siguiente >" className="py-2 px-3 mt-4" fontWeight="500" fontSize="20px"></ButtonMain>
                                             </ButtonNext>
                                             :
                                             <ButtonMain buttonText="Enviar" className="py-2 px-3 mt-4" fontWeight="600" fontSize="20px" onClick={onClickSave}></ButtonMain>
