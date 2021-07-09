@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane, CustomInput, FormText } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane, CustomInput, FormText, FormFeedback, InputGroup } from 'reactstrap';
 import ButtonMain from '../../components/Buttons/ButtonMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
@@ -24,6 +24,8 @@ const initialFormData = Object.freeze({
 const CreateClassModal = (props) => {
     const { userId } = useToken();
     const [loading, setLoading] = useState(false);
+    const [invalidClass, setInvalidClass] = useState(false);
+    const [invalidYear, setInvalidYear] = useState(false);
 
     const [activeTab, setActiveTab] = useState('1');
     const teacherId = userId;
@@ -80,30 +82,49 @@ const CreateClassModal = (props) => {
         else {
             updateFormData({ ...formData, [e.target.name]: e.target.value.trim() })
         }
+
+        if (e.target.name === "classname") {
+            setInvalidClass(false);
+        }
+        if (e.target.name === "year") {
+            setInvalidYear(false);
+        }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData();
-        data.append('userId', teacherId);
-        data.append('classname', formData.classname);
-        data.append('year', formData.year);
-        data.append('students', JSON.stringify(formData.students));
-        data.append('withFile', formData.withFile);
-        data.append('selectedFile', formData.selectedFile);
 
-        // Show loading animation
-        setLoading(true);
+        if (formData.classname !== "") {
+            if (formData.year !== "") {
+                data.append('userId', teacherId);
+                data.append('classname', formData.classname);
+                data.append('year', formData.year);
+                data.append('students', JSON.stringify(formData.students));
+                data.append('withFile', formData.withFile);
+                data.append('selectedFile', formData.selectedFile);
 
-        // Create class
-        postClass(data).then(response => {
-            // if create class success
-            if (response) {
-                setLoading(false);
-                props.toggle();
-                window.location.reload();
+                // Show loading animation
+                setLoading(true);
+
+                // Create class
+                postClass(data).then(response => {
+                    // if create class success
+                    if (response) {
+                        setLoading(false);
+                        props.toggle();
+                        window.location.reload();
+                    }
+                });
             }
-        });
+            else {
+                setInvalidYear(true);
+            }
+        }
+        else {
+            setInvalidClass(true);
+        }
+
     };
 
     const styleBorder = {
@@ -127,13 +148,19 @@ const CreateClassModal = (props) => {
                                 <Label for="classname">
                                     <h6>Nombre de la clase:</h6>
                                 </Label>
-                                <Input type="text" name="classname" className="mb-3" onChange={handleChange} placeholder="Ética" />
+                                <InputGroup>
+                                    <Input type="text" name="classname" className="mb-3" onChange={handleChange} placeholder="Ética" invalid={invalidClass} />
+                                    <FormFeedback invalid>Rellene el campo</FormFeedback>
+                                </InputGroup>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="year">
                                     <h6>Curso:</h6>
                                 </Label>
-                                <Input type="text" name="year" className="mb-3" onChange={handleChange} placeholder="2º ESO" />
+                                <InputGroup>
+                                <Input type="text" name="year" className="mb-3" onChange={handleChange} placeholder="2º ESO" invalid={invalidYear}/>
+                                <FormFeedback invalid>Rellene el campo</FormFeedback>
+                                </InputGroup>
                             </FormGroup>
                             <h6 className="mt-5">Alumnos:</h6>
                             <div style={styleBorder}>
@@ -197,7 +224,7 @@ const CreateClassModal = (props) => {
                                             <CustomInput type="file" id="exampleCustomFileBrowser" name="customFile" label="Selecciona un archivo" onChange={onFileChange} accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                                             <FormText color="muted" className="ms-1">
                                                 Formatos aceptados: .xlsx .xls .csv
-                                    </FormText>
+                                            </FormText>
                                         </FormGroup>
                                     </TabPane>
                                 </TabContent>
