@@ -82,8 +82,10 @@ const LandingPage = (props) => {
                 <br></br>
                 <ButtonMain className="h-50 fs-3 px-3" buttonText={"EMPEZAR"} href="/choose-user" fontWeight="600"></ButtonMain>
             </section>
-            <section id="footer" className="d-flex justify-content-center align-items-center text-center my-5">
+            <section id="footer" className="d-flex justify-content-center align-items-center text-center mt-5 flex-column text-muted">
                 <img src={kidsTeacher} alt="children with teacher" className="w-100"></img>
+                <span>Ilustraciones creadas por <a href="https://www.freepik.com/pch-vector" className="text-muted">pch.vector</a> y <a href="https://www.freepik.com/rawpixel-com" className="text-muted">rawpixel.com</a> - freepik</span>
+                <span>Trabajo Fin de Grado © 2020-2021, Emilia Rosa van der Heide. Contacto: <a href = "mailto: emiliarosavdh@gmail.com" className="text-muted">emiliarosavdh@gmail.com</a></span>
             </section>
         </div>
     );
