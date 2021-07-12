@@ -149,7 +149,7 @@ const CreateClassModal = (props) => {
                                     <h6>Nombre de la clase:</h6>
                                 </Label>
                                 <InputGroup>
-                                    <Input type="text" name="classname" className="mb-3" onChange={handleChange} placeholder="Ética" invalid={invalidClass} />
+                                    <Input type="text" name="classname" className="mb-3" onChange={handleChange} placeholder="Nombre de la clase o asignatura" invalid={invalidClass} />
                                     <FormFeedback invalid>Rellene el campo</FormFeedback>
                                 </InputGroup>
                             </FormGroup>
@@ -158,7 +158,7 @@ const CreateClassModal = (props) => {
                                     <h6>Curso:</h6>
                                 </Label>
                                 <InputGroup>
-                                <Input type="text" name="year" className="mb-3" onChange={handleChange} placeholder="2º ESO" invalid={invalidYear}/>
+                                <Input type="text" name="year" className="mb-3" onChange={handleChange} placeholder="Curso" invalid={invalidYear}/>
                                 <FormFeedback invalid>Rellene el campo</FormFeedback>
                                 </InputGroup>
                             </FormGroup>
