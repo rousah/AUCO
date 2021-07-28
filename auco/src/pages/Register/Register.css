@@ -1,4 +1,8 @@
-.fullscreen {
+.register {
+  background-image: url(../../assets/backgrounds/cloudy-blue.png);
+}
+
+.fullscreen-mobile {
   height: 100vh;
   min-height: 100%;
   box-sizing: border-box;
@@ -6,21 +10,13 @@
   overflow-y: hidden;
 }
 
-.register {
-  background-image: url(../../assets/backgrounds/cloudy-blue.png);
-}
-
-.create-user {
-  width: 60% !important;
-}
-
 .explanation {
-  border-radius: 14px 0px 0px 14px;
+  border-radius: 14px;
   background-color: #3956f7;
 }
 
 .registration-form {
-  border-radius: 0px 14px 14px 0px;
+  border-radius: 14px;
   background-color: #edf1ff;
   color: #1d2128;
 }
@@ -32,4 +28,42 @@
 
 .modal-body {
   padding-bottom: 9rem;
+}
+
+@media (min-width: 992px) {
+  .fullscreen-r {
+    height: 100vh;
+    min-height: 100%;
+    box-sizing: border-box;
+  }
+
+  .explanation {
+    border-radius: 14px 0px 0px 14px;
+  }
+
+  .registration-form {
+    border-radius: 0px 14px 14px 0px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .fullscreen-r {
+    height: 100vh;
+    min-height: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .create-user {
+    width: 60% !important;
+  }
+
+  .explanation {
+    border-radius: 14px 0px 0px 14px;
+  }
+
+  .registration-form {
+    border-radius: 0px 14px 14px 0px;
+  }
 }

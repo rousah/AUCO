@@ -11,8 +11,7 @@ const SquareButton = (props) => {
         borderRadius: '16px',
         cursor: 'pointer',
         color: 'white',
-        marginBottom: '4px',
-        width: props.width,
+        marginBottom: '4px'
     };
 
     const styleSecondary = {
@@ -22,12 +21,11 @@ const SquareButton = (props) => {
         borderRadius: '16px',
         cursor: 'pointer',
         color: 'white',
-        marginBottom: '4px',
-        width: props.width,
+        marginBottom: '4px'
     };
 
     return (
-        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className + " p-0"} id="box" onClick={props.onClick}>
+        <a href={props.href} style={props.secondary ? styleSecondary : styleMain} className={props.className + " p-0 square-button"} id="box" onClick={props.onClick}>
             <div id="square"></div>
             <div id="content" className="p-3 d-flex flex-column justify-content-center align-items-center">
                 <img src={props.illustration} alt={props.alt} className="w-100"></img>

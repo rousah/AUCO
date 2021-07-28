@@ -1,17 +1,17 @@
-// createClass.js
+// getClass.js
 import API from '../API';
 
-export async function getClasses(id) {
-    console.log("getClasses()");
-    const token = await API.get(`/class/classes/`+id.userId)
+export async function getClass(id) {
+    console.log("getClass()");
+    const thisClass = await API.get(`/class/` + id)
         .then(res => {
-            console.log("Success receiving classes!");
+            console.log("Success receiving class!");
             return res.data;
         })
         .catch((err) => {
-            console.log("Error in reception of classes!");
+            console.log("Error in reception of class!");
             console.log(err);
             return false;
         });
-    return token;
+    return thisClass;
 }

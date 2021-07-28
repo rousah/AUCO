@@ -3,24 +3,50 @@ import NavBarTeacher from '../../../components/NavBar/NavBarTeacher'
 import ClassButton from '../../../components/Buttons/ClassButton'
 import CreateClassButton from '../../../components/Buttons/CreateClassButton'
 import { Container, Row, Col } from 'reactstrap';
-import { getClasses } from '../../../services/getClass';
+import { getClasses } from '../../../services/getClasses';
+import { getStudentsFromClass } from '../../../services/getStudentsFromClass';
 import { useState, useEffect } from 'react';
+import Loading from '../../../components/Loading';
+import useToken from '../../../services/useToken';
 
 const Clases = (props) => {
-    const [classes, setClasses] = useState(null);
+    const [completeClasses, setCompleteClasses] = useState(null);
+    const { userId } = useToken();
+
     useEffect(() => {
-        async function getMyClasses() {
-            const classes = await getClasses(props.history.location.state).then(response => {
-                // if get classes success
+        async function getAllStudentsFromThisClass(id) {
+            const students = await getStudentsFromClass(id).then(response => {
+                // if get students from this class success
                 if (response) {
                     console.log(response);
                     return response;
                 }
+                else {
+                    return false;
+                }
             });
-            setClasses(classes);
+            return students;
+        }
+        async function getMyClasses() {
+            const classes = await getClasses(userId).then(response => {
+                // if get classes success
+                console.log(response)
+                return response;
+            });
+            if (classes) {
+                for (const thisClass of classes) {
+                    const students = await getAllStudentsFromThisClass(thisClass._id);
+                    thisClass.personalStudents = students;
+                }
+                console.log(classes);
+                setCompleteClasses(classes);
+            }
+            // No classes received
+            else setCompleteClasses([]);
         }
         getMyClasses();
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div>
@@ -37,24 +63,26 @@ const Clases = (props) => {
                     </Col>
                 </Row>
                 <Row>
-                    {classes ?
-                        classes.map((val, i) => {
-                            console.log(val)
-                            return (
-                                <Col key={i} xs="3" className="mb-4">
-                                    <ClassButton name={val.name} year={val.year} numberStudents={val.students.length} notifications={Math.floor(Math.random()*4)} students={val.students}></ClassButton>
-                                </Col>
-                            )
-                        })
+                    {completeClasses ?
+                        <Row>
+                            {completeClasses.map((val, i) => {
+                                return (
+                                    <Col key={i} xs="3" className="mb-4">
+                                        <ClassButton thisClass={val}></ClassButton>
+                                    </Col>
+                                )
+                            })}
+                            <Col xs="3" className="mb-4">
+                                <CreateClassButton square id={props.history.location.state}></CreateClassButton>
+                            </Col>
+                        </Row>
+
                         :
-                        false
+                        <Loading></Loading>
                     }
-                    <Col xs="3" className="mb-4">
-                        <CreateClassButton square id={props.history.location.state}></CreateClassButton>
-                    </Col>
                 </Row>
             </Container>
-        </div>
+        </div >
     );
 }
 

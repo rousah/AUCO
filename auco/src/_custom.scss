@@ -5,8 +5,20 @@ $theme-colors: (
   "auco": #3956f7,
   "teal": #3dd0ae,
   "pop-up": #edf1ff,
-  "dark-colour-text": #0d4c8b
+  "dark-colour-text": #0d4c8b,
+  "danger": rgba(250, 45, 45, 0.7)
 );
 
 $body-bg: #f1f4ff;
 $body-color: #1d2128;
+
+$utilities: (
+  "overflow-x": (
+    property: overflow-x,
+    values: auto hidden visible scroll,
+  ),
+  "overflow-y": (
+    property: overflow-y,
+    values: auto hidden visible scroll,
+  ),
+);

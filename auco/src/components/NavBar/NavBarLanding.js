@@ -33,7 +33,7 @@ const NavBarLanding = (props) => {
     }
 
     return (
-        <Navbar color="light" dark expand="md" className={navbar ? 'sticky-top navigation active py-0' : 'sticky-top navigation py-0'}>
+        <Navbar dark expand="md" className={navbar ? 'sticky-top navigation active py-0' : 'sticky-top navigation py-0'}>
             <Container>
                 <NavbarBrand href="/" className="logo"><h1 style={{ fontWeight: "800" }} className="m-0">AUCO</h1></NavbarBrand>
                 <NavbarToggler onClick={toggle} />
